@@ -1,160 +1,86 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>بوابة الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #f9fbfa;
+      margin: 0;
+      font-family: 'Tahoma', sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
     }
-    header {
-      background-color: #155e59;
+
+    .news-bar {
+      background-color: #0b5d5c;
       color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    header img {
-      height: 60px;
-      margin-bottom: 10px;
-    }
-    .navbar {
-      background-color: #e6f2ef;
-    }
-    .nav-link {
-      color: #155e59 !important;
-      font-weight: bold;
-    }
-    .ticker {
-      background-color: #dcf5f1;
-      color: #0a4d47;
       padding: 10px;
       font-weight: bold;
-      text-align: center;
-      border-bottom: 2px solid #34d399;
-      animation: slideIn 0.5s ease-out;
+      font-size: 16px;
     }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .announcement {
-      background-color: #fff3cd;
-      color: #856404;
+
+    .alert-box {
+      background-color: #333;
       padding: 10px;
-      text-align: center;
-      font-weight: bold;
-      border-bottom: 2px solid #ffeeba;
+      color: #0b5d5c;
+      font-size: 15px;
     }
-    .service-card {
-      background-color: #e6f0ee;
-      border: none;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
+
+    .logo {
+      margin: 30px 0 10px;
+    }
+
+    .logo img {
+      width: 280px;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #0b5d5c;
+      margin: 10px 0 30px;
+    }
+
+    .social {
+      margin-top: 20px;
+    }
+
+    .social a {
+      background-color: #0b5d5c;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      display: inline-block;
       transition: 0.3s;
-      height: 100%;
     }
-    .service-card:hover {
-      background-color: #d3ebe7;
-    }
-    footer {
-      background-color: #155e59;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .social-icons a {
-      color: white;
-      font-size: 20px;
-      margin: 0 10px;
+
+    .social a:hover {
+      background-color: #088;
     }
   </style>
 </head>
 <body>
 
-  <!-- شعار واسم الموقع -->
-  <header>
-    <img src="logo.png" alt="شعار قرية الخريطة">
+  <div class="news-bar">
+    ⚠️ الموقع قيد الإنشاء بواسطة أبو خالد
+  </div>
+
+  <div class="alert-box">
+    يرجى نشر رابط الموقع على أوسع نطاق 📢
+  </div>
+
+  <div class="logo">
+    <img src="images/fs4.foto1.png" alt="شعار بوابة الخريطة">
     <h1>بوابة الخريطة</h1>
-    <p>قرية زراعية تابعة لمحافظة دير الزور</p>
-  </header>
+  </div>
 
-  <!-- شريط التنقل -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#">الرئيسية</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">الخدمات</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">عن القرية</a></li>
-        <li class="nav-item"><a class="nav-link" href="#map">الخريطة</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- شريط إخباري -->
-  <div class="ticker">📢 الموقع قيد الإنشاء بواسطة أبو خالد</div>
-
-  <!-- إعلان -->
-  <div class="announcement">💡 يرجى نشر رابط موقع على أوسع نطاق</div>
-
-  <!-- قسم الخدمات -->
-  <section class="container my-5" id="services">
-    <h3 class="text-center mb-4">الخدمات المتوفرة</h3>
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-hospital fa-2x mb-2"></i>
-          <h5>الخدمات الطبية</h5>
-          <p>المركز الصحي، الصيدلية، الرعاية الأولية</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-city fa-2x mb-2"></i>
-          <h5>البلدية</h5>
-          <p>حجز موعد، تقديم شكوى، طلب مساعدة</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-school fa-2x mb-2"></i>
-          <h5>المدارس</h5>
-          <p>الابتدائية، الإعدادية، الثانوية</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- نبذة عن القرية -->
-  <section class="container my-5" id="about">
-    <h3 class="text-center mb-4">نبذة عن قرية الخريطة</h3>
-    <p class="text-center">
-      تقع الخريطة على الضفة اليمنى لنهر الفرات على الطريق العام دير الزور - الرقة - حلب.
-      تبلغ مساحتها ما يقارب 10 كيلومتر مربع، وتتميز بتربتها الخصبة. تحوي القرية مدارس تعليم أساسي وثانوي، ومرافق خدمية متنوعة.
-    </p>
-  </section>
-
-  <!-- خريطة الموقع -->
-  <section class="container my-5" id="map">
-    <h3 class="text-center mb-3">موقع القرية على الخريطة</h3>
-    <div class="ratio ratio-16x9">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.8658990505483!2d39.0818572!3d35.3338029" 
-        frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </section>
-
-  <!-- تذييل -->
-  <footer>
-    <p>© 2025 بوابة الخريطة - جميع الحقوق محفوظة</p>
-    <div class="social-icons mt-2">
-      <a href="https://www.facebook.com/share/1LCd4zCjcd/" target="_blank"><i class="fab fa-facebook"></i></a>
-    </div>
-  </footer>
+  <div class="social">
+    <a href="https://www.facebook.com/share/1LCd4zCjcd/" target="_blank">📘 صفحتنا على فيسبوك</a>
+  </div>
 
 </body>
-    </html>
+</html>
