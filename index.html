@@ -99,17 +99,18 @@
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
-    .service-card {
+    .service-folder {
       background-color: #fff;
       border-radius: 15px;
       padding: 25px;
       text-align: center;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
       position: relative;
       overflow: hidden;
     }
-    .service-card::before {
+    .service-folder::before {
       content: '';
       position: absolute;
       top: 0;
@@ -119,22 +120,44 @@
       background: linear-gradient(90deg, #f59e0b, #d4a017);
       transition: height 0.3s ease;
     }
-    .service-card:hover::before {
+    .service-folder:hover::before {
       height: 100%;
       opacity: 0.1;
     }
-    .service-card:hover {
+    .service-folder:hover {
       transform: translateY(-15px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
-    .service-card i {
+    .service-folder i {
       font-size: 3rem;
       color: #f59e0b;
       margin-bottom: 15px;
       transition: transform 0.3s ease;
     }
-    .service-card:hover i {
+    .service-folder:hover i {
       transform: scale(1.2);
+    }
+    .service-details {
+      display: none;
+      background: #e6f0ee;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    .service-details.active {
+      display: block;
+    }
+    .service-details .sub-service {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddf1ef;
+    }
+    .service-details .sub-service i {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      margin-left: 10px;
     }
     .ai-chat {
       position: fixed;
@@ -199,7 +222,7 @@
       color: #d4a017;
     }
     @media (max-width: 768px) {
-      .service-card {
+      .service-folder {
         margin-bottom: 20px;
       }
       .ticker-warning {
@@ -218,9 +241,10 @@
   </header>
 
   <nav class="nav justify-content-center bg-light py-3 shadow-sm">
-    <a class="nav-link" href="#">الرئيسية</a>
+    <a class="nav-link" href="#home">الرئيسية</a>
     <a class="nav-link" href="#services">الخدمات</a>
     <a class="nav-link" href="#about">عن القرية</a>
+    <a class="nav-link" href="https://alikhbariah.com/" target="_blank">الأخبار</a>
   </nav>
 
   <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> الموقع قيد الإنشاء بواسطة أبو خالد</span></div>
@@ -229,56 +253,112 @@
     <button onclick="navigator.clipboard.write('https://your-site-url.com'); alert('تم نسخ الرابط!')">نسخ الرابط</button>
   </div>
 
+  <section class="container my-5" id="home">
+    <h3 class="text-center mb-4" style="color: #1d5c57;">أخبار وخدمات جديدة</h3>
+    <div class="row g-4">
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-broom"></i>
+          <h5>حملة نظافة عامة</h5>
+          <p>حملة تنظيف القرية بالتعاون مع الشباب</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-users"></i>
+          <h5>فعاليات شبابية</h5>
+          <p>فعاليات ترفيهية وثقافية لشباب القرية</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h5>خدمات مجتمعية</h5>
+          <p>دعم المجتمع من خلال مبادرات خيرية</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="container my-5" id="services">
     <h3 class="text-center mb-4" style="color: #1d5c57;">جميع الخدمات في قرية الخريطة</h3>
     <div class="row g-4">
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('medical')">
           <i class="fas fa-hospital"></i>
           <h5>الخدمات الطبية</h5>
-          <p>مستشفى مجهز، صيدليات، عيادات تخصصية</p>
+        </div>
+        <div class="service-details" id="medical">
+          <div class="sub-service"><i class="fas fa-prescription-bottle"></i> الصيدلية</div>
+          <div class="sub-service"><i class="fas fa-hospital"></i> المستشفى</div>
+          <div class="sub-service"><i class="fas fa-clinic-medical"></i> المستوصف</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('municipality')">
           <i class="fas fa-city"></i>
           <h5>البلدية</h5>
-          <p>حجز مواعيد، خدمات إدارية، دعم المواطنين</p>
+        </div>
+        <div class="service-details" id="municipality">
+          <div class="sub-service"><i class="fas fa-calendar-check"></i> حجز مواعيد</div>
+          <div class="sub-service"><i class="fas fa-file-alt"></i> الخدمات الإدارية</div>
+          <div class="sub-service"><i class="fas fa-users"></i> دعم المواطنين</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('security')">
           <i class="fas fa-shield-alt"></i>
           <h5>الأمن</h5>
-          <p>قسم الشرطة، خدمات الحماية المجتمعية</p>
+        </div>
+        <div class="service-details" id="security">
+          <div class="sub-service"><i class="fas fa-shield-alt"></i> قسم الشرطة</div>
+          <div class="sub-service"><i class="fas fa-user-shield"></i> خدمات الحماية المجتمعية</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('education')">
           <i class="fas fa-school"></i>
           <h5>التعليم</h5>
-          <p>مدارس ابتدائية، إعدادية، وثانوية</p>
+        </div>
+        <div class="service-details" id="education">
+          <div class="sub-service"><i class="fas fa-school"></i> المدرسة</div>
+          <div class="sub-service"><i class="fas fa-graduation-cap"></i> الثانوية</div>
+          <div class="sub-service"><i class="fas fa-chalkboard-teacher"></i> الابتدائية</div>
+          <div class="sub-service"><i class="fas fa-book-open"></i> تعليم الدورات</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('agriculture')">
           <i class="fas fa-tractor"></i>
           <h5>الزراعة</h5>
-          <p>دعم المزارعين، استشارات زراعية، توزيع بذور</p>
+        </div>
+        <div class="service-details" id="agriculture">
+          <div class="sub-service"><i class="fas fa-tractor"></i> دعم المزارعين</div>
+          <div class="sub-service"><i class="fas fa-seedling"></i> استشارات زراعية حديثة</div>
+          <div class="sub-service"><i class="fas fa-leaf"></i> دعم الأسمدة</div>
+          <div class="sub-service"><i class="fas fa-water"></i> مياه السقي</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
+        <div class="service-folder" onclick="toggleDetails('transport')">
           <i class="fas fa-bus"></i>
           <h5>النقل</h5>
-          <p>خدمات النقل العام داخل القرية</p>
+        </div>
+        <div class="service-details" id="transport">
+          <div class="sub-service"><i class="fas fa-bus"></i> خدمات النقل العام في القرى</div>
+          <div class="sub-service"><i class="fas fa-ticket-alt"></i> حجز تذكرة</div>
+          <div class="sub-service"><i class="fas fa-taxi"></i> طلب سيارة أجرة خاصة</div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
-        <div class="service-card">
-          <i class="fas fa-calendar-alt"></i>
-          <h5>الفعاليات</h5>
-          <p>فعاليات ثقافية واجتماعية لأهالي القرية</p>
+        <div class="service-folder" onclick="toggleDetails('donation')">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h5>التبرع</h5>
+        </div>
+        <div class="service-details" id="donation">
+          <div class="sub-service"><i class="fas fa-hand-holding-heart"></i> تبرع لجمعيات خيرية</div>
+          <div class="sub-service"><i class="fas fa-donate"></i> تبرع للمدارس الخاصة</div>
+          <div class="sub-service"><i class="fas fa-money-bill-wave"></i> التبرع</div>
         </div>
       </div>
     </div>
@@ -297,7 +377,7 @@
     </button>
     <div class="ai-chat-box" id="aiChatBox">
       <h5 style="color: #1d5c57;">مساعد الذكاء الاصطناعي</h5>
-      <p class="response">مرحبًا! كيف يمكنني مساعدتك؟ اسأل عن الخدمات، الموقع، أو أي شيء عن قرية الخريطة.</p>
+      <p class="response">مرحبًا! كيف يمكنني مساعدتك؟ اسأل عن الخدمات، الأخبار، أو أي شيء عن قرية الخريطة.</p>
       <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا" onkeypress="if(event.key === 'Enter') sendAIQuery()">
       <div class="response" id="aiResponse"></div>
     </div>
@@ -313,14 +393,24 @@
   </footer>
 
   <script>
+    // وظيفة لتبديل إظهار/إخفاء تفاصيل الخدمات
+    function toggleDetails(id) {
+      const details = document.getElementById(id);
+      const allDetails = document.querySelectorAll('.service-details');
+      allDetails.forEach(detail => {
+        if (detail.id !== id) detail.classList.remove('active');
+      });
+      details.classList.toggle('active');
+    }
+
     // تأثير تفاعلي للبطاقات
-    document.querySelectorAll('.service-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.style.backgroundColor = '#f59e0b';
-        card.style.color = 'white';
+    document.querySelectorAll('.service-folder').forEach(folder => {
+      folder.addEventListener('click', () => {
+        folder.style.backgroundColor = '#f59e0b';
+        folder.style.color = 'white';
         setTimeout(() => {
-          card.style.backgroundColor = '#fff';
-          card.style.color = '#1d5c57';
+          folder.style.backgroundColor = '#fff';
+          folder.style.color = '#1d5c57';
         }, 300);
       });
     });
@@ -337,11 +427,15 @@
       let response = 'عذرًا، لم أفهم سؤالك. حاول مرة أخرى!';
 
       if (input.includes('خدمات') || input.includes('خدمة')) {
-        response = 'الخدمات تشمل: الطبية (مستشفى، صيدليات)، البلدية (حجز مواعيد)، الأمن، التعليم، الزراعة، النقل، والفعاليات الثقافية.';
+        response = 'تشمل الخدمات: الطبية (صيدلية، مستشفى، مستوصف)، البلدية (حجز مواعيد، خدمات إدارية، دعم المواطنين)، الأمن، التعليم، الزراعة، النقل، والتبرع.';
       } else if (input.includes('موقع') || input.includes('قرية')) {
         response = 'قرية الخريطة تقع على ضفة نهر الفرات، بمساحة 10 كم مربع، وتشتهر بتربتها الخصبة.';
-      } else if (input.includes('دعم') || input.includes('مساعدة')) {
-        response = 'أنا هنا للمساعدة! اسأل عن أي شيء أو راجع الخدمات المتوفرة.';
+      } else if (input.includes('أخبار')) {
+        response = 'للحصول على آخر الأخبار، زر موقع الأخبارية: <a href="https://alikhbariah.com/" target="_blank">alikhbariah.com</a>';
+      } else if (input.includes('تبرع')) {
+        response = 'يمكنك التبرع لجمعيات خيرية، المدارس الخاصة، أو مبادرات التبرع المحلية.';
+      } else if (input.includes('حملة') || input.includes('نظافة')) {
+        response = 'حملة نظافة عامة تُنظم بالتعاون مع شباب القرية للحفاظ على البيئة.';
       }
 
       responseDiv.innerHTML = response;
