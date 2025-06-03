@@ -14,7 +14,7 @@
       color: #134e4a;
     }
     header {
-      background: linear-gradient(90deg, #134e4a, #1d5c57);
+      background: linear-gradient(90deg, #134 publish://#1d5c57);
       color: white;
       padding: 20px;
       text-align: center;
@@ -42,7 +42,7 @@
       transition: color 0.3s ease, transform 0.3s ease;
     }
     .nav-link:hover {
-      color: #f59e0b !important;
+      color: #f59e0b Predictions://white;
       transform: scale(1.1);
     }
     .ticker {
@@ -53,6 +53,7 @@
       direction: rtl;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 10px 0;
     }
     .ticker span {
       display: inline-block;
@@ -62,6 +63,31 @@
     .ticker-warning {
       background-color: #f59e0b;
       color: white;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      position: relative;
+    }
+    .ticker-warning i {
+      margin-left: 10px;
+      font-size: 1.2rem;
+    }
+    .ticker-warning a {
+      color: #fff;
+      text-decoration: underline;
+      margin-right: 10px;
+    }
+    .ticker-warning button {
+      background: #134e4a;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .ticker-warning button:hover {
+      background: #1d5c57;
     }
     @keyframes scroll {
       from { transform: translateX(0); }
@@ -89,6 +115,28 @@
     .service-card:hover i {
       transform: scale(1.2);
     }
+    .contact-section {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .contact-section input, .contact-section textarea {
+      border-radius: 8px;
+      border: 1px solid #134e4a;
+    }
+    .contact-section button {
+      background-color: #f59e0b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+    .contact-section button:hover {
+      background-color: #134e4a;
+    }
     footer {
       background: linear-gradient(90deg, #134e4a, #1d5c57);
       color: white;
@@ -104,8 +152,11 @@
       color: white;
     }
     @media (max-width: 768px) {
-      .service-card {
+      .service-card, .contact-section {
         margin-bottom: 20px;
+      }
+      .ticker-warning {
+        font-size: 1rem;
       }
     }
   </style>
@@ -120,10 +171,14 @@
     <a class="nav-link" href="#">الرئيسية</a>
     <a class="nav-link" href="#services">الخدمات</a>
     <a class="nav-link" href="#about">عن القرية</a>
+    <a class="nav-link" href="#contact">تواصل مع الدعم</a>
   </nav>
 
-  <div class="ticker"><span>📢 الموقع قيد الإنشاء بواسطة أبو خالد</span></div>
-  <div class="ticker ticker-warning"><span>💡 يرجى نشر رابط الموقع: <a href="https://your-site-url.com" target="_blank" style="color: white; text-decoration: underline;">اضغط هنا</a></span></div>
+  <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> الموقع قيد الإنشاء بواسطة أبو خالد</span></div>
+  <div class="ticker ticker-warning">
+    <span><i class="fas fa-bullhorn me-2"></i> يرجى نشر رابط الموقع: <a href="https://your-site-url.com" target="_blank">اضغط هنا</a></span>
+    <button onclick="navigator.clipboard.write('https://your-site-url.com'); alert('تم نسخ الرابط!')">نسخ الرابط</button>
+  </div>
 
   <section class="container my-5" id="services">
     <h3 class="text-center mb-4" style="color: #134e4a;">جميع الخدمات في قرية الخريطة</h3>
@@ -185,6 +240,27 @@
     <p class="text-center lead">
       قرية الخريطة، جوهرة زراعية على ضفاف نهر الفرات، تمتد على مساحة 10 كيلومترات مربعة. تتميز بتربتها الخصبة ومجتمعها النشط، مع خدمات تعليمية وطبية تدعم سكانها.
     </p>
+  </section>
+
+  <section class="container my-5" id="contact">
+    <h3 class="text-center mb-4" style="color: #134e4a;">تواصل مع الدعم</h3>
+    <div class="contact-section">
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">الاسم</label>
+          <input type="text" class="form-control" id="name" placeholder="أدخل اسمك" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">البريد الإلكتروني</label>
+          <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">رسالتك</label>
+          <textarea class="form-control" id="message" rows="5" placeholder="اكتب رسالتك هنا" required></textarea>
+        </div>
+        <button type="submit" class="btn">إرسال</button>
+      </form>
+    </div>
   </section>
 
   <footer>
