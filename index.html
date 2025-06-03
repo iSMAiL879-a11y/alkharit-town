@@ -1,111 +1,567 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="بوابة قرية الخريطة، خدمات طبية، زراعية، ومجتمعية على ضفاف نهر الفرات" />
+  <meta name="keywords" content="قرية الخريطة, خدمات, الفرات, زراعة, تعليم" />
+  <title>بوابة قرية الخريطة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA_ID');
+  </script>
   <style>
+    :root {
+      --bg-color: #f7f9fa;
+      --text-color: #1d5c57;
+      --header-bg: linear-gradient(90deg, #1d5c57, #134e4a);
+      --card-bg: #fff;
+    }
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+      --header-bg: linear-gradient(90deg, #333, #222);
+      --card-bg: #333;
+    }
     body {
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background-color: #f5f5f5;
-      color: #222;
-    }header {
-  background-color: #004d4d;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header .logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-nav {
-  background-color: #007070;
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-.banner {
-  background-color: #e0f7f7;
-  padding: 15px;
-  text-align: center;
-  font-weight: bold;
-  color: #004d4d;
-}
-
-main {
-  padding: 20px;
-}
-
-.section {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-  background-color: #004d4d;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9em;
-}
-
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    header {
+      background: var(--header-bg);
+      background-attachment: fixed;
+      background-position: center;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://source.unsplash.com/random/1920x200?river') no-repeat center/cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #f59e0b;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .nav-link {
+      color: var(--text-color) !important;
+      font-weight: bold;
+      padding: 10px 20px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #f59e0b !important;
+      transform: scale(1.1);
+    }
+    .ticker {
+      background-color: #e6f0ee;
+      padding: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      direction: rtl;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      margin: 15px 0;
+      font-size: 1.1rem;
+    }
+    .ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 10s linear infinite;
+    }
+    .ticker-warning {
+      background: linear-gradient(90deg, #f59e0b, #d4a017);
+      color: white;
+      padding: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+    }
+    .ticker-warning i {
+      margin-left: 10px;
+      font-size: 1.3rem;
+    }
+    .ticker-warning a {
+      color: #fff;
+      text-decoration: underline;
+      margin-right: 10px;
+    }
+    .ticker-warning button {
+      background: #1d5c57;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .ticker-warning button:hover {
+      background: #134e4a;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+    .service-folder {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #d4a017;
+    }
+    .service-folder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #f59e0b, #d4a017);
+      transition: height 0.3s ease;
+    }
+    .service-folder:hover::before {
+      height: 100%;
+      opacity: 0.1;
+    }
+    .service-folder:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .service-folder i {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: #f59e0b;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .service-folder:hover i {
+      transform: scale(1.2);
+    }
+    .service-details {
+      display: none;
+      background: #e6f0ee;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    .service-details.active {
+      display: block;
+    }
+    .service-details .sub-service {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddf1ef;
+    }
+    .service-details .sub-service i {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      margin-left: 10px;
+    }
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .game-btn {
+      background: #f59e0b;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .game-btn:hover {
+      transform: scale(1.1);
+    }
+    .ai-chat {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .ai-chat-button {
+      background: #1d5c57;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .ai-chat-button:hover {
+      transform: scale(1.2);
+    }
+    .ai-chat-box {
+      display: none;
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      width: clamp(280px, 90vw, 350px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+    }
+    .ai-chat-box.active {
+      display: block;
+    }
+    .ai-chat-box input {
+      border-radius: 8px;
+      border: 1px solid #1d5c57;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .ai-chat-box .response {
+      background: #e6f0ee;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .suggestions {
+      position: absolute;
+      background: var(--card-bg);
+      border: 1px solid #1d5c57;
+      border-radius: 5px;
+      z-index: 1000;
+      width: clamp(200px, 90%, 300px);
+    }
+    .suggestions div {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .suggestions div:hover {
+      background: #e6f0ee;
+    }
+    footer {
+      background: var(--header-bg);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    }
+    footer a {
+      color: #f59e0b;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #d4a017;
+    }
+    #mapContainer {
+      height: 400px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    #calendar {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    @media (max-width: 768px) {
+      .service-folder {
+        margin-bottom: 20px;
+      }
+      .ticker-warning {
+        font-size: 1rem;
+      }
+      .ai-chat-box {
+        width: 280px;
+      }
+    }
   </style>
-</head><body>
+</head>
+<body>
   <header>
-    <div class="logo">بوابة الخريطة</div>
-    <div class="social">
-      <a href="https://www.facebook.com/share/1LCd4zCjcd/" style="color:white;">فيسبوك</a>
+    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+    <h1>بوابة قرية الخريطة</h1>
+    <p>قرية زراعية نابضة بالحياة على ضفاف نهر الفرات</p>
+  </header>
+
+  <nav class="nav justify-content-center bg-light py-3 shadow-sm">
+    <a class="nav-link" href="#home">الرئيسية</a>
+    <a class="nav-link" href="#services">الخدمات</a>
+    <a class="nav-link" href="#about">عن القرية</a>
+    <a class="nav-link" href="#events">الفعاليات</a>
+    <a class="nav-link" href="#gallery">معرض الصور</a>
+    <a class="nav-link" href="#feedback">التعليقات</a>
+    <a class="nav-link" href="https://alikhbariah.com/" target="_blank">الأخبار</a>
+  </nav>
+
+  <div class="container my-3 position-relative">
+    <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة...">
+  </div>
+
+  <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> <span id="announcement">الموقع قيد الإنشاء بواسطة أبو خالد</span></span></div>
+  <div class="ticker ticker-warning">
+    <span><i class="fas fa-bullhorn me-2"></i> يرجى نشر رابط الموقع: <a href="https://your-site-url.com" target="_blank">اضغط هنا</a></span>
+    <button onclick="navigator.clipboard.write('https://your-site-url.com'); alert('تم نسخ الرابط!')">نسخ الرابط</button>
+  </div>
+
+  <section class="container my-5" id="home">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">أخبار وخدمات جديدة</h3>
+    <div class="row g-4">
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder">
+          <i class="fas fa-broom"></i>
+          <h5>حملة نظافة عامة</h5>
+          <p>حملة تنظيف القرية بالتعاون مع الشباب</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder">
+          <i class="fas fa-users"></i>
+          <h5>فعاليات شبابية</h5>
+          <p>فعاليات ترفيهية وثقافية لشباب القرية</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h5>خدمات مجتمعية</h5>
+          <p>دعم المجتمع من خلال مبادرات خيرية</p>
+        </div>
+      </div>
     </div>
-  </header>  <div class="banner">
-    📢 الموقع قيد الإنشاء بواسطة أبو خالد – يرجى نشر الرابط على أوسع نطاق
-  </div>  <nav>
-    <a href="#">الرئيسية</a>
-    <a href="#">الأخبار</a>
-    <a href="#">الخدمات</a>
-    <a href="#">الدردشة</a>
-    <a href="#">تواصل معنا</a>
-  </nav>  <main>
-    <section class="section">
-      <h2>أهلاً بكم في بوابة الخريطة</h2>
-      <p>موقع رسمي تجريبي لخدمة أهل قرية الخريطة – محافظة دير الزور. نعمل على جمع المعلومات والخدمات في مكان واحد.</p>
-    </section><section class="section">
-  <h3>📰 آخر الأخبار</h3>
-  <ul>
-    <li>إطلاق الموقع الرسمي للقرية</li>
-    <li>تحديث بيانات الصيدلية والخدمات الطبية</li>
-  </ul>
-</section>
+  </section>
 
-<section class="section">
-  <h3>📌 خدمات القرية</h3>
-  <ul>
-    <li>دليل المستوصف</li>
-    <li>المتجر المحلي</li>
-    <li>البلدية</li>
-  </ul>
-</section>
+  <section class="container my-5" id="services">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">جميع الخدمات في قرية الخريطة</h3>
+    <div class="row g-4">
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('medical')" data-service="medical">
+          <i class="fas fa-hospital"></i>
+          <h5>الخدمات الطبية</h5>
+        </div>
+        <div class="service-details" id="medical">
+          <div class="sub-service"><i class="fas fa-prescription-bottle"></i> الصيدلية</div>
+          <div class="sub-service"><i class="fas fa-hospital"></i> المستشفى</div>
+          <div class="sub-service"><i class="fas fa-clinic-medical"></i> المستوصف</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('municipality')" data-service="municipality">
+          <i class="fas fa-city"></i>
+          <h5>البلدية</h5>
+        </div>
+        <div class="service-details" id="municipality">
+          <div class="sub-service">
+            <i class="fas fa-calendar-check"></i> حجز مواعيد
+            <button class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#bookingModal">احجز الآن</button>
+          </div>
+          <div class="sub-service"><i class="fas fa-file-alt"></i> الخدمات الإدارية</div>
+          <div class="sub-service"><i class="fas fa-users"></i> دعم المواطنين</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('security')" data-service="security">
+          <i class="fas fa-shield-alt"></i>
+          <h5>الأمن</h5>
+        </div>
+        <div class="service-details" id="security">
+          <div class="sub-service"><i class="fas fa-shield-alt"></i> قسم الشرطة</div>
+          <div class="sub-service"><i class="fas fa-user-shield"></i> خدمات الحماية المجتمعية</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('education')" data-service="education">
+          <i class="fas fa-school"></i>
+          <h5>التعليم</h5>
+        </div>
+        <div class="service-details" id="education">
+          <div class="sub-service"><i class="fas fa-school"></i> المدرسة</div>
+          <div class="sub-service"><i class="fas fa-graduation-cap"></i> الثانوية</div>
+          <div class="sub-service"><i class="fas fa-chalkboard-teacher"></i> الابتدائية</div>
+          <div class="sub-service"><i class="fas fa-book-open"></i> تعليم الدورات</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('agriculture')" data-service="agriculture">
+          <i class="fas fa-tractor"></i>
+          <h5>الزراعة</h5>
+        </div>
+        <div class="service-details" id="agriculture">
+          <div class="sub-service"><i class="fas fa-tractor"></i> دعم المزارعين</div>
+          <div class="sub-service"><i class="fas fa-seedling"></i> استشارات زراعية حديثة</div>
+          <div class="sub-service"><i class="fas fa-leaf"></i> دعم الأسمدة</div>
+          <div class="sub-service"><i class="fas fa-water"></i> مياه السقي</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('transport')" data-service="transport">
+          <i class="fas fa-bus"></i>
+          <h5>النقل</h5>
+        </div>
+        <div class="service-details" id="transport">
+          <div class="sub-service"><i class="fas fa-bus"></i> خدمات النقل العام في القرى</div>
+          <div class="sub-service"><i class="fas fa-ticket-alt"></i> حجز تذكرة</div>
+          <div class="sub-service"><i class="fas fa-taxi"></i> طلب سيارة أجرة خاصة</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('donation')" data-service="donation">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h5>التبرع</h5>
+        </div>
+        <div class="service-details" id="donation">
+          <div class="sub-service">
+            <i class="fas fa-hand-holding-heart"></i> تبرع لجمعيات خيرية
+            <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2">تبرع الآن</a>
+          </div>
+          <div class="sub-service">
+            <i class="fas fa-donate"></i> تبرع للمدارس الخاصة
+            <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2">تبرع الآن</a>
+          </div>
+          <div class="sub-service"><i class="fas fa-money-bill-wave"></i> التبرع</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-folder" onclick="toggleDetails('game')" data-service="game">
+          <i class="fas fa-gamepad"></i>
+          <h5>لعبة حجرة-ورقة-مقص</h5>
+        </div>
+        <div class="service-details" id="game">
+          <div class="sub-service">
+            <div class="game-container">
+              <button class="game-btn" onclick="playGame('حجرة')"><i class="fas fa-hand-rock"></i> حجرة</button>
+              <button class="game-btn" onclick="playGame('ورقة')"><i class="fas fa-hand-paper"></i> ورقة</button>
+              <button class="game-btn" onclick="playGame('مقص')"><i class="fas fa-hand-scissors"></i> مقص</button>
+              <p id="gameResult"></p>
+              <p id="gameScore">النقاط - أنت: 0 | الكمبيوتر: 0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </main>  <footer>
-    جميع الحقوق محفوظة © بوابة الخريطة 2025
-  </footer>
-</body></html>
+  <section class="container my-5" id="about">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">نبذة عن قرية الخريطة</h3>
+    <p class="text-center lead">
+      قرية الخريطة، جوهرة زراعية على ضفاف نهر الفرات، تمتد على مساحة 10 كيلومترات مربعة. تتميز بتربتها الخصبة ومجتمعها النشط، مع خدمات تعليمية وطبية تدعم سكانها.
+    </p>
+  </section>
+
+  <section class="container my-5" id="map">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">خريطة القرية</h3>
+    <div id="mapContainer"></div>
+  </section>
+
+  <section class="container my-5" id="events">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">الفعاليات القادمة</h3>
+    <div id="calendar"></div>
+  </section>
+
+  <section class="container my-5" id="gallery">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">معرض الصور</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <a href="https://source.unsplash.com/random/800x600?village1" data-lightbox="gallery">
+          <img src="https://source.unsplash.com/random/800x600?village1" class="img-fluid" alt="صورة القرية" loading="lazy">
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://source.unsplash.com/random/800x600?village2" data-lightbox="gallery">
+          <img src="https://source.unsplash.com/random/800x600?village2" class="img-fluid" alt="صورة القرية" loading="lazy">
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://source.unsplash.com/random/800x600?village3" data-lightbox="gallery">
+          <img src="https://source.unsplash.com/random/800x600?village3" class="img-fluid" alt="صورة القرية" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container my-5" id="feedback">
+    <h3 class="text-center mb-4" style="color: var(--text-color);">شاركنا رأيك</h3>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <textarea class="form-control" name="feedback" placeholder="اكتب تعليقك هنا" required></textarea>
+      <button type="submit" class="btn btn-primary mt-3">إرسال</button>
+    </form>
+  </section>
+
+  <div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">حجز موعد</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="bookingForm" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="mb-3">
+              <label class="form-label">الاسم</label>
+              <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">التاريخ</label>
+              <input type="date" class="form-control" name="date" required>
+            </div>
+            <!-- أضف reCAPTCHA هنا إذا كنت تستخدمه -->
+            <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_KEY"></div> -->
+            <button type="submit" class="btn btn-primary">تأكيد</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-chat">
+    <button class="ai-chat-button" onclick="toggleChat()">
+      <i class="fas fa-headset"></i>
+    </button>
+    <div class="ai-chat-box" id="aiChatBox">
+      <h5 style="color: var(--text-color);">مساعد الذكاء الاصطناعي</h5>
+      <p class="response">مرحبًا! أنا مساعد ذكي لقرية الخريطة، مستوحى من Grok. اسألني عن أي شيء يتعلق بالقرية، الخدمات، أو الأخبار!</p>
+      <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا" onkeypress="if(event.key === 'Enter') sendAIQu
