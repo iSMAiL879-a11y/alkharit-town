@@ -3,126 +3,211 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <title>بوابة قرية الخريطة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #f7f9fa;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(180deg, #f8fafc 0%, #e6f0ee 100%);
+      color: #134e4a;
     }
-    header, footer {
-      background-color: #1d5c57;
+    header {
+      background: linear-gradient(90deg, #134e4a, #1d5c57);
       color: white;
-      padding: 15px;
-    }
-    .nav-link {
-      color: #1d5c57 !important;
-      font-weight: bold;
-    }
-    .service-card {
-      background-color: #e6f0ee;
-      border: none;
-      border-radius: 12px;
       padding: 20px;
       text-align: center;
-      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
     }
-    .service-card:hover {
-      background-color: #d3ebe7;
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://source.unsplash.com/random/1920x200?river') no-repeat center/cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+    }
+    .nav-link {
+      color: #134e4a !important;
+      font-weight: bold;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #f59e0b !important;
+      transform: scale(1.1);
     }
     .ticker {
-      background-color: #ddf1ef;
-      padding: 10px;
+      background-color: #e6f0ee;
+      padding: 12px;
       white-space: nowrap;
       overflow: hidden;
       direction: rtl;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .ticker span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll 15s linear infinite;
+      animation: scroll 12s linear infinite;
+    }
+    .ticker-warning {
+      background-color: #f59e0b;
+      color: white;
     }
     @keyframes scroll {
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
+    .service-card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background-color: #e6f0ee;
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: #f59e0b;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover i {
+      transform: scale(1.2);
+    }
+    footer {
+      background: linear-gradient(90deg, #134e4a, #1d5c57);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    footer a {
+      color: #f59e0b;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .service-card {
+        margin-bottom: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <header class="text-center">
-    <h1>موقع قرية الخريطة</h1>
-    <p>قرية زراعية تابعة لمحافظة دير الزور</p>
+  <header>
+    <h1>بوابة قرية الخريطة</h1>
+    <p>قرية زراعية نابضة بالحياة على ضفاف نهر الفرات</p>
   </header>
 
-  <nav class="nav justify-content-center bg-light py-2">
+  <nav class="nav justify-content-center bg-light py-3 shadow-sm">
     <a class="nav-link" href="#">الرئيسية</a>
     <a class="nav-link" href="#services">الخدمات</a>
-    <a class="nav-link" href="#map">الموقع</a>
     <a class="nav-link" href="#about">عن القرية</a>
   </nav>
 
-  <!-- ✅ الشريط الإخباري المعدل -->
   <div class="ticker"><span>📢 الموقع قيد الإنشاء بواسطة أبو خالد</span></div>
+  <div class="ticker ticker-warning"><span>💡 يرجى نشر رابط الموقع: <a href="https://your-site-url.com" target="_blank" style="color: white; text-decoration: underline;">اضغط هنا</a></span></div>
 
-  <!-- ✅ الشريط الإعلاني المعدل -->
-  <div class="ticker bg-warning"><span>💡 يرجى نشر رابط الموقع على أوسع نطاق</span></div>
-
-  <!-- باقي الكود بدون تغيير -->
-  <section class="container my-4" id="services">
-    <h3 class="text-center mb-4">الخدمات الأكثر استخدامًا</h3>
-    <div class="row g-3">
-      <div class="col-md-4">
+  <section class="container my-5" id="services">
+    <h3 class="text-center mb-4" style="color: #134e4a;">جميع الخدمات في قرية الخريطة</h3>
+    <div class="row g-4">
+      <div class="col-md-4 col-sm-6">
         <div class="service-card">
-          <i class="fas fa-hospital fa-2x mb-2"></i>
+          <i class="fas fa-hospital"></i>
           <h5>الخدمات الطبية</h5>
-          <p>المستشفى - الصيدلية - العيادات</p>
+          <p>مستشفى مجهز، صيدليات، عيادات تخصصية</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="service-card">
-          <i class="fas fa-city fa-2x mb-2"></i>
+          <i class="fas fa-city"></i>
           <h5>البلدية</h5>
-          <p>طلب موعد البلدية</p>
+          <p>حجز مواعيد، خدمات إدارية، دعم المواطنين</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="service-card">
-          <i class="fas fa-shield-alt fa-2x mb-2"></i>
+          <i class="fas fa-shield-alt"></i>
           <h5>الأمن</h5>
-          <p>قسم الشرطة والخدمات الأمنية</p>
+          <p>قسم الشرطة، خدمات الحماية المجتمعية</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="service-card">
-          <i class="fas fa-school fa-2x mb-2"></i>
-          <h5>المدارس</h5>
-          <p>الابتدائية - الإعدادية - الثانوية</p>
+          <i class="fas fa-school"></i>
+          <h5>التعليم</h5>
+          <p>مدارس ابتدائية، إعدادية، وثانوية</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-tractor"></i>
+          <h5>الزراعة</h5>
+          <p>دعم المزارعين، استشارات زراعية، توزيع بذور</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-bus"></i>
+          <h5>النقل</h5>
+          <p>خدمات النقل العام داخل القرية</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="service-card">
+          <i class="fas fa-calendar-alt"></i>
+          <h5>الفعاليات</h5>
+          <p>فعاليات ثقافية واجتماعية لأهالي القرية</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="container my-4" id="about">
-    <h3 class="text-center mb-3">نبذة عن قرية الخريطة</h3>
-    <p class="text-center">
-      تقع الخريطة على الضفة اليمنى لنهر الفرات على الطريق العام دير الزور - الرقة - حلب.
-      تبلغ مساحتها ما يقارب 10 كيلو متر مربع. وهي قرية زراعية ذو تربة خصبة ويوجد فيها مدارس للتعليم الأساسي والثانوي.
+  <section class="container my-5" id="about">
+    <h3 class="text-center mb-4" style="color: #134e4a;">نبذة عن قرية الخريطة</h3>
+    <p class="text-center lead">
+      قرية الخريطة، جوهرة زراعية على ضفاف نهر الفرات، تمتد على مساحة 10 كيلومترات مربعة. تتميز بتربتها الخصبة ومجتمعها النشط، مع خدمات تعليمية وطبية تدعم سكانها.
     </p>
   </section>
 
-  <section class="container my-4" id="map">
-    <h4 class="text-center mb-3">موقع القرية على الخريطة</h4>
-    <div class="ratio ratio-16x9">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.8658990505483!2d39.0818572!3d35.3338029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x153581cc3396c0f5%3A0x20b53ad899ae3bb0!2z2YXYrNmF2Kkg2KfZhNmF2YjZhdmI2KfYqiDYp9mE2YjZhiDYs9mFINin2YTZg9iq2YrYqQ!5e0!3m2!1sar!2s!4v1717444444444" frameborder="0" allowfullscreen></iframe>
+  <footer>
+    <p>© 2025 قرية الخريطة - جميع الحقوق محفوظة</p>
+    <div>
+      <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+      <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
     </div>
-  </section>
-
-  <footer class="text-center mt-5">
-    © 2025 قرية الخريطة - جميع الحقوق محفوظة
   </footer>
 
+  <script>
+    // تأثير تفاعلي بسيط عند النقر على بطاقات الخدمات
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.style.backgroundColor = '#f59e0b';
+        card.style.color = 'white';
+        setTimeout(() => {
+          card.style.backgroundColor = '#fff';
+          card.style.color = '#134e4a';
+        }, 300);
+      });
+    });
+  </script>
 </body>
 </html>
