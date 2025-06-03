@@ -1,30 +1,107 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>قرية الخريطة</title>
-    <style>
-        body { font-family: sans-serif; background: #f3f3f3; padding: 2em; direction: rtl; }
-        header { background: green; color: white; padding: 1em; text-align: center; border-radius: 10px; }
-        section { margin-top: 2em; background: white; padding: 1em; border-radius: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قرية الخريطة</title>
+  <style>
+    :root {
+      --main-color: #247b76; /* تركوازي داكن */
+      --light-color: #e9f5f4;
+      --text-color: #333;
+    }
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background-color: #fff;
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    nav {
+      background-color: var(--light-color);
+      padding: 0.5rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section {
+      padding: 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background-color: var(--light-color);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .news {
+      margin-top: 2rem;
+    }
+    .news-item {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+    }
+    .news-item:last-child {
+      border: none;
+    }
+    footer {
+      background-color: var(--main-color);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>قرية الخريطة الزراعية</h1>
-        <p>أهلاً بكم في الموقع الرسمي</p>
-    </header>
-    <section>
-        <h2>خدمات</h2>
-        <ul>
-            <li>أخبار القرية</li>
-            <li>رابط التبرع</li>
-            <li>الدعم الفني</li>
-            <li><a href="#">موقع المستوصف</a></li>
-            <li><a href="#">الصيدلية</a></li>
-            <li><a href="#">البلدية</a></li>
-        </ul>
-    </section>
+  <header>
+    <div class="logo">موقع قرية الخريطة</div>
+    <div style="font-size: 0.9rem">قرية زراعية تابعة لمحافظة دير الزور</div>
+  </header>  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">البلدية</a>
+    <a href="#">الدعم</a>
+    <a href="#">التبرعات</a>
+    <a href="#">المتجر</a>
+  </nav>  <div class="section">
+    <h2>الخدمات الأكثر استخداماً</h2>
+    <div class="grid">
+      <div class="card">خدمات البلدية</div>
+      <div class="card">حجز مواعيد</div>
+      <div class="card">التبرعات</div>
+      <div class="card">العيادة الصحية</div>
+    </div><div class="news">
+  <h2>الأخبار</h2>
+  <div class="news-item">
+    <strong>افتتاح نقطة صحية جديدة</strong>
+    <p>تم افتتاح نقطة طبية جديدة في مركز القرية لتقديم الرعاية الصحية الأولية للسكان.</p>
+  </div>
+  <div class="news-item">
+    <strong>حملة تنظيف عامة</strong>
+    <p>انطلقت اليوم حملة تطوعية لتنظيف الشوارع بالتعاون مع شباب القرية.</p>
+  </div>
+</div>
+
+  </div>  <footer>
+    &copy; 2025 قرية الخريطة - جميع الحقوق محفوظة
+  </footer>
 </body>
 </html>
