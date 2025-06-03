@@ -1,130 +1,105 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بوابة الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #f7f9fa;
-    }
-    header, footer {
-      background-color: #1d5c57;
-      color: white;
-      padding: 15px;
-    }
-    .nav-link {
-      color: #1d5c57 !important;
-      font-weight: bold;
-    }
-    .service-card {
-      background-color: #e6f0ee;
-      border: none;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      transition: 0.3s;
-    }
-    .service-card:hover {
-      background-color: #d3ebe7;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f3f4f6;
     }
     .ticker {
-      background-color: #ddf1ef;
+      background-color: #e0f4eb;
+      color: #065f46;
       padding: 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      direction: rtl;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 2px solid #34d399;
+      animation: slideIn 0.5s ease-out;
     }
-    .ticker span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll 15s linear infinite;
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-100%); }
+    .announcement {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .social {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .social a {
+      color: #1877f2;
+      font-size: 24px;
+      text-decoration: none;
+    }
+    .login-box {
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    #chat-box {
+      height: 200px;
+      overflow-y: auto;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
-<body>
+<body><!-- ✅ شريط إخباري --><div class="ticker">📢 الموقع قيد الإنشاء بواسطة أبو خالد</div><!-- ✅ إعلان --><div class="announcement">يرجى نشر رابط موقع على أوسع نطاق</div><!-- ✅ روابط تواصل اجتماعي --><div class="social">
+  <a href="https://www.facebook.com/share/1LCd4zCjcd/" target="_blank">🔗 شارك على فيسبوك</a>
+</div><!-- ✅ واجهة تسجيل الدخول --><div class="login-box">
+  <h4 class="text-center mb-3">تسجيل دخول</h4>
+  <form id="login-form">
+    <input type="text" id="username" class="form-control mb-3" placeholder="اسم المستخدم" required>
+    <button type="submit" class="btn btn-success w-100">دخول</button>
+  </form>
+</div><!-- ✅ دردشة عامة --><div class="container">
+  <h5 class="mt-4">💬 دردشة عامة</h5>
+  <div id="chat-box"></div>
+  <form id="chat-form">
+    <input type="text" id="chat-input" class="form-control" placeholder="اكتب رسالة..." required>
+    <button class="btn btn-primary mt-2 w-100">إرسال</button>
+  </form>
+</div><script>
+// ✅ تسجيل دخول بسيط باسم مستخدم فقط
+const form = document.getElementById("login-form");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  if (username) {
+    localStorage.setItem("user", username);
+    alert("مرحباً " + username + "! تم تسجيل الدخول.");
+  }
+});
 
-  <header class="text-center">
-    <h1>موقع قرية الخريطة</h1>
-    <p>قرية زراعية تابعة لمحافظة دير الزور</p>
-  </header>
+// ✅ دردشة عامة بسيطة
+const chatForm = document.getElementById("chat-form");
+const chatInput = document.getElementById("chat-input");
+const chatBox = document.getElementById("chat-box");
 
-  <nav class="nav justify-content-center bg-light py-2">
-    <a class="nav-link" href="#">الرئيسية</a>
-    <a class="nav-link" href="#services">الخدمات</a>
-    <a class="nav-link" href="#map">الموقع</a>
-    <a class="nav-link" href="#about">عن القرية</a>
-  </nav>
-
-  <!-- ✅ الشريط الإخباري -->
-  <div class="ticker"><span>📢 تم افتتاح نقطة طبية جديدة في مركز القرية — انطلاق حملة نظافة عامة بالتعاون مع شباب القرية</span></div>
-
-  <!-- ✅ الشريط الإعلاني -->
-  <div class="ticker bg-warning"><span>💡 إعلان: يرجى مراجعة البلدية لحجز المواعيد الخاصة بالخدمات</span></div>
-
-  <!-- ✅ الخدمات -->
-  <section class="container my-4" id="services">
-    <h3 class="text-center mb-4">الخدمات الأكثر استخدامًا</h3>
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-hospital fa-2x mb-2"></i>
-          <h5>الخدمات الطبية</h5>
-          <p>المستشفى - الصيدلية - العيادات</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-city fa-2x mb-2"></i>
-          <h5>البلدية</h5>
-          <p>طلب موعد البلدية</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-shield-alt fa-2x mb-2"></i>
-          <h5>الأمن</h5>
-          <p>قسم الشرطة والخدمات الأمنية</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="service-card">
-          <i class="fas fa-school fa-2x mb-2"></i>
-          <h5>المدارس</h5>
-          <p>الابتدائية - الإعدادية - الثانوية</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ نبذة عن القرية -->
-  <section class="container my-4" id="about">
-    <h3 class="text-center mb-3">نبذة عن قرية الخريطة</h3>
-    <p class="text-center">
-      تقع الخريطة على الضفة اليمنى لنهر الفرات على الطريق العام دير الزور - الرقة - حلب.
-      تبلغ مساحتها ما يقارب 10 كيلو متر مربع. وهي قرية زراعية ذو تربة خصبة ويوجد فيها مدارس للتعليم الأساسي والثانوي.
-    </p>
-  </section>
-
-  <!-- ✅ الموقع على الخريطة -->
-  <section class="container my-4" id="map">
-    <h4 class="text-center mb-3">موقع القرية على الخريطة</h4>
-    <div class="ratio ratio-16x9">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.8658990505483!2d39.0818572!3d35.3338029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x153581cc3396c0f5%3A0x20b53ad899ae3bb0!2z2YXYrNmF2Kkg2KfZhNmF2YjZhdmI2KfYqiDYp9mE2YjZhiDYs9mFINin2YTZg9iq2YrYqQ!5e0!3m2!1sar!2s!4v1717444444444" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <footer class="text-center mt-5">
-    © 2025 قرية الخريطة - جميع الحقوق محفوظة
-  </footer>
-
-</body>
+chatForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  const user = localStorage.getItem("user") || "زائر";
+  if (msg) {
+    const bubble = document.createElement("div");
+    bubble.textContent = `👤 ${user}: ${msg}`;
+    chatBox.appendChild(bubble);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    chatInput.value = "";
+  }
+});
+</script></body>
 </html>
