@@ -432,7 +432,7 @@
     </button>
     <div class="ai-chat-box" id="aiChatBox">
       <h5 style="color: #1d5c57;">مساعد الذكاء الاصطناعي</h5>
-      <p class="response">مرحبًا! أنا مساعد ذكي لقرية الخريطة. اسألني عن الخدمات، الأخبار، أو أي شيء آخر!</p>
+      <p class="response">مرحبًا! أنا مساعد ذكي لقرية الخريطة، مستوحى من Grok. اسألني عن أي شيء يتعلق بالقرية، الخدمات، أو الأخبار!</p>
       <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا" onkeypress="if(event.key === 'Enter') sendAIQuery()">
       <div class="response" id="aiResponse"></div>
     </div>
@@ -447,7 +447,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3. aliquots://js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
     // وظيفة لتبديل إظهار/إخفاء تفاصيل الخدمات
@@ -504,4 +504,36 @@
       if (input.includes('خدمات') || input.includes('خدمة')) {
         response = 'قرية الخريطة تقدم خدمات متنوعة تشمل: <br>- الخدمات الطبية: صيدليات، مستشفى، ومستوصف.<br>- البلدية: حجز مواعيد، خدمات إدارية، ودعم المواطنين.<br>- الأمن: قسم الشرطة وخدمات الحماية.<br>- التعليم: مدارس، ثانوية، ابتدائية، ودورات تعليمية.<br>- الزراعة: دعم المزارعين، استشارات، أسمدة، ومياه سقي.<br>- النقل: نقل عام، حجز تذكرة، وسيارات أجرة.<br>- التبرع: للجمعيات الخيرية والمدارس.';
       } else if (input.includes('صيدلية')) {
-        response = 'الصيدليات في قرية الخريطة تو
+        response = 'الصيدليات في قرية الخريطة توفر الأدوية الأساسية والخدمات الصحية. يمكنك زيارة المستشفى لمزيد من التفاصيل.';
+      } else if (input.includes('مستشفى') || input.includes('مستوصف')) {
+        response = 'المستشفى والمستوصف في القرية مجهزان لتقديم الرعاية الصحية الأساسية والمتخصصة.';
+      } else if (input.includes('حجز موعد')) {
+        response = 'يمكنك حجز موعد مع البلدية عبر النقر على "حجز الآن" في قسم البلدية.';
+      } else if (input.includes('تبرع')) {
+        response = 'يمكنك التبرع لجمعيات خيرية أو المدارس الخاصة عبر قسم التبرع. انقر "تبرع الآن" لإتمام العملية!';
+      } else if (input.includes('أخبار') || input.includes('خبر')) {
+        response = 'للحصول على آخر الأخبار، زر موقع الأخبارية: <a href="https://alikhbariah.com/" target="_blank">alikhbariah.com</a>. تشمل الأخبار حملات النظافة والفعاليات الشبابية.';
+      } else if (input.includes('حملة') || input.includes('نظافة')) {
+        response = 'حملة النظافة العامة تُنظم بالتعاون مع شباب القرية للحفاظ على البيئة النظيفة.';
+      } else if (input.includes('فعاليات') || input.includes('شبابية')) {
+        response = 'الفعاليات الشبابية تشمل أنشطة ثقافية وترفيهية لتعزيز روح المجتمع في القرية.';
+      } else if (input.includes('موقع') || input.includes('قرية')) {
+        response = 'قرية الخريطة تقع على ضفة نهر الفرات، بمساحة 10 كم مربع، وتشتهر بتربتها الخصبة ومجتمعها النشط.';
+      } else if (input.includes('زراعة') || input.includes('مزارع')) {
+        response = 'الزراعة في القرية مدعومة باستشارات حديثة، أسمدة، ومياه سقي لتعزيز الإنتاج الزراعي.';
+      } else if (input.includes('نقل') || input.includes('تذكرة')) {
+        response = 'خدمات النقل تشمل النقل العام، حجز التذاكر، وطلب سيارات الأجرة الخاصة.';
+      } else if (input.includes('دعم') || input.includes('مساعدة')) {
+        response = 'أنا هنا للمساعدة! اسأل عن الخدمات، الأخبار، أو أي شيء آخر يتعلق بقرية الخريطة.';
+      } else {
+        response = `سؤالك "${input}" مثير للاهتمام! يمكنني مساعدتك أكثر إذا قدمت تفاصيل إضافية. جرب أن تسأل عن الخدمات، الأخبار، أو معلومات عن القرية.`;
+      }
+
+      responseDiv.innerHTML = response;
+      document.getElementById('aiInput').value = '';
+      // تتبع الأسئلة في Google Analytics
+      gtag('event', 'ai_query', { 'query': input });
+    }
+  </script>
+</body>
+</html>
