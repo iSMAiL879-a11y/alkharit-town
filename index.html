@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة بلدة الخريطة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>بوابة بلدة الخريطة - عالم الخيال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,145 +14,185 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-            direction: rtl;
+            background: linear-gradient(45deg, #1a0033, #330066, #6600cc);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            height: 100vh;
+            perspective: 1000px;
         }
 
-        /* الرأس */
+        /* الرأس - واجهة فضائية */
         header {
-            background: linear-gradient(90deg, #005662, #007b91);
-            padding: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            animation: float 5s infinite ease-in-out;
+            box-shadow: 0 0 20px #00ffcc, 0 0 40px #00ccff;
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo img {
-            width: 60px;
-            border-radius: 50%;
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
 
         header h1 {
-            color: white;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ccff;
         }
 
         header .search-bar {
+            margin-top: 10px;
             display: flex;
-            align-items: center;
+            justify-content: center;
         }
 
-        header .search-bar input {
+        header input {
             padding: 10px;
             border: none;
             border-radius: 5px 0 0 5px;
-            width: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
             font-size: 16px;
         }
 
-        header .search-bar .btn-warning {
-            background-color: #f4a261;
+        header button {
+            padding: 10px 20px;
             border: none;
-            padding: 10px;
             border-radius: 0 5px 5px 0;
-            transition: background-color 0.3s;
-        }
-
-        header .search-bar .btn-warning:hover {
-            background-color: #e76f51;
-        }
-
-        /* قسم الإحصائيات */
-        .stats-section {
-            padding: 40px 0;
-            background-color: #e9ecef;
-        }
-
-        .stats-section .stat-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: #00ffcc;
+            color: #1a0033;
+            cursor: pointer;
             transition: transform 0.3s;
         }
 
-        .stats-section .stat-box:hover {
-            transform: scale(1.05);
+        header button:hover {
+            transform: scale(1.1);
+            background: #00ccff;
         }
 
-        .stats-section h2 {
-            font-size: 2.5rem;
-            color: #005662;
-            font-weight: 700;
+        /* قسم الإحصائيات - كواكب دوارة */
+        .stats-section {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-around;
+            perspective: 500px;
         }
 
-        .stats-section p {
-            font-size: 1.1rem;
-            color: #666;
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: rotate 10s infinite linear;
+            box-shadow: 0 0 15px #00ffcc;
+            transform-style: preserve-3d;
         }
 
-        /* قسم المحتوى */
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .stat-box h2 {
+            font-size: 2rem;
+            color: #00ffcc;
+        }
+
+        .stat-box p {
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        /* قسم المحتوى - بطاقات طافية */
         .content-section {
             padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .content-section .card {
-            border: none;
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .content-section .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .content-section .card img {
-            width: 50px;
-            margin-bottom: 15px;
-        }
-
-        .content-section .card h4 {
-            font-size: 1.3rem;
-            color: #005662;
-            font-weight: 700;
-        }
-
-        .content-section .card p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .content-section .btn-primary {
-            background-color: #005662;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .content-section .btn-primary:hover {
-            background-color: #003d45;
-        }
-
-        /* التذييل */
-        footer {
-            background: linear-gradient(90deg, #005662, #007b91);
-            color: white;
-            padding: 30px 0;
+            width: 250px;
             text-align: center;
+            animation: floatCard 4s infinite ease-in-out;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            transition: transform 0.3s;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .content-card:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .content-card h4 {
+            font-size: 1.3rem;
+            color: #00ccff;
+            margin-bottom: 10px;
+        }
+
+        .content-card p {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .content-card a {
+            background: #00ffcc;
+            color: #1a0033;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .content-card a:hover {
+            background: #00ccff;
+        }
+
+        /* التذييل - نجمي */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #ffffff 1%, transparent 10%);
+            animation: stars 10s infinite linear;
+        }
+
+        @keyframes stars {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         footer a {
-            color: white;
+            color: #00ffcc;
             margin: 0 15px;
             text-decoration: none;
             font-size: 1.1rem;
@@ -162,10 +200,11 @@
 
         footer a:hover {
             text-decoration: underline;
+            color: #00ccff;
         }
 
         footer p {
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 0.9rem;
         }
     </style>
@@ -174,108 +213,83 @@
     <!-- الرأس -->
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="https://via.placeholder.com/60" alt="شعار بوابة بلدة الخريطة">
-            </div>
-            <h1>بوابة بلدة الخريطة</h1>
+            <h1>بوابة بلدة الخريطة - عالم الخيال</h1>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="البحث في البوابة">
-                <button class="btn btn-warning" onclick="search()"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="استكشف الكون...">
+                <button onclick="search()">بحث <i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <!-- قسم الإحصائيات -->
     <section class="stats-section">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="stat-box">
-                        <h2>30</h2>
-                        <p>مستخدم نشط</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="stat-box">
-                        <h2>5214</h2>
-                        <p>زائر يومي</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="stat-box">
-                        <h2>DF</h2>
-                        <p>بيانات</p>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-box">
+            <h2>30</h2>
+            <p>مستكشفون نشطون</p>
+        </div>
+        <div class="stat-box">
+            <h2>5214</h2>
+            <p>رحلات يومية</p>
+        </div>
+        <div class="stat-box">
+            <h2>DF</h2>
+            <p>كواكب مكتشفة</p>
         </div>
     </section>
 
     <!-- قسم المحتوى -->
     <section class="content-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <img src="https://via.placeholder.com/50" alt="أيقونة حدث">
-                            <h4>مهرجان الفنون التشكيلية</h4>
-                            <p>2025/06/04</p>
-                            <a href="#" class="btn btn-primary">التفاصيل</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h4>ANP - إعلان جديد (1)</h4>
-                            <p>تم النشر: 2025/06/04</p>
-                            <a href="#" class="btn btn-primary">اقرأ المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h4>ANP - إعلان جديد (2)</h4>
-                            <p>تم النشر: 2025/06/04</p>
-                            <a href="#" class="btn btn-primary">اقرأ المزيد</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="content-card">
+            <h4>مهرجان النجوم السماوية</h4>
+            <p>2025/06/04 - 03:22 PM</p>
+            <a href="#">استكشف</a>
+        </div>
+        <div class="content-card">
+            <h4>إعلان جديد من ANP (1)</h4>
+            <p>نشر في 2025/06/04</p>
+            <a href="#">سافر</a>
+        </div>
+        <div class="content-card">
+            <h4>إعلان جديد من ANP (2)</h4>
+            <p>نشر في 2025/06/04</p>
+            <a href="#">اكتشف</a>
         </div>
     </section>
 
     <!-- التذييل -->
     <footer>
         <div class="container">
-            <div>
-                <a href="#">اتصل بنا</a>
-                <a href="#">حول البوابة</a>
-                <a href="#">سياسة الخصوصية</a>
-            </div>
-            <p>© 2025 بوابة بلدة الخريطة. جميع الحقوق محفوظة.</p>
+            <a href="#">اتصل بنا عبر النجوم</a>
+            <a href="#">قصة الكون</a>
+            <a href="#">سياسة الظلال</a>
+            <p>© 2025 بوابة بلدة الخريطة - عالم الخيال. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // وظيفة البحث البسيطة
+        // وظيفة البحث مع تأثير خيالي
         function search() {
-            const searchInput = document.getElementById('searchInput').value;
-            if (searchInput.trim() !== '') {
-                alert('جاري البحث عن: ' + searchInput);
-                // هنا يمكن إضافة منطق البحث الفعلي (مثل طلب API)
+            const input = document.getElementById('searchInput').value;
+            if (input.trim()) {
+                const message = `جاري السفر إلى ${input} في الكون...`;
+                alert(message);
+                // يمكن إضافة منطق بحث ديناميكي هنا
+                document.body.style.background = `linear-gradient(45deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`;
             } else {
-                alert('يرجى إدخال كلمة للبحث');
+                alert('أدخل وجهة لاستكشافها!');
             }
         }
 
-        // رسالة ترحيب عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('بوابة بلدة الخريطة - جاهزة في ' + new Date().toLocaleString('ar-EG'));
-        });
+        // تأثير زمني ديناميكي
+        setInterval(() => {
+            const time = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            document.querySelectorAll('.content-card p').forEach(p => {
+                if (p.textContent.includes('03:22 PM')) p.textContent = `2025/06/04 - ${time}`;
+            });
+        }, 1000);
+
+        // رسالة ترحيب
+        console.log('مرحبًا بك في بوابة بلدة الخريطة - عالم الخيال! ' + new Date().toLocaleString('ar-EG'));
     </script>
 </body>
 </html>
