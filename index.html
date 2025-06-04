@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
@@ -17,7 +17,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'YOUR_GA_ID');
+    gtag('config', 'G-XXXXXXXXXX');
   </script>
   <style>
     :root {
@@ -65,7 +65,7 @@
       z-index: 1;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    .theme-toggle, .lang-toggle {
+    .theme-toggle, .lang-toggle, .admin-link {
       position: absolute;
       top: 20px;
       background: #f59e0b;
@@ -76,14 +76,15 @@
     }
     .theme-toggle { left: 20px; }
     .lang-toggle { left: 70px; }
+    .admin-link { left: 120px; background: #1d5c57; }
     .nav-link {
-      color: var(--text-color) !important;
+      color: var(--text-color);
       font-weight: bold;
       padding: 10px 20px;
       transition: color 0.3s ease, transform 0.3s ease;
     }
     .nav-link:hover {
-      color: #f59e0b !important;
+      color: #f59e0b;
       transform: scale(1.1);
     }
     .ticker {
@@ -113,10 +114,6 @@
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       animation: pulse 2s infinite;
     }
-    .ticker-warning i {
-      margin-left: 10px;
-      font-size: 1.3rem;
-    }
     .ticker-warning a {
       color: #fff;
       text-decoration: underline;
@@ -129,7 +126,6 @@
       padding: 8px 15px;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
     .ticker-warning button:hover {
       background: #134e4a;
@@ -143,7 +139,7 @@
       50% { opacity: 0.8; }
       100% { opacity: 1; }
     }
-    .service-folder {
+    .service-folder, .news-card {
       background-color: var(--card-bg);
       border-radius: 15px;
       padding: 25px;
@@ -155,32 +151,14 @@
       overflow: hidden;
       border: 2px solid #d4a017;
     }
-    .service-folder::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #f59e0b, #d4a017);
-      transition: height 0.3s ease;
-    }
-    .service-folder:hover::before {
-      height: 100%;
-      opacity: 0.1;
-    }
-    .service-folder:hover {
+    .service-folder:hover, .news-card:hover {
       transform: translateY(-15px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
-    .service-folder i {
+    .service-folder i, .news-card i {
       font-size: clamp(2rem, 5vw, 2.5rem);
       color: #f59e0b;
       margin-bottom: 15px;
-      transition: transform 0.3s ease;
-    }
-    .service-folder:hover i {
-      transform: scale(1.2);
     }
     .service-details {
       display: none;
@@ -192,35 +170,6 @@
     }
     .service-details.active {
       display: block;
-    }
-    .service-details .sub-service {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #ddf1ef;
-    }
-    .service-details .sub-service i {
-      font-size: 1.5rem;
-      color: #f59e0b;
-      margin-left: 10px;
-    }
-    .game-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .game-btn {
-      background: #f59e0b;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .game-btn:hover {
-      transform: scale(1.1);
     }
     .ai-chat {
       position: fixed;
@@ -237,10 +186,6 @@
       font-size: 1.5rem;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-    .ai-chat-button:hover {
-      transform: scale(1.2);
     }
     .ai-chat-box {
       display: none;
@@ -269,21 +214,6 @@
       border-radius: 8px;
       margin-top: 10px;
     }
-    .suggestions {
-      position: absolute;
-      background: var(--card-bg);
-      border: 1px solid #1d5c57;
-      border-radius: 5px;
-      z-index: 1000;
-      width: clamp(200px, 90%, 300px);
-    }
-    .suggestions div {
-      padding: 10px;
-      cursor: pointer;
-    }
-    .suggestions div:hover {
-      background: #e6f0ee;
-    }
     footer {
       background: var(--header-bg);
       color: white;
@@ -294,10 +224,6 @@
     footer a {
       color: #f59e0b;
       margin: 0 15px;
-      transition: color 0.3s ease;
-    }
-    footer a:hover {
-      color: #d4a017;
     }
     #mapContainer {
       height: 400px;
@@ -314,10 +240,15 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
+    }
+    #adminPanel {
+      display: none;
+    }
+    #adminPanel.active {
+      display: block;
     }
     @media (max-width: 768px) {
-      .service-folder {
+      .service-folder, .news-card {
         margin-bottom: 20px;
       }
       .ticker-warning {
@@ -331,8 +262,9 @@
 </head>
 <body>
   <header>
-    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
-    <button class="lang-toggle" id="langToggle"><i class="fas fa-globe"></i></button>
+    <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع"><i class="fas fa-moon"></i></button>
+    <button class="lang-toggle" id="langToggle" aria-label="تبديل اللغة"><i class="fas fa-globe"></i></button>
+    <button class="admin-link" id="adminLink" aria-label="لوحة التحكم"><i class="fas fa-user-cog"></i></button>
     <h1 data-i18n="header.title">بوابة قرية الخريطة</h1>
     <p data-i18n="header.description">قرية زراعية نابضة بالحياة على ضفاف نهر الفرات</p>
   </header>
@@ -340,10 +272,9 @@
   <nav class="nav justify-content-center bg-light py-3 shadow-sm">
     <a class="nav-link" href="#home" data-i18n="nav.home">الرئيسية</a>
     <a class="nav-link" href="#services" data-i18n="nav.services">الخدمات</a>
-    <a class="nav-link" href="#about" data-i18n="nav.about">عن القرية</a>
+    <a class="nav-link" href="#news" data-i18n="nav.news">الأخبار</a>
     <a class="nav-link" href="#events" data-i18n="nav.events">الفعاليات</a>
     <a class="nav-link" href="#feedback" data-i18n="nav.feedback">التعليقات</a>
-    <a class="nav-link" href="https://alikhbariah.com/" target="_blank" data-i18n="nav.news">الأخبار</a>
   </nav>
 
   <div class="container my-3 position-relative">
@@ -354,166 +285,452 @@
       <option value="municipality" data-i18n="filter.municipality">بلدية</option>
       <option value="education" data-i18n="filter.education">تعليم</option>
       <option value="agriculture" data-i18n="filter.agriculture">زراعة</option>
+      <option value="transport" data-i18n="filter.transport">نقل</option>
+      <option value="donation" data-i18n="filter.donation">تبرع</option>
     </select>
   </div>
 
   <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> <span id="announcement" data-i18n="ticker.announcement">الموقع قيد الإنشاء بواسطة أبو خالد</span></span></div>
   <div class="ticker ticker-warning">
-    <span><i class="fas fa-bullhorn me-2"></i> <span data-i18n="ticker.warning">يرجى نشر رابط الموقع:</span> <a href="https://your-site-url.com" target="_blank">اضغط هنا</a></span>
-    <button onclick="navigator.clipboard.write('https://your-site-url.com'); alert(i18next.t('ticker.copy_alert'))" data-i18n="[innerHTML]ticker.copy_button">نسخ الرابط</button>
+    <span><i class="fas fa-bullhorn me-2"></i> <span data-i18n="ticker.warning">يرجى نشر رابط الموقع:</span> <a href="https://username.github.io/khurayta-portal" target="_blank">اضغط هنا</a></span>
+    <button onclick="navigator.clipboard.write('https://username.github.io/khurayta-portal'); alert(i18next.t('ticker.copy_alert'))" data-i18n="[innerHTML]ticker.copy_button">نسخ الرابط</button>
   </div>
 
   <section class="container my-5" id="home">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="home.title">أخبار وخدمات جديدة</h3>
-    <div class="row g-4">
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <i class="fas fa-broom"></i>
-          <h5 data-i18n="home.cleaning">حملة نظافة عامة</h5>
-          <p data-i18n="home.cleaning_desc">حملة تنظيف القرية بالتعاون مع الشباب</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <i class="fas fa-users"></i>
-          <h5 data-i18n="home.youth">فعاليات شبابية</h5>
-          <p data-i18n="home.youth_desc">فعاليات ترفيهية وثقافية لشباب القرية</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h5 data-i18n="home.community">خدمات مجتمعية</h5>
-          <p data-i18n="home.community_desc">دعم المجتمع من خلال مبادرات خيرية</p>
-        </div>
-      </div>
+    <div class="row g-4" id="newsContainer">
+      <!-- News will be dynamically loaded from Google Sheets -->
     </div>
   </section>
 
   <section class="container my-5" id="services">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="services.title">جميع الخدمات في قرية الخريطة</h3>
     <div class="row g-4" id="servicesContainer">
-      <div class="col-md-4 col-sm-6" data-category="medical">
-        <div class="service-folder" onclick="toggleDetails('medical')" data-service="medical">
-          <i class="fas fa-hospital"></i>
-          <h5 data-i18n="services.medical">الخدمات الطبية</h5>
-        </div>
-        <div class="service-details" id="medical">
-          <div class="sub-service"><i class="fas fa-prescription-bottle"></i> <span data-i18n="services.pharmacy">الصيدلية</span></div>
-          <div class="sub-service"><i class="fas fa-hospital"></i> <span data-i18n="services.hospital">المستشفى</span></div>
-          <div class="sub-service"><i class="fas fa-clinic-medical"></i> <span data-i18n="services.clinic">المستوصف</span></div>
-        </div>
+      <!-- Services will be dynamically loaded from Google Sheets -->
+    </div>
+  </section>
+
+  <section class="container my-5" id="events">
+    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="events.title">الفعاليات في قرية الخريطة</h3>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div id="calendar"></div>
       </div>
-      <div class="col-md-4 col-sm-6" data-category="municipality">
-        <div class="service-folder" onclick="toggleDetails('municipality')" data-service="municipality">
-          <i class="fas fa-city"></i>
-          <h5 data-i18n="services.municipality">البلدية</h5>
-        </div>
-        <div class="service-details" id="municipality">
-          <div class="sub-service">
-            <i class="fas fa-calendar-check"></i> <span data-i18n="services.booking">حجز مواعيد</span>
-            <button class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#bookingModal" data-i18n="[innerHTML]services.book_now">احجز الآن</button>
-          </div>
-          <div class="sub-service"><i class="fas fa-file-alt"></i> <span data-i18n="services.admin">الخدمات الإدارية</span></div>
-          <div class="sub-service"><i class="fas fa-users"></i> <span data-i18n="services.support">دعم المواطنين</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="security">
-        <div class="service-folder" onclick="toggleDetails('security')" data-service="security">
-          <i class="fas fa-shield-alt"></i>
-          <h5 data-i18n="services.security">الأمن</h5>
-        </div>
-        <div class="service-details" id="security">
-          <div class="sub-service"><i class="fas fa-shield-alt"></i> <span data-i18n="services.police">قسم الشرطة</span></div>
-          <div class="sub-service"><i class="fas fa-user-shield"></i> <span data-i18n="services.protection">خدمات الحماية المجتمعية</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="education">
-        <div class="service-folder" onclick="toggleDetails('education')" data-service="education">
-          <i class="fas fa-school"></i>
-          <h5 data-i18n="services.education">التعليم</h5>
-        </div>
-        <div class="service-details" id="education">
-          <div class="sub-service"><i class="fas fa-school"></i> <span data-i18n="services.school">المدرسة</span></div>
-          <div class="sub-service"><i class="fas fa-graduation-cap"></i> <span data-i18n="services.high_school">الثانوية</span></div>
-          <div class="sub-service"><i class="fas fa-chalkboard-teacher"></i> <span data-i18n="services.primary">الابتدائية</span></div>
-          <div class="sub-service"><i class="fas fa-book-open"></i> <span data-i18n="services.courses">تعليم الدورات</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="agriculture">
-        <div class="service-folder" onclick="toggleDetails('agriculture')" data-service="agriculture">
-          <i class="fas fa-tractor"></i>
-          <h5 data-i18n="services.agriculture">الزراعة</h5>
-        </div>
-        <div class="service-details" id="agriculture">
-          <div class="sub-service"><i class="fas fa-tractor"></i> <span data-i18n="services.farmers">دعم المزارعين</span></div>
-          <div class="sub-service"><i class="fas fa-seedling"></i> <span data-i18n="services.consulting">استشارات زراعية حديثة</span></div>
-          <div class="sub-service"><i class="fas fa-leaf"></i> <span data-i18n="services.fertilizers">دعم الأسمدة</span></div>
-          <div class="sub-service"><i class="fas fa-water"></i> <span data-i18n="services.irrigation">مياه السقي</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="transport">
-        <div class="service-folder" onclick="toggleDetails('transport')" data-service="transport">
-          <i class="fas fa-bus"></i>
-          <h5 data-i18n="services.transport">النقل</h5>
-        </div>
-        <div class="service-details" id="transport">
-          <div class="sub-service"><i class="fas fa-bus"></i> <span data-i18n="services.public_transport">خدمات النقل العام في القرى</span></div>
-          <div class="sub-service"><i class="fas fa-ticket-alt"></i> <span data-i18n="services.ticket">حجز تذكرة</span></div>
-          <div class="sub-service"><i class="fas fa-taxi"></i> <span data-i18n="services.taxi">طلب سيارة أجرة خاصة</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="donation">
-        <div class="service-folder" onclick="toggleDetails('donation')" data-service="donation">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h5 data-i18n="services.donation">التبرع</h5>
-        </div>
-        <div class="service-details" id="donation">
-          <div class="sub-service">
-            <i class="fas fa-hand-holding-heart"></i> <span data-i18n="services.charity">تبرع لجمعيات خيرية</span>
-            <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" data-i18n="[innerHTML]services.donate_now">تبرع الآن</a>
-          </div>
-          <div class="sub-service">
-            <i class="fas fa-donate"></i> <span data-i18n="services.schools_donation">تبرع للمدارس الخاصة</span>
-            <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" data-i18n="[innerHTML]services.donate_now">تبرع الآن</a>
-          </div>
-          <div class="sub-service"><i class="fas fa-money-bill-wave"></i> <span data-i18n="services.donation_general">التبرع</span></div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="game">
-        <div class="service-folder" onclick="toggleDetails('game')" data-service="game">
-          <i class="fas fa-gamepad"></i>
-          <h5 data-i18n="services.rps_game">لعبة حجرة-ورقة-مقص</h5>
-        </div>
-        <div class="service-details" id="game">
-          <div class="sub-service">
-            <div class="game-container">
-              <button class="game-btn" onclick="playGame('حجرة')"><i class="fas fa-hand-rock"></i> <span data-i18n="game.rock">حجرة</span></button>
-              <button class="game-btn" onclick="playGame('ورقة')"><i class="fas fa-hand-paper"></i> <span data-i18n="game.paper">ورقة</span></button>
-              <button class="game-btn" onclick="playGame('مقص')"><i class="fas fa-hand-scissors"></i> <span data-i18n="game.scissors">مقص</span></button>
-              <p id="gameResult" data-i18n="game.result"></p>
-              <p id="gameScore" data-i18n="game.score">النقاط - أنت: 0 | الكمبيوتر: 0</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="quiz">
-        <div class="service-folder" onclick="toggleDetails('quiz')" data-service="quiz">
-          <i class="fas fa-question-circle"></i>
-          <h5 data-i18n="services.quiz">اختبار معلومات القرية</h5>
-        </div>
-        <div class="service-details" id="quiz">
-          <div class="sub-service">
-            <div id="quizContainer">
-              <p id="quizQuestion" data-i18n="quiz.question"></p>
-              <div id="quizOptions"></div>
-              <p id="quizResult"></p>
-              <p id="quizScore" data-i18n="quiz.score">النقاط: 0</p>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-6">
+        <div id="mapContainer"></div>
       </div>
     </div>
   </section>
 
-  <section class=
+  <section class="container my-5" id="feedback">
+    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="feedback.title">شاركنا رأيك</h3>
+    <form class="stats-panel">
+      <div class="mb-3">
+        <label for="feedbackInput" class="form-label" data-i18n="feedback.label">تعليقاتك</label>
+        <textarea class="form-control" id="feedbackInput" rows="5" data-i18n="[placeholder]feedback.placeholder" placeholder="أدخل تعليقاتك هنا..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" data-i18n="feedback.submit">إرسال</button>
+    </form>
+  </section>
+
+  <section class="container my-5" id="adminPanel">
+    <h3 data-i18n="admin.title">لوحة التحكم - بوابة قرية الخريطة</h3>
+    <button id="logoutButton" class="btn btn-danger" data-i18n="admin.logout">تسجيل الخروج</button>
+    <div class="stats-panel mb-5">
+      <h4 data-i18n="admin.news.title">إدارة الأخبار</h4>
+      <form id="newsForm">
+        <div class="mb-3">
+          <label for="newsTitle" class="form-label" data-i18n="admin.news.title_label">عنوان الخبر</label>
+          <input type="text" class="form-control" id="newsTitle" required>
+        </div>
+        <div class="mb-3">
+          <label for="newsDescription" class="form-label" data-i18n="admin.news.description_label">الوصف</label>
+          <textarea class="form-control" id="newsDescription" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" data-i18n="admin.news.submit">إضافة خبر</button>
+      </form>
+    </div>
+    <div class="stats-panel">
+      <h4 data-i18n="admin.services.title">إدارة الخدمات</h4>
+      <form id="servicesForm">
+        <div class="mb-3">
+          <label for="serviceTitle" class="form-label" data-i18n="admin.services.title_label">عنوان الخدمة</label>
+          <input type="text" class="form-control" id="serviceTitle" required>
+        </div>
+        <div class="mb-3">
+          <label for="serviceCategory" class="form-label" data-i18n="admin.services.category_label">الفئة</label>
+          <select class="form-select" id="serviceCategory" required>
+            <option value="medical">طبية</option>
+            <option value="municipality">بلدية</option>
+            <option value="education">تعليم</option>
+            <option value="agriculture">زراعة</option>
+            <option value="transport">نقل</option>
+            <option value="donation">تبرع</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="serviceDescription" class="form-label" data-i18n="admin.services.description_label">الوصف</label>
+          <textarea class="form-control" id="serviceDescription" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" data-i18n="admin.services.submit">إضافة خدمة</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="ai-chat">
+    <button class="ai-chat-button" aria-label="فتح الدردشة"><i class="fas fa-comment-dots"></i></button>
+    <div class="ai-chat-box">
+      <input type="text" id="chatInput" placeholder="اسألني أي شيء..." data-i18n="[placeholder]chat.placeholder">
+      <div class="response" id="chatResponse"></div>
+    </div>
+    <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="YourBotName" data-size="large" data-auth-url="https://username.github.io/khurayta-portal"></script>
+  </div>
+
+  <footer>
+    <p data-i18n="footer.text">© 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة.</p>
+    <div>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://username.github.io/khurayta-portal" target="_blank" aria-label="مشاركة على فيسبوك"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/khurayta_portal" target="_blank" aria-label="قناة تليجرام"><i class="fab fa-telegram"></i></a>
+      <a href="https://twitter.com/intent/tweet?url=https://username.github.io/khurayta-portal" target="_blank" aria-label="مشاركة على تويتر"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel" data-i18n="modal.booking.title">حجز موعد</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="bookingDate" class="form-label" data-i18n="modal.booking.date">تاريخ الموعد</label>
+              <input type="date" class="form-control" id="bookingDate">
+            </div>
+            <div class="mb-3">
+              <label for="bookingDetails" class="form-label" data-i18n="modal.booking.details">التفاصيل</label>
+              <textarea class="form-control" id="bookingDetails" rows="4"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="modal.booking.close">إغلاق</button>
+          <button type="button" class="btn btn-primary" data-i18n="modal.booking.submit">إرسال الحجز</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // i18next Initialization
+    i18next.init({
+      lng: 'ar',
+      resources: {
+        ar: {
+          translation: {
+            'header.title': 'بوابة قرية الخريطة',
+            'header.description': 'قرية زراعية نابضة بالحياة على ضفاف نهر الفرات',
+            'nav.home': 'الرئيسية',
+            'nav.services': 'الخدمات',
+            'nav.news': 'الأخبار',
+            'nav.events': 'الفعاليات',
+            'nav.feedback': 'التعليقات',
+            'search.placeholder': 'ابحث عن خدمة...',
+            'filter.all': 'الكل',
+            'filter.medical': 'طبية',
+            'filter.municipality': 'بلدية',
+            'filter.education': 'تعليم',
+            'filter.agriculture': 'زراعة',
+            'filter.transport': 'نقل',
+            'filter.donation': 'تبرع',
+            'ticker.announcement': 'الموقع قيد الإنشاء بواسطة أبو خالد',
+            'ticker.warning': 'يرجى نشر رابط الموقع:',
+            'ticker.copy_alert': 'تم نسخ الرابط!',
+            'ticker.copy_button': 'نسخ الرابط',
+            'home.title': 'أخبار وخدمات جديدة',
+            'services.title': 'جميع الخدمات في قرية الخريطة',
+            'events.title': 'الفعاليات في قرية الخريطة',
+            'feedback.title': 'شاركنا رأيك',
+            'feedback.label': 'تعليقاتك',
+            'feedback.placeholder': 'أدخل تعليقاتك هنا...',
+            'feedback.submit': 'إرسال',
+            'modal.booking.title': 'حجز موعد',
+            'modal.booking.date': 'تاريخ الموعد',
+            'modal.booking.details': 'التفاصيل',
+            'modal.booking.close': 'إغلاق',
+            'modal.booking.submit': 'إرسال الحجز',
+            'admin.title': 'لوحة التحكم - بوابة قرية الخريطة',
+            'admin.logout': 'تسجيل الخروج',
+            'admin.news.title': 'إدارة الأخبار',
+            'admin.news.title_label': 'عنوان الخبر',
+            'admin.news.description_label': 'الوصف',
+            'admin.news.submit': 'إضافة خبر',
+            'admin.services.title': 'إدارة الخدمات',
+            'admin.services.title_label': 'عنوان الخدمة',
+            'admin.services.category_label': 'الفئة',
+            'admin.services.description_label': 'الوصف',
+            'admin.services.submit': 'إضافة خدمة',
+            'chat.placeholder': 'اسألني أي شيء...'
+          }
+        },
+        en: {
+          translation: {
+            'header.title': 'Al-Khurayta Village Portal',
+            'header.description': 'A vibrant agricultural village on the banks of the Euphrates',
+            'nav.home': 'Home',
+            'nav.services': 'Services',
+            'nav.news': 'News',
+            'nav.events': 'Events',
+            'nav.feedback': 'Feedback',
+            'search.placeholder': 'Search for a service...',
+            'filter.all': 'All',
+            'filter.medical': 'Medical',
+            'filter.municipality': 'Municipality',
+            'filter.education': 'Education',
+            'filter.agriculture': 'Agriculture',
+            'filter.transport': 'Transport',
+            'filter.donation': 'Donation',
+            'ticker.announcement': 'Website under construction by Abu Khaled',
+            'ticker.warning': 'Please share the website link:',
+            'ticker.copy_alert': 'Link copied!',
+            'ticker.copy_button': 'Copy Link',
+            'home.title': 'Latest News and Services',
+            'services.title': 'All Services in Al-Khurayta Village',
+            'events.title': 'Events in Al-Khurayta Village',
+            'feedback.title': 'Share Your Feedback',
+            'feedback.label': 'Your Feedback',
+            'feedback.placeholder': 'Enter your feedback here...',
+            'feedback.submit': 'Submit',
+            'modal.booking.title': 'Book Appointment',
+            'modal.booking.date': 'Appointment Date',
+            'modal.booking.details': 'Details',
+            'modal.booking.close': 'Close',
+            'modal.booking.submit': 'Submit Booking',
+            'admin.title': 'Admin Panel - Al-Khurayta Village Portal',
+            'admin.logout': 'Logout',
+            'admin.news.title': 'Manage News',
+            'admin.news.title_label': 'News Title',
+            'admin.news.description_label': 'Description',
+            'admin.news.submit': 'Add News',
+            'admin.services.title': 'Manage Services',
+            'admin.services.title_label': 'Service Title',
+            'admin.services.category_label': 'Category',
+            'admin.services.description_label': 'Description',
+            'admin.services.submit': 'Add Service',
+            'chat.placeholder': 'Ask me anything...'
+          }
+        }
+      }
+    }, () => {
+      document.querySelectorAll('[data-i18n]').forEach(elem => {
+        const key = elem.getAttribute('data-i18n');
+        elem.textContent = i18next.t(key);
+      });
+    });
+
+    // Theme Toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+
+    // Language Toggle
+    document.getElementById('langToggle').addEventListener('click', () => {
+      const newLang = i18next.language === 'ar' ? 'en' : 'ar';
+      i18next.changeLanguage(newLang, () => {
+        document.querySelectorAll('[data-i18n]').forEach(elem => {
+          const key = elem.getAttribute('data-i18n');
+          elem.textContent = i18next.t(key);
+        });
+      });
+    });
+
+    // Login System
+    const adminLink = document.getElementById('adminLink');
+    const adminPanel = document.getElementById('adminPanel');
+    if (localStorage.getItem('username')) {
+      adminLink.style.display = 'block';
+    } else {
+      adminLink.style.display = 'none';
+      const loginPrompt = prompt('أدخل اسمك لتسجيل الدخول:');
+      if (loginPrompt) {
+        localStorage.setItem('username', loginPrompt);
+        adminLink.style.display = 'block';
+      }
+    }
+
+    adminLink.addEventListener('click', () => {
+      adminPanel.classList.toggle('active');
+      document.getElementById('home').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
+      document.getElementById('services').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
+      document.getElementById('events').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
+      document.getElementById('feedback').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
+    });
+
+    // Logout
+    document.getElementById('logoutButton').addEventListener('click', () => {
+      localStorage.removeItem('username');
+      adminPanel.classList.remove('active');
+      adminLink.style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+      document.getElementById('services').style.display = 'block';
+      document.getElementById('events').style.display = 'block';
+      document.getElementById('feedback').style.display = 'block';
+    });
+
+    // Google Sheets Integration
+    const SHEET_ID = 'YOUR_SHEET_ID';
+    const API_KEY = 'YOUR_GOOGLE_SHEETS_API_KEY';
+    const NEWS_RANGE = 'News!A2:C';
+    const SERVICES_RANGE = 'Services!A2:C';
+
+    async function fetchData(range) {
+      try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`);
+        return await response.json();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return { values: [] };
+      }
+    }
+
+    async function updateSheet(tab, values) {
+      // For simplicity, use a Google Apps Script web app for updates
+      try {
+        await fetch('YOUR_APPS_SCRIPT_URL', {
+          method: 'POST',
+          body: JSON.stringify({ tab, values })
+        });
+      } catch (error) {
+        console.error('Error updating sheet:', error);
+      }
+    }
+
+    // Load News
+    async function loadNews() {
+      const newsContainer = document.getElementById('newsContainer');
+      const data = await fetchData(NEWS_RANGE);
+      newsContainer.innerHTML = '';
+      data.values.forEach(([title, description, _]) => {
+        const newsCard = `
+          <div class="col-md-4 col-sm-6">
+            <div class="news-card">
+              <i class="fas fa-newspaper"></i>
+              <h5>${title}</h5>
+              <p>${description}</p>
+            </div>
+          </div>`;
+        newsContainer.insertAdjacentHTML('beforeend', newsCard);
+      });
+    }
+
+    // Load Services
+    async function loadServices() {
+      const servicesContainer = document.getElementById('servicesContainer');
+      const data = await fetchData(SERVICES_RANGE);
+      servicesContainer.innerHTML = '';
+      data.values.forEach(([title, category, description], index) => {
+        const serviceCard = `
+          <div class="col-md-4 col-sm-6" data-category="${category}">
+            <div class="service-folder" onclick="toggleDetails('service${index}')">
+              <i class="fas fa-${category === 'medical' ? 'hospital' : category === 'municipality' ? 'city' : category === 'education' ? 'school' : category === 'agriculture' ? 'tractor' : category === 'transport' ? 'bus' : 'hand-holding-heart'}"></i>
+              <h5>${title}</h5>
+            </div>
+            <div class="service-details" id="service${index}">
+              <div class="sub-service">
+                <i class="fas fa-info-circle"></i> ${description}
+                ${category === 'municipality' ? '<button class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#bookingModal">احجز الآن</button>' : ''}
+                ${category === 'donation' ? '<a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2">تبرع الآن</a>' : ''}
+              </div>
+            </div>
+          </div>`;
+        servicesContainer.insertAdjacentHTML('beforeend', serviceCard);
+      });
+    }
+
+    // Service Details Toggle
+    function toggleDetails(id) {
+      const details = document.getElementById(id);
+      details.classList.toggle('active');
+    }
+
+    // Search and Filter
+    document.getElementById('searchInput').addEventListener('input', filterServices);
+    document.getElementById('filterCategory').addEventListener('change', filterServices);
+
+    function filterServices() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('filterCategory').value;
+      const services = document.querySelectorAll('#servicesContainer .col-md-4');
+
+      services.forEach(service => {
+        const serviceName = service.querySelector('h5').textContent.toLowerCase();
+        const serviceCategory = service.dataset.category;
+        const matchesSearch = serviceName.includes(search);
+        const matchesCategory = category === 'all' || serviceCategory === category;
+
+        service.style.display = matchesSearch && matchesCategory ? '' : 'none';
+      });
+    }
+
+    // Admin Form Submission
+    document.getElementById('newsForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('newsTitle').value;
+      const description = document.getElementById('newsDescription').value;
+      await updateSheet('News', [title, description, new Date().toISOString()]);
+      alert('تم إضافة الخبر!');
+      document.getElementById('newsForm').reset();
+      loadNews();
+    });
+
+    document.getElementById('servicesForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('serviceTitle').value;
+      const category = document.getElementById('serviceCategory').value;
+      const description = document.getElementById('serviceDescription').value;
+      await updateSheet('Services', [title, category, description]);
+      alert('تم إضافة الخدمة!');
+      document.getElementById('servicesForm').reset();
+      loadServices();
+    });
+
+    // FullCalendar Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      const calendarEl = document.getElementById('calendar');
+      if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          events: [
+            { title: 'حملة نظافة', start: '2025-06-10' },
+            { title: 'مهرجان شبابي', start: '2025-06-15' }
+          ],
+          locale: 'ar',
+          direction: 'rtl'
+        });
+        calendar.render();
+      }
+    });
+
+    // Google Maps Initialization
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById('mapContainer'), {
+        center: { lat: 33.3152, lng: 44.3661 }, // Example coordinates
+        zoom: 10
+      });
+    }
+
+    // Chat Toggle
+    document.querySelector('.ai-chat-button').addEventListener('click', () => {
+      document.querySelector('.ai-chat-box').classList.toggle('active');
+    });
+
+    // Load initial data
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNews();
+      loadServices();
+    });
+  </script>
+</body>
+</html>
