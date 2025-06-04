@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة قرية الخريطة</title>
+  <title>بوابة الخط الغربي</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <style>
@@ -24,22 +24,35 @@
       height: 80px;
       margin-bottom: 10px;
     }
-    .ticker {
+    .ticker-bar {
       background-color: #e6f0ee;
-      padding: 12px;
-      white-space: nowrap;
-      overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      margin: 20px auto;
+      margin: 22px auto 10px auto;
       font-size: 1.1rem;
       max-width: 600px;
       text-align: center;
+      height: 44px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-right 13s linear infinite;
+      direction: rtl;
+      font-weight: 500;
+    }
+    @keyframes scroll-right {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
     .main-form {
       background: #fff;
       border-radius: 15px;
-      padding: 30px 20px;
+      padding: 30px 20px 20px 20px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.13);
       max-width: 450px;
       margin: 30px auto;
@@ -69,28 +82,42 @@
   <!-- شعار الموقع -->
   <header>
     <img src="fs4.foto1.png" alt="شعار الموقع" class="logo-img" />
-    <h1>بوابة قرية الخريطة</h1>
-    <p>خدمات إلكترونية لأهالي الخريطة</p>
+    <h1>بوابة الخط الغربي</h1>
+    <p>خدمات إلكترونية لأهالي الريف الغربي</p>
   </header>
 
-  <!-- الشريط الإخباري -->
-  <div class="ticker">
-    🚧 الموقع قيد التطوير بواسطة أبو خالد - لأي اقتراحات تواصل معنا عبر النموذج أدناه 🚀
+  <!-- الشريط الإخباري المتحرك -->
+  <div class="ticker-bar">
+    <div class="ticker-content">
+      <svg width="1.3em" height="1.3em" style="vertical-align:middle;margin-left:7px;margin-right:4px;" viewBox="0 0 24 24" fill="orange"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+      لتقديم شكوى أو ملاحظة يرجى تعبئة النموذج أدناه 👇
+    </div>
   </div>
 
-  <!-- نموذج إرسال الطلب إلى تيليجرام -->
+  <!-- نموذج إرسال الطلب إلى تيليجرام مع قائمة القرى -->
   <form class="main-form" id="serviceRequestForm">
-    <h4 class="mb-3 text-center">طلب خدمة أو استفسار</h4>
+    <h4 class="mb-3 text-center">نموذج تقديم الشكوى أو الطلب</h4>
+    <label for="village" class="mb-1">القرية:</label>
+    <select id="village" required class="form-control mb-2">
+      <option value="">-- اختر القرية --</option>
+      <option>عياش</option>
+      <option>الحوائج</option>
+      <option>الخريطة</option>
+      <option>الزغير</option>
+      <option>الشميطية</option>
+      <option>المسرب</option>
+      <option>الطريف</option>
+    </select>
     <input type="text" id="userName" placeholder="الاسم" required class="form-control my-2">
     <input type="text" id="userPhone" placeholder="رقم الهاتف" required class="form-control my-2">
-    <textarea id="userRequest" placeholder="اكتب طلبك أو استفسارك هنا" required class="form-control my-2"></textarea>
+    <textarea id="userRequest" placeholder="اكتب الشكوى أو الطلب بالتفصيل" required class="form-control my-2"></textarea>
     <button type="submit" class="btn btn-success">إرسال الطلب</button>
   </form>
 
   <!-- أيقونة الشعار وحقوق النشر -->
   <footer>
     <img src="fs4.foto1.png" alt="شعار الموقع" />
-    جميع الحقوق محفوظة &copy; قرية الخريطة 2025
+    جميع الحقوق محفوظة &copy; بوابة الخط الغربي 2025
   </footer>
 
   <!-- كود ربط النموذج مع تيليجرام -->
@@ -112,7 +139,7 @@
       })
       .then(response => {
         if(response.ok){
-          alert("تم إرسال الطلب بنجاح 🚀");
+          alert("تم إرسال الشكوى/الطلب بنجاح 🚀");
         } else {
           alert("حدث خطأ أثناء الإرسال!");
         }
@@ -121,10 +148,11 @@
 
     document.getElementById("serviceRequestForm").addEventListener("submit", function(e){
       e.preventDefault();
+      const village = document.getElementById("village").value;
       const name = document.getElementById("userName").value;
       const phone = document.getElementById("userPhone").value;
       const request = document.getElementById("userRequest").value;
-      const message = `طلب جديد من الموقع:\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالطلب: ${request}`;
+      const message = `طلب جديد من بوابة الخط الغربي:\nالقرية: ${village}\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالطلب/الشكوى: ${request}`;
       sendToTelegram(message);
       this.reset();
     });
