@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="بوابة قرية الخريطة، خدمات طبية، زراعية، ومجتمعية على ضفاف نهر الفرات" />
-  <meta name="keywords" content="قرية الخريطة, خدمات, الفرات, زراعة, تعليم" />
+  <meta name="keywords" content="قرية الخريطة, خدمات, الفرات, زراعة, تعليم, فعاليات" />
   <title>بوابة قرية الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
@@ -21,33 +21,38 @@
   </script>
   <style>
     :root {
-      --bg-color: #f7f9fa;
-      --text-color: #1d5c57;
-      --header-bg: linear-gradient(90deg, #1d5c57, #134e4a);
-      --card-bg: #fff;
+      --bg-color: #F5F5F5; /* بيج فاتح من الخلفية البيضاء */
+      --text-color: #1C2526; /* أسود داكن من النص */
+      --header-bg: linear-gradient(90deg, #8D5524, #6B4E31); /* بني دافئ يعكس التربة */
+      --card-bg: #FDF5E6; /* كريمي فاتح */
+      --accent-color: #6B705C; /* أخضر زيتوني للتفاصيل */
+      --button-bg: #6B705C; /* أخضر زيتوني للأزرار */
+      --button-hover: #5A604A; /* أخضر أغمق عند التمرير */
     }
     [data-theme="dark"] {
-      --bg-color: #1a1a1a;
-      --text-color: #ffffff;
-      --header-bg: linear-gradient(90deg, #333, #222);
-      --card-bg: #333;
+      --bg-color: #2F2F2F; /* خلفية داكنة */
+      --text-color: #E6E6E6; /* نص فاتح */
+      --header-bg: linear-gradient(90deg, #4A3728, #3C2F2F); /* بني داكن */
+      --card-bg: #4A3728; /* بطاقات داكنة */
+      --accent-color: #8A9A5B; /* أخضر زيتوني فاتح */
+      --button-bg: #4A3728; /* أزرار داكنة */
+      --button-hover: #3C2F2F; /* أغمق عند التمرير */
     }
     body {
-      font-family: 'Tajawal', sans-serif;
+      font-family: 'Amiri', serif;
       background: var(--bg-color);
       color: var(--text-color);
-      overflow-x: hidden;
       transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
     }
     header {
       background: var(--header-bg);
-      background-attachment: fixed;
-      background-position: center;
-      color: white;
+      color: #FDF5E6; /* نص كريمي فاتح */
       padding: 40px 20px;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid var(--accent-color);
     }
     header::before {
       content: '';
@@ -56,23 +61,28 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://source.unsplash.com/random/1920x200?river') no-repeat center/cover;
-      opacity: 0.15;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVR4nGNgYGBgYGD4//8/AzMzM4M5AwAAAP8AnP/7J1QAAAAASUVORK5CYII=') repeat; /* نسيج ورق قديم */
+      opacity: 0.1;
       z-index: 0;
     }
     header h1, header p {
       position: relative;
       z-index: 1;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
     }
     .theme-toggle, .lang-toggle {
       position: absolute;
       top: 20px;
-      background: #f59e0b;
+      background: var(--accent-color);
       border: none;
       padding: 10px;
       border-radius: 50%;
       cursor: pointer;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .theme-toggle:hover, .lang-toggle:hover {
+      transform: scale(1.1);
     }
     .theme-toggle { left: 20px; }
     .lang-toggle { left: 70px; }
@@ -83,48 +93,44 @@
       transition: color 0.3s ease, transform 0.3s ease;
     }
     .nav-link:hover {
-      color: #f59e0b !important;
+      color: var(--accent-color) !important;
       transform: scale(1.1);
     }
     .ticker {
-      background-color: #e6f0ee;
+      background: var(--card-bg);
       padding: 15px;
       white-space: nowrap;
       overflow: hidden;
       direction: rtl;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
       margin: 15px 0;
       font-size: 1.1rem;
+      border: 1px solid var(--accent-color);
     }
     .ticker span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll 10s linear infinite;
+      animation: scroll 12s linear infinite;
     }
     .ticker-warning {
-      background: linear-gradient(90deg, #f59e0b, #d4a017);
-      color: white;
+      background: linear-gradient(90deg, var(--accent-color), #8D5524); /* أخضر زيتوني إلى بني */
+      color: #FDF5E6;
       padding: 20px;
       font-size: 1.2rem;
       font-weight: bold;
-      border-radius: 10px;
-      position: relative;
+      border-radius: 8px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       animation: pulse 2s infinite;
     }
-    .ticker-warning i {
-      margin-left: 10px;
-      font-size: 1.3rem;
-    }
     .ticker-warning a {
-      color: #fff;
+      color: #FDF5E6;
       text-decoration: underline;
       margin-right: 10px;
     }
     .ticker-warning button {
-      background: #1d5c57;
-      color: white;
+      background: var(--button-bg);
+      color: #FDF5E6;
       border: none;
       padding: 8px 15px;
       border-radius: 8px;
@@ -132,7 +138,7 @@
       transition: background 0.3s ease;
     }
     .ticker-warning button:hover {
-      background: #134e4a;
+      background: var(--button-hover);
     }
     @keyframes scroll {
       from { transform: translateX(0); }
@@ -144,8 +150,8 @@
       100% { opacity: 1; }
     }
     .service-folder {
-      background-color: var(--card-bg);
-      border-radius: 15px;
+      background: var(--card-bg);
+      border-radius: 12px;
       padding: 25px;
       text-align: center;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -153,7 +159,7 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      border: 2px solid #d4a017;
+      border: 2px solid var(--accent-color);
     }
     .service-folder::before {
       content: '';
@@ -162,7 +168,7 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(90deg, #f59e0b, #d4a017);
+      background: linear-gradient(90deg, var(--accent-color), #8D5524);
       transition: height 0.3s ease;
     }
     .service-folder:hover::before {
@@ -170,12 +176,12 @@
       opacity: 0.1;
     }
     .service-folder:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     .service-folder i {
       font-size: clamp(2rem, 5vw, 2.5rem);
-      color: #f59e0b;
+      color: var(--accent-color);
       margin-bottom: 15px;
       transition: transform 0.3s ease;
     }
@@ -184,24 +190,25 @@
     }
     .service-details {
       display: none;
-      background: #e6f0ee;
+      background: var(--card-bg);
       border-radius: 10px;
       padding: 20px;
       margin-top: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--accent-color);
     }
     .service-details.active {
       display: block;
     }
-    .service-details .sub-service {
+    .sub-service {
       display: flex;
       align-items: center;
       padding: 10px;
-      border-bottom: 1px solid #ddf1ef;
+      border-bottom: 1px solid var(--accent-color);
     }
-    .service-details .sub-service i {
+    .sub-service i {
       font-size: 1.5rem;
-      color: #f59e0b;
+      color: var(--accent-color);
       margin-left: 10px;
     }
     .game-container {
@@ -210,8 +217,8 @@
       gap: 10px;
     }
     .game-btn {
-      background: #f59e0b;
-      color: white;
+      background: var(--button-bg);
+      color: #FDF5E6;
       border: none;
       padding: 10px;
       border-radius: 8px;
@@ -221,6 +228,7 @@
     }
     .game-btn:hover {
       transform: scale(1.1);
+      background: var(--button-hover);
     }
     .ai-chat {
       position: fixed;
@@ -229,8 +237,8 @@
       z-index: 1000;
     }
     .ai-chat-button {
-      background: #1d5c57;
-      color: white;
+      background: var(--button-bg);
+      color: #FDF5E6;
       border: none;
       padding: 15px;
       border-radius: 50%;
@@ -252,19 +260,20 @@
       position: absolute;
       bottom: 60px;
       left: 0;
+      border: 1px solid var(--accent-color);
     }
     .ai-chat-box.active {
       display: block;
     }
     .ai-chat-box input {
       border-radius: 8px;
-      border: 1px solid #1d5c57;
+      border: 1px solid var(--accent-color);
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
     }
     .ai-chat-box .response {
-      background: #e6f0ee;
+      background: #F5F5F5;
       padding: 10px;
       border-radius: 8px;
       margin-top: 10px;
@@ -272,7 +281,7 @@
     .suggestions {
       position: absolute;
       background: var(--card-bg);
-      border: 1px solid #1d5c57;
+      border: 1px solid var(--accent-color);
       border-radius: 5px;
       z-index: 1000;
       width: clamp(200px, 90%, 300px);
@@ -282,50 +291,66 @@
       cursor: pointer;
     }
     .suggestions div:hover {
-      background: #e6f0ee;
+      background: #F5F5F5;
+    }
+    .urgent-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #A52A2A;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      z-index: 1000;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .urgent-btn:hover {
+      transform: scale(1.1);
     }
     footer {
       background: var(--header-bg);
-      color: white;
+      color: #FDF5E6;
       padding: 30px;
       text-align: center;
       box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+      border-top: 3px solid var(--accent-color);
     }
     footer a {
-      color: #f59e0b;
+      color: var(--accent-color);
       margin: 0 15px;
       transition: color 0.3s ease;
     }
     footer a:hover {
-      color: #d4a017;
+      color: #8D5524;
     }
     #mapContainer {
       height: 400px;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--accent-color);
     }
     #calendar {
       background: var(--card-bg);
       padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
-    .stats-panel {
+    #countdown, #priceCalculator, #stories {
       background: var(--card-bg);
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--accent-color);
     }
     @media (max-width: 768px) {
-      .service-folder {
-        margin-bottom: 20px;
-      }
-      .ticker-warning {
-        font-size: 1rem;
-      }
-      .ai-chat-box {
-        width: 280px;
-      }
+      header { padding: 30px 15px; }
+      .theme-toggle, .lang-toggle { top: 15px; }
+      .urgent-btn { top: 15px; right: 15px; font-size: 0.9rem; }
+      .service-folder { margin-bottom: 15px; }
+      .ticker-warning { font-size: 1rem; }
+      .ai-chat-box { width: 280px; }
     }
   </style>
 </head>
@@ -343,8 +368,11 @@
     <a class="nav-link" href="#about" data-i18n="nav.about">عن القرية</a>
     <a class="nav-link" href="#events" data-i18n="nav.events">الفعاليات</a>
     <a class="nav-link" href="#feedback" data-i18n="nav.feedback">التعليقات</a>
+    <a class="nav-link" href="#stories" data-i18n="nav.stories">حكايات القرية</a>
     <a class="nav-link" href="https://alikhbariah.com/" target="_blank" data-i18n="nav.news">الأخبار</a>
   </nav>
+
+  <button class="urgent-btn" data-bs-toggle="modal" data-bs-target="#urgentModal" data-i18n="urgent.button">طلب عاجل</button>
 
   <div class="container my-3 position-relative">
     <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة..." data-i18n="[placeholder]search.placeholder">
@@ -354,6 +382,8 @@
       <option value="municipality" data-i18n="filter.municipality">بلدية</option>
       <option value="education" data-i18n="filter.education">تعليم</option>
       <option value="agriculture" data-i18n="filter.agriculture">زراعة</option>
+      <option value="transport" data-i18n="filter.transport">نقل</option>
+      <option value="donation" data-i18n="filter.donation">تبرع</option>
     </select>
   </div>
 
@@ -458,9 +488,9 @@
           <h5 data-i18n="services.transport">النقل</h5>
         </div>
         <div class="service-details" id="transport">
-          <div class="sub-service"><i class="fas fa-bus"></i> <span data-i18n="services.public_transport">خدمات النقل العام في القرى</span></div>
+          <div class="sub-service"><i class="fas fa-bus"></i> <span data-i18n="services.public_transport">خدمات النقل العام</span></div>
           <div class="sub-service"><i class="fas fa-ticket-alt"></i> <span data-i18n="services.ticket">حجز تذكرة</span></div>
-          <div class="sub-service"><i class="fas fa-taxi"></i> <span data-i18n="services.taxi">طلب سيارة أجرة خاصة</span></div>
+          <div class="sub-service"><i class="fas fa-taxi"></i> <span data-i18n="services.taxi">طلب سيارة أجرة</span></div>
         </div>
       </div>
       <div class="col-md-4 col-sm-6" data-category="donation">
@@ -474,46 +504,8 @@
             <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" data-i18n="[innerHTML]services.donate_now">تبرع الآن</a>
           </div>
           <div class="sub-service">
-            <i class="fas fa-donate"></i> <span data-i18n="services.schools_donation">تبرع للمدارس الخاصة</span>
+            <i class="fas fa-donate"></i> <span data-i18n="services.schools_donation">تبرع للمدارس</span>
             <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" data-i18n="[innerHTML]services.donate_now">تبرع الآن</a>
           </div>
-          <div class="sub-service"><i class="fas fa-money-bill-wave"></i> <span data-i18n="services.donation_general">التبرع</span></div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="game">
-        <div class="service-folder" onclick="toggleDetails('game')" data-service="game">
-          <i class="fas fa-gamepad"></i>
-          <h5 data-i18n="services.rps_game">لعبة حجرة-ورقة-مقص</h5>
-        </div>
-        <div class="service-details" id="game">
-          <div class="sub-service">
-            <div class="game-container">
-              <button class="game-btn" onclick="playGame('حجرة')"><i class="fas fa-hand-rock"></i> <span data-i18n="game.rock">حجرة</span></button>
-              <button class="game-btn" onclick="playGame('ورقة')"><i class="fas fa-hand-paper"></i> <span data-i18n="game.paper">ورقة</span></button>
-              <button class="game-btn" onclick="playGame('مقص')"><i class="fas fa-hand-scissors"></i> <span data-i18n="game.scissors">مقص</span></button>
-              <p id="gameResult" data-i18n="game.result"></p>
-              <p id="gameScore" data-i18n="game.score">النقاط - أنت: 0 | الكمبيوتر: 0</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="quiz">
-        <div class="service-folder" onclick="toggleDetails('quiz')" data-service="quiz">
-          <i class="fas fa-question-circle"></i>
-          <h5 data-i18n="services.quiz">اختبار معلومات القرية</h5>
-        </div>
-        <div class="service-details" id="quiz">
-          <div class="sub-service">
-            <div id="quizContainer">
-              <p id="quizQuestion" data-i18n="quiz.question"></p>
-              <div id="quizOptions"></div>
-              <p id="quizResult"></p>
-              <p id="quizScore" data-i18n="quiz.score">النقاط: 0</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class=
+      <
