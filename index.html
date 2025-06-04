@@ -21,22 +21,22 @@
   </script>
   <style>
     :root {
-      --bg-color: #f5f0e1; /* بيج قديم */
-      --text-color: #4a3728; /* بني غامق */
-      --header-bg: linear-gradient(90deg, #6b4e31, #4a3728); /* ترابي */
-      --card-bg: #fff8e7; /* ورق قديم */
-      --accent-color: #8a9a5b; /* أخضر زيتوني */
-      --button-bg: #6b4e31;
-      --button-hover: #4a3728;
+      --bg-color: #F5F5F5; /* بيج فاتح من الخلفية البيضاء */
+      --text-color: #1C2526; /* أسود داكن من النص */
+      --header-bg: linear-gradient(90deg, #8D5524, #6B4E31); /* بني دافئ يعكس التربة */
+      --card-bg: #FDF5E6; /* كريمي فاتح */
+      --accent-color: #6B705C; /* أخضر زيتوني للتفاصيل */
+      --button-bg: #6B705C; /* أخضر زيتوني للأزرار */
+      --button-hover: #5A604A; /* أخضر أغمق عند التمرير */
     }
     [data-theme="dark"] {
-      --bg-color: #2f2f2f;
-      --text-color: #e6d9b7;
-      --header-bg: linear-gradient(90deg, #3c2f2f, #2f2f2f);
-      --card-bg: #4a3728;
-      --accent-color: #a3b18a;
-      --button-bg: #3c2f2f;
-      --button-hover: #2f2f2f;
+      --bg-color: #2F2F2F; /* خلفية داكنة */
+      --text-color: #E6E6E6; /* نص فاتح */
+      --header-bg: linear-gradient(90deg, #4A3728, #3C2F2F); /* بني داكن */
+      --card-bg: #4A3728; /* بطاقات داكنة */
+      --accent-color: #8A9A5B; /* أخضر زيتوني فاتح */
+      --button-bg: #4A3728; /* أزرار داكنة */
+      --button-hover: #3C2F2F; /* أغمق عند التمرير */
     }
     body {
       font-family: 'Amiri', serif;
@@ -47,7 +47,7 @@
     }
     header {
       background: var(--header-bg);
-      color: #e6d9b7;
+      color: #FDF5E6; /* نص كريمي فاتح */
       padding: 40px 20px;
       text-align: center;
       position: relative;
@@ -114,8 +114,8 @@
       animation: scroll 12s linear infinite;
     }
     .ticker-warning {
-      background: linear-gradient(90deg, var(--accent-color), #6b4e31);
-      color: #e6d9b7;
+      background: linear-gradient(90deg, var(--accent-color), #8D5524); /* أخضر زيتوني إلى بني */
+      color: #FDF5E6;
       padding: 20px;
       font-size: 1.2rem;
       font-weight: bold;
@@ -124,13 +124,13 @@
       animation: pulse 2s infinite;
     }
     .ticker-warning a {
-      color: #fff8e7;
+      color: #FDF5E6;
       text-decoration: underline;
       margin-right: 10px;
     }
     .ticker-warning button {
       background: var(--button-bg);
-      color: #e6d9b7;
+      color: #FDF5E6;
       border: none;
       padding: 8px 15px;
       border-radius: 8px;
@@ -168,7 +168,7 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(90deg, var(--accent-color), #6b4e31);
+      background: linear-gradient(90deg, var(--accent-color), #8D5524);
       transition: height 0.3s ease;
     }
     .service-folder:hover::before {
@@ -218,7 +218,7 @@
     }
     .game-btn {
       background: var(--button-bg);
-      color: #e6d9b7;
+      color: #FDF5E6;
       border: none;
       padding: 10px;
       border-radius: 8px;
@@ -238,7 +238,7 @@
     }
     .ai-chat-button {
       background: var(--button-bg);
-      color: #e6d9b7;
+      color: #FDF5E6;
       border: none;
       padding: 15px;
       border-radius: 50%;
@@ -273,7 +273,7 @@
       margin-bottom: 10px;
     }
     .ai-chat-box .response {
-      background: #f5f0e1;
+      background: #F5F5F5;
       padding: 10px;
       border-radius: 8px;
       margin-top: 10px;
@@ -291,13 +291,13 @@
       cursor: pointer;
     }
     .suggestions div:hover {
-      background: #f5f0e1;
+      background: #F5F5F5;
     }
     .urgent-btn {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #a52a2a;
+      background: #A52A2A;
       color: white;
       padding: 10px 15px;
       border-radius: 5px;
@@ -310,7 +310,7 @@
     }
     footer {
       background: var(--header-bg);
-      color: #e6d9b7;
+      color: #FDF5E6;
       padding: 30px;
       text-align: center;
       box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
@@ -322,7 +322,7 @@
       transition: color 0.3s ease;
     }
     footer a:hover {
-      color: #6b4e31;
+      color: #8D5524;
     }
     #mapContainer {
       height: 400px;
@@ -508,573 +508,4 @@
             <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" data-i18n="[innerHTML]services.donate_now">تبرع الآن</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="game">
-        <div class="service-folder" onclick="toggleDetails('game')" data-service="game">
-          <i class="fas fa-gamepad"></i>
-          <h5 data-i18n="services.rps_game">لعبة حجرة-ورقة-مقص</h5>
-        </div>
-        <div class="service-details" id="game">
-          <div class="sub-service">
-            <div class="game-container">
-              <button class="game-btn" onclick="playGame('حجرة')"><i class="fas fa-hand-rock"></i> <span data-i18n="game.rock">حجرة</span></button>
-              <button class="game-btn" onclick="playGame('ورقة')"><i class="fas fa-hand-paper"></i> <span data-i18n="game.paper">ورقة</span></button>
-              <button class="game-btn" onclick="playGame('مقص')"><i class="fas fa-hand-scissors"></i> <span data-i18n="game.scissors">مقص</span></button>
-              <p id="gameResult" data-i18n="game.result"></p>
-              <p id="gameScore" data-i18n="game.score">النقاط - أنت: 0 | الكمبيوتر: 0</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6" data-category="quiz">
-        <div class="service-folder" onclick="toggleDetails('quiz')" data-service="quiz">
-          <i class="fas fa-question-circle"></i>
-          <h5 data-i18n="services.quiz">اختبار معلومات القرية</h5>
-        </div>
-        <div class="service-details" id="quiz">
-          <div class="sub-service">
-            <div id="quizContainer">
-              <p id="quizQuestion" data-i18n="quiz.question"></p>
-              <div id="quizOptions"></div>
-              <p id="quizResult"></p>
-              <p id="quizScore" data-i18n="quiz.score">النقاط: 0</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container my-5" id="about">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="about.title">عن قرية الخريطة</h3>
-    <div class="row g-4">
-      <div class="col-md-12">
-        <div class="service-folder">
-          <i class="fas fa-leaf"></i>
-          <h5 data-i18n="about.history">تاريخ القرية</h5>
-          <p data-i18n="about.history_desc">تأسست قرية الخريطة على ضفاف نهر الفرات، وتشتهر بتربتها الخصبة وزراعتها المتنوعة.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container my-5" id="stories">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="stories.title">حكايات القرية</h3>
-    <div id="stories">
-      <p id="storyText" data-i18n="stories.text">في يوم من الأيام، تجمع أهل القرية حول النهر للاحتفال بموسم الحصاد...</p>
-      <button class="btn btn-sm btn-primary" onclick="randomStory()" data-i18n="stories.read_more">اقرأ حكاية أخرى</button>
-    </div>
-  </section>
-
-  <section class="container my-5" id="priceCalculator">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="price.title">محاكي الأسعار الزراعية</h3>
-    <div id="priceCalculator">
-      <select id="cropType" class="form-select mb-2">
-        <option value="wheat" data-i18n="price.wheat">قمح</option>
-        <option value="barley" data-i18n="price.barley">شعير</option>
-        <option value="dates" data-i18n="price.dates">تمر</option>
-      </select>
-      <input type="number" id="cropQuantity" class="form-control mb-2" placeholder="الكمية (طن)" data-i18n="[placeholder]price.quantity">
-      <button class="btn btn-primary" onclick="calculatePrice()" data-i18n="price.calculate">احسب السعر</button>
-      <p id="priceResult" data-i18n="price.result"></p>
-    </div>
-  </section>
-
-  <section class="container my-5" id="events">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="events.title">الفعاليات القادمة</h3>
-    <div id="countdown"></div>
-    <div id="calendar"></div>
-  </section>
-
-  <section class="container my-5" id="feedback">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="feedback.title">التعليقات</h3>
-    <form id="feedbackForm" action="https://formspree.io/f/your-form-id" method="POST">
-      <div class="mb-3">
-        <label class="form-label" data-i18n="feedback.name">الاسم</label>
-        <input type="text" class="form-control" name="name" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" data-i18n="feedback.comment">التعليق</label>
-        <textarea class="form-control" name="comment" rows="5" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" data-i18n="feedback.submit">إرسال</button>
-    </form>
-  </section>
-
-  <div class="modal fade" id="urgentModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background: var(--card-bg); border: 1px solid var(--accent-color);">
-        <div class="modal-header">
-          <h5 class="modal-title" data-i18n="urgent.title">طلب عاجل</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="urgentForm" action="https://formspree.io/f/your-form-id" method="POST">
-            <div class="mb-3">
-              <label class="form-label" data-i18n="urgent.name">الاسم</label>
-              <input type="text" class="form-control" name="name" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label" data-i18n="urgent.request">تفاصيل الطلب</label>
-              <textarea class="form-control" name="request" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" data-i18n="urgent.submit">إرسال</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ai-chat">
-    <button class="ai-chat-button" onclick="toggleChat()"><i class="fas fa-headset"></i></button>
-    <div class="ai-chat-box" id="aiChatBox">
-      <h5 data-i18n="chat.title">مساعد القرية</h5>
-      <p class="response" data-i18n="chat.welcome">مرحبًا! اسألني عن القرية أو الخدمات!</p>
-      <div id="chatSuggestions">
-        <button class="btn btn-sm btn-outline-primary m-1" onclick="sendAIQuery('ما موعد الفعالية القادمة؟')" data-i18n="chat.suggest_event">موعد الفعالية</button>
-        <button class="btn btn-sm btn-outline-primary m-1" onclick="sendAIQuery('كيف أحجز موعد؟')" data-i18n="chat.suggest_booking">حجز موعد</button>
-        <button class="btn btn-sm btn-outline-primary m-1" onclick="sendAIQuery('ما أسعار المحاصيل؟')" data-i18n="chat.suggest_price">أسعار المحاصيل</button>
-      </div>
-      <input type="text" id="aiInput" placeholder="اكتب سؤالك..." data-i18n="[placeholder]chat.placeholder">
-      <button class="btn btn-sm btn-danger mt-2" onclick="clearChatHistory()" data-i18n="chat.clear">مسح السجل</button>
-      <div class="response" id="aiResponse"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p data-i18n="footer.copyright">© 2025 قرية الخريطة</p>
-    <p id="quote" data-i18n="footer.quote">"الزراعة هي عماد القرية."</p>
-    <div>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    let playerScore = 0, computerScore = 0, quizScore = 0;
-    let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
-
-    i18next.init({
-      lng: 'ar',
-      resources: {
-        ar: {
-          translation: {
-            "header.title": "بوابة قرية الخريطة",
-            "header.description": "قرية زراعية نابضة بالحياة على ضفاف نهر الفرات",
-            "nav.home": "الرئيسية",
-            "nav.services": "الخدمات",
-            "nav.about": "عن القرية",
-            "nav.events": "الفعاليات",
-            "nav.feedback": "التعليقات",
-            "nav.stories": "حكايات القرية",
-            "nav.news": "الأخبار",
-            "search.placeholder": "ابحث عن خدمة...",
-            "filter.all": "الكل",
-            "filter.medical": "طبية",
-            "filter.municipality": "بلدية",
-            "filter.education": "تعليم",
-            "filter.agriculture": "زراعة",
-            "filter.transport": "نقل",
-            "filter.donation": "تبرع",
-            "ticker.announcement": "الموقع قيد الإنشاء بواسطة أبو خالد",
-            "ticker.warning": "يرجى نشر رابط الموقع:",
-            "ticker.copy_button": "نسخ الرابط",
-            "ticker.copy_alert": "تم نسخ الرابط!",
-            "home.title": "أخبار وخدمات جديدة",
-            "home.cleaning": "حملة نظافة عامة",
-            "home.cleaning_desc": "حملة تنظيف القرية بالتعاون مع الشباب",
-            "home.youth": "فعاليات شبابية",
-            "home.youth_desc": "فعاليات ترفيهية وثقافية لشباب القرية",
-            "home.community": "خدمات مجتمعية",
-            "home.community_desc": "دعم المجتمع من خلال مبادرات خيرية",
-            "services.title": "جميع الخدمات في قرية الخريطة",
-            "services.medical": "الخدمات الطبية",
-            "services.pharmacy": "الصيدلية",
-            "services.hospital": "المستشفى",
-            "services.clinic": "المستوصف",
-            "services.municipality": "البلدية",
-            "services.booking": "حجز مواعيد",
-            "services.book_now": "احجز الآن",
-            "services.admin": "الخدمات الإدارية",
-            "services.support": "دعم المواطنين",
-            "services.security": "الأمن",
-            "services.police": "قسم الشرطة",
-            "services.protection": "خدمات الحماية المجتمعية",
-            "services.education": "التعليم",
-            "services.school": "المدرسة",
-            "services.high_school": "الثانوية",
-            "services.primary": "الابتدائية",
-            "services.courses": "تعليم الدورات",
-            "services.agriculture": "الزراعة",
-            "services.farmers": "دعم المزارعين",
-            "services.consulting": "استشارات زراعية حديثة",
-            "services.fertilizers": "دعم الأسمدة",
-            "services.irrigation": "مياه السقي",
-            "services.transport": "النقل",
-            "services.public_transport": "خدمات النقل العام",
-            "services.ticket": "حجز تذكرة",
-            "services.taxi": "طلب سيارة أجرة",
-            "services.donation": "التبرع",
-            "services.charity": "تبرع لجمعيات خيرية",
-            "services.schools_donation": "تبرع للمدارس",
-            "services.donate_now": "تبرع الآن",
-            "services.rps_game": "لعبة حجرة-ورقة-مقص",
-            "game.rock": "حجرة",
-            "game.paper": "ورقة",
-            "game.scissors": "مقص",
-            "game.score": "النقاط - أنت: 0 | الكمبيوتر: 0",
-            "services.quiz": "اختبار معلومات القرية",
-            "quiz.score": "النقاط: 0",
-            "about.title": "عن قرية الخريطة",
-            "about.history": "تاريخ القرية",
-            "about.history_desc": "تأسست قرية الخريطة على ضفاف نهر الفرات، وتشتهر بتربتها الخصبة وزراعتها المتنوعة.",
-            "stories.title": "حكايات القرية",
-            "stories.text": "في يوم من الأيام، تجمع أهل القرية حول النهر...",
-            "stories.read_more": "اقرأ حكاية أخرى",
-            "price.title": "محاكي الأسعار الزراعية",
-            "price.wheat": "قمح",
-            "price.barley": "شعير",
-            "price.dates": "تمر",
-            "price.quantity": "الكمية (طن)",
-            "price.calculate": "احسب السعر",
-            "price.result": "",
-            "events.title": "الفعاليات القادمة",
-            "feedback.title": "التعليقات",
-            "feedback.name": "الاسم",
-            "feedback.comment": "التعليق",
-            "feedback.submit": "إرسال",
-            "urgent.button": "طلب عاجل",
-            "urgent.title": "طلب عاجل",
-            "urgent.name": "الاسم",
-            "urgent.request": "تفاصيل الطلب",
-            "urgent.submit": "إرسال",
-            "chat.title": "مساعد القرية",
-            "chat.welcome": "مرحبًا! اسألني عن القرية أو الخدمات!",
-            "chat.suggest_event": "موعد الفعالية",
-            "chat.suggest_booking": "حجز موعد",
-            "chat.suggest_price": "أسعار المحاصيل",
-            "chat.placeholder": "اكتب سؤالك...",
-            "chat.clear": "مسح السجل",
-            "footer.copyright": "© 2025 قرية الخريطة",
-            "footer.quote": "الزراعة هي عماد القرية."
-          }
-        },
-        en: {
-          translation: {
-            "header.title": "Al-Kharita Village Portal",
-            "header.description": "A vibrant agricultural village on the Euphrates",
-            "nav.home": "Home",
-            "nav.services": "Services",
-            "nav.about": "About",
-            "nav.events": "Events",
-            "nav.feedback": "Feedback",
-            "nav.stories": "Village Tales",
-            "nav.news": "News",
-            "search.placeholder": "Search for a service...",
-            "filter.all": "All",
-            "filter.medical": "Medical",
-            "filter.municipality": "Municipality",
-            "filter.education": "Education",
-            "filter.agriculture": "Agriculture",
-            "filter.transport": "Transport",
-            "filter.donation": "Donation",
-            "ticker.announcement": "Website under construction by Abu Khaled",
-            "ticker.warning": "Please share the website link:",
-            "ticker.copy_button": "Copy Link",
-            "ticker.copy_alert": "Link copied!",
-            "home.title": "News and New Services",
-            "home.cleaning": "General Cleaning Campaign",
-            "home.cleaning_desc": "Village cleaning campaign with youth collaboration",
-            "home.youth": "Youth Events",
-            "home.youth_desc": "Entertainment and cultural events for village youth",
-            "home.community": "Community Services",
-            "home.community_desc": "Community support through charitable initiatives",
-            "services.title": "All Services in Al-Kharita Village",
-            "services.medical": "Medical Services",
-            "services.pharmacy": "Pharmacy",
-            "services.hospital": "Hospital",
-            "services.clinic": "Clinic",
-            "services.municipality": "Municipality",
-            "services.booking": "Appointment Booking",
-            "services.book_now": "Book Now",
-            "services.admin": "Administrative Services",
-            "services.support": "Citizen Support",
-            "services.security": "Security",
-            "services.police": "Police Station",
-            "services.protection": "Community Protection Services",
-            "services.education": "Education",
-            "services.school": "School",
-            "services.high_school": "High School",
-            "services.primary": "Primary School",
-            "services.courses": "Training Courses",
-            "services.agriculture": "Agriculture",
-            "services.farmers": "Farmer Support",
-            "services.consulting": "Modern Agricultural Consulting",
-            "services.fertilizers": "Fertilizer Support",
-            "services.irrigation": "Irrigation Water",
-            "services.transport": "Transport",
-            "services.public_transport": "Public Transport Services",
-            "services.ticket": "Ticket Booking",
-            "services.taxi": "Private Taxi Request",
-            "services.donation": "Donation",
-            "services.charity": "Donate to Charities",
-            "services.schools_donation": "Donate to Schools",
-            "services.donate_now": "Donate Now",
-            "services.rps_game": "Rock-Paper-Scissors Game",
-            "game.rock": "Rock",
-            "game.paper": "Paper",
-            "game.scissors": "Scissors",
-            "game.score": "Score - You: 0 | Computer: 0",
-            "services.quiz": "Village Knowledge Quiz",
-            "quiz.score": "Score: 0",
-            "about.title": "About Al-Kharita Village",
-            "about.history": "Village History",
-            "about.history_desc": "Al-Kharita Village was established on the Euphrates, known for its fertile soil and diverse agriculture.",
-            "stories.title": "Village Tales",
-            "stories.text": "One day, villagers gathered by the river to celebrate the harvest...",
-            "stories.read_more": "Read Another Tale",
-            "price.title": "Agricultural Price Calculator",
-            "price.wheat": "Wheat",
-            "price.barley": "Barley",
-            "price.dates": "Dates",
-            "price.quantity": "Quantity (tons)",
-            "price.calculate": "Calculate Price",
-            "price.result": "",
-            "events.title": "Upcoming Events",
-            "feedback.title": "Feedback",
-            "feedback.name": "Name",
-            "feedback.comment": "Comment",
-            "feedback.submit": "Submit",
-            "urgent.button": "Urgent Request",
-            "urgent.title": "Urgent Request",
-            "urgent.name": "Name",
-            "urgent.request": "Request Details",
-            "urgent.submit": "Submit",
-            "chat.title": "Village Assistant",
-            "chat.welcome": "Hello! Ask me about the village or services!",
-            "chat.suggest_event": "Event Schedule",
-            "chat.suggest_booking": "Book Appointment",
-            "chat.suggest_price": "Crop Prices",
-            "chat.placeholder": "Type your question...",
-            "chat.clear": "Clear History",
-            "footer.copyright": "© 2025 Al-Kharita Village",
-            "footer.quote": "Agriculture is the backbone of the village."
-          }
-        }
-      }
-    }, () => {
-      document.querySelectorAll('[data-i18n]').forEach(elem => {
-        const key = elem.getAttribute('data-i18n');
-        if (key.includes('[placeholder]')) elem.placeholder = i18next.t(key.replace('[placeholder]', ''));
-        else if (key.includes('[innerHTML]')) elem.innerHTML = i18next.t(key.replace('[innerHTML]', ''));
-        else elem.textContent = i18next.t(key);
-      });
-    });
-
-    function toggleDetails(id) {
-      const details = document.getElementById(id);
-      const isActive = details.classList.contains('active');
-      document.querySelectorAll('.service-details').forEach(detail => detail.classList.remove('active'));
-      if (!isActive) details.classList.add('active');
-    }
-
-    function playGame(playerChoice) {
-      const choices = ['حجرة', 'ورقة', 'مقص'];
-      const computerChoice = choices[Math.floor(Math.random() * 3)];
-      let result = '';
-      if (playerChoice === computerChoice) {
-        result = 'تعادل!';
-      } else if (
-        (playerChoice === 'حجرة' && computerChoice === 'مقص') ||
-        (playerChoice === 'ورقة' && computerChoice === 'حجرة') ||
-        (playerChoice === 'مقص' && computerChoice === 'ورقة')
-      ) {
-        result = 'فزت!';
-        playerScore++;
-      } else {
-        result = 'خسرت!';
-        computerScore++;
-      }
-      document.getElementById('gameResult').textContent = `أنت: ${playerChoice} | الكمبيوتر: ${computerChoice} - ${result}`;
-      document.getElementById('gameScore').textContent = `النقاط - أنت: ${playerScore} | الكمبيوتر: ${computerScore}`;
-    }
-
-    function loadQuiz() {
-      const questions = [
-        {
-          question: 'ما هو النهر الذي تقع عليه قرية الخريطة؟',
-          options: ['الفرات', 'دجلة', 'النيل'],
-          answer: 'الفرات'
-        },
-        {
-          question: 'ما هو المحصول الرئيسي في القرية؟',
-          options: ['قمح', 'تمر', 'شعير'],
-          answer: 'قمح'
-        }
-      ];
-      let currentQuestion = 0;
-      const questionElement = document.getElementById('quizQuestion');
-      const optionsElement = document.getElementById('quizOptions');
-      const resultElement = document.getElementById('quizResult');
-      const scoreElement = document.getElementById('quizScore');
-
-      function loadQuestion() {
-        const q = questions[currentQuestion];
-        questionElement.textContent = q.question;
-        optionsElement.innerHTML = '';
-        q.options.forEach(option => {
-          const button = document.createElement('button');
-          button.className = 'btn btn-outline-primary m-1';
-          button.textContent = option;
-          button.onclick = () => checkAnswer(option);
-          optionsElement.appendChild(button);
-        });
-      }
-
-      function checkAnswer(option) {
-        const q = questions[currentQuestion];
-        if (option === q.answer) {
-          quizScore++;
-          resultElement.textContent = 'إجابة صحيحة!';
-        } else {
-          resultElement.textContent = 'إجابة خاطئة!';
-        }
-        scoreElement.textContent = `النقاط: ${quizScore}`;
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-          setTimeout(loadQuestion, 1000);
-        } else {
-          resultElement.textContent = 'انتهى الاختبار!';
-          optionsElement.innerHTML = '';
-        }
-      }
-
-      loadQuestion();
-    }
-
-    function randomStory() {
-      const stories = [
-        'في يوم من الأيام، تجمع أهل القرية حول النهر للاحتفال بموسم الحصاد...',
-        'يقال إن شجرة الزيتون القديمة في القرية عمرها 300 عام...',
-        'كان أبو علي يروي قصص الحصاد كل ليلة...',
-        'في ليلة مقمرة، تجمع الشباب لسماع حكايات الجدود...'
-      ];
-      const random = stories[Math.floor(Math.random() * stories.length)];
-      document.getElementById('storyText').textContent = random;
-    }
-
-    function calculatePrice() {
-      const crop = document.getElementById('cropType').value;
-      const quantity = parseFloat(document.getElementById('cropQuantity').value) || 0;
-      const prices = { wheat: 300, barley: 250, dates: 500 };
-      const total = quantity * prices[crop];
-      document.getElementById('priceResult').textContent = total ? `السعر التقديري: ${total} دولار` : 'أدخل كمية صالحة!';
-    }
-
-    function startCountdown() {
-      const nextEvent = new Date('2025-06-10T00:00:00');
-      setInterval(() => {
-        const now = new Date();
-        const diff = nextEvent - now;
-        if (diff <= 0) {
-          document.getElementById('countdown').textContent = 'الفعالية بدأت!';
-          return;
-        }
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById('countdown').textContent = `الفعالية القادمة بعد: ${days} يوم، ${hours} ساعة، ${minutes} دقيقة`;
-      }, 1000);
-    }
-
-    function randomQuote() {
-      const quotes = [
-        'الزراعة هي عماد القرية.',
-        'نهر الفرات يروي أرضنا وقلوبنا.',
-        'بالتعاون تبنى القرى.',
-        'الأرض تعطي لمن يزرعها بحب.'
-      ];
-      document.getElementById('quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
-    }
-
-    function toggleChat() {
-      const chatBox = document.getElementById('aiChatBox');
-      chatBox.classList.toggle('active');
-    }
-
-    function sendAIQuery(text) {
-      const input = text || document.getElementById('aiInput').value.toLowerCase();
-      document.getElementById('aiInput').value = input;
-      const responseDiv = document.getElementById('aiResponse');
-      let response = 'عذرًا، حاول صياغة السؤال بطريقة أخرى!';
-      if (input.includes('موعد') || input.includes('فعالية')) {
-        response = 'الفعالية القادمة يوم 10 يونيو 2025!';
-      } else if (input.includes('حجز')) {
-        response = 'اضغط "احجز الآن" في قسم البلدية.';
-      } else if (input.includes('أسعار') || input.includes('محاصيل')) {
-        response = 'استخدم محاكي الأسعار الزراعية في القسم المخصص!';
-      }
-      chatHistory.push({ user: input, response });
-      localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-      responseDiv.innerHTML = response;
-      document.getElementById('aiInput').value = '';
-    }
-
-    function clearChatHistory() {
-      chatHistory = [];
-      localStorage.removeItem('chatHistory');
-      document.getElementById('aiResponse').innerHTML = '';
-    }
-
-    function initMap() {
-      const village = { lat: 35.6895, lng: 39.8279 }; // إحداثيات وهمية
-      const map = new google.maps.Map(document.getElementById('mapContainer'), {
-        zoom: 12,
-        center: village
-      });
-      new google.maps.Marker({
-        position: village,
-        map: map,
-        title: 'قرية الخريطة'
-      });
-    }
-
-    function initCalendar() {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: [
-          { title: 'حملة زراعة', date: '2025-06-10' },
-          { title: 'يوم الشباب', date: '2025-06-15' }
-        ]
-      });
-      calendar.render();
-    }
-
-    function filterServices() {
-      const searchInput = document.getElementById('searchInput').value.toLowerCase();
-      const category = document.getElementById('filterCategory').value;
-      const services = document.querySelectorAll('#servicesContainer > div');
-      services.forEach(service => {
-        const title = service.querySelector('h5').textContent.toLowerCase();
-        const serviceCategory = service.getAttribute('data-category');
-        const matchesSearch = title.includes(searchInput);
-        const matchesCategory = category === 'all' || serviceCategory === category;
-        service.style.display = matchesSearch && matchesCategory ? '' : 'none';
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      randomStory();
-      randomQuote();
-      startCountdown();
-      initCalendar();
-      loadQuiz();
-      document.getElementById('searchInput').addEventListener('input', filterServices);
-      document.getElementById('filterCategory').addEventListener('change', filterServices);
-    });
-  </script>
-</body>
-</html>
+      <
