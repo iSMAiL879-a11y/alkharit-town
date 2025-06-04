@@ -1,72 +1,75 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <title>تسجيل دخول المسؤول</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>لوحة التحكم - بوابة الخريطة</title>
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: sans-serif;
+      background: #f1f8e9;
+      direction: rtl;
+      padding: 20px;
     }
-    .login-box {
-      background-color: white;
-      padding: 30px;
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
+      box-shadow: 0 0 5px #ccc;
     }
-    input {
+    textarea {
       width: 100%;
+      height: 100px;
+      margin: 10px 0;
+      border-radius: 8px;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
     }
     button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 10px;
-      background-color: #1d5c57;
+      background: #388e3c;
       color: white;
       border: none;
-      border-radius: 5px;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-      text-align: center;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <h1>لوحة التحكم</h1>
 
-  <div class="login-box">
-    <h3>تسجيل الدخول</h3>
-    <input type="text" id="username" placeholder="اسم المستخدم">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button onclick="login()">دخول</button>
-    <div class="error" id="error-msg"></div>
+  <div class="section">
+    <h3>الشريط الإخباري</h3>
+    <textarea id="newsInput" placeholder="أدخل نص الشريط الإخباري"></textarea>
   </div>
 
-  <script>
-    function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const errorMsg = document.getElementById('error-msg');
+  <div class="section">
+    <h3>الإعلان الرئيسي</h3>
+    <textarea id="bannerInput" placeholder="أدخل الإعلان الرئيسي"></textarea>
+  </div>
 
-      if (username === "ismail" && password === "ismailsyr0011") {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "dashboard.html"; // صفحة الإدارة (تقدر تنشئها لاحقًا)
-      } else {
-        errorMsg.textContent = "بيانات الدخول غير صحيحة.";
-      }
+  <div class="section">
+    <h3>عن الموقع</h3>
+    <textarea id="aboutInput" placeholder="أدخل وصف الموقع"></textarea>
+  </div>
+
+  <div class="section">
+    <h3>رابط فيسبوك</h3>
+    <input type="text" id="fbInput" placeholder="https://facebook.com/..." style="width:100%;padding:10px;border-radius:8px;">
+  </div>
+
+  <button onclick="saveContent()">حفظ التعديلات</button>
+
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    function saveContent() {
+      localStorage.setItem("news", document.getElementById("newsInput").value);
+      localStorage.setItem("banner", document.getElementById("bannerInput").value);
+      localStorage.setItem("about", document.getElementById("aboutInput").value);
+      localStorage.setItem("facebook", document.getElementById("fbInput").value);
+      alert("تم الحفظ!");
     }
   </script>
-
-</body>
-</html>
+</
