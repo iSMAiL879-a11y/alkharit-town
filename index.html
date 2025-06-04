@@ -3,51 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="بوابة بلدة الخريطة، خدمات طبية، زراعية، ومجتمعية على ضفاف نهر الفرات" />
-  <meta name="keywords" content="قرية الخريطة, خدمات, الفرات, زراعة, تعليم" />
+  <meta name="description" content="بوابة قرية الخريطة، منصة مجتمعية تقدم خدمات طبية، زراعية، تعليمية، ومجتمعية على ضفاف نهر الفرات" />
+  <meta name="keywords" content="قرية الخريطة, خدمات, الفرات, زراعة, تعليم, بلدية, أمن, تبرعات" />
+  <meta name="author" content="أبو خالد" />
   <title>بوابة قرية الخريطة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- External Fonts and Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-NZ4Z10e+3Fqc8Q5bKMOrW7HYR3+spmF3gC/BRvfqUoV+i8uJ8e+0t9J4O5e2D5zK" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERL0B0g==" crossorigin="anonymous" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" integrity="sha256-JAu3Ki4O+0p3z7aBmg3r4bT2n3Y+wzW0oY1v5zJ7y8=" crossorigin="anonymous"></script>
   <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js" integrity="sha512-D3N7Lvoq3I0pWq00gL2r3gMccnNOSzwfZ1O+26FRLDjAWHtI2pt8A7IwA7y2g4YXB2v8D/8D5IuJ3h3WeeS/9g==" crossorigin="anonymous"></script>
+  <!-- Google Analytics -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
+  <!-- Internal CSS -->
   <style>
+    /* Root Variables for Modern Deir ez-Zor Theme */
     :root {
-      --bg-color: #f7f9fa;
-      --text-color: #1d5c57;
+      --primary-color: #1d5c57; /* Dark turquoise green */
+      --secondary-color: #134e4a; /* Deeper turquoise */
+      --accent-color: #f59e0b; /* Vibrant yellow-orange */
+      --bg-color: #f7f9fa; /* Light background */
+      --text-color: #1d5c57; /* Text matching primary color */
+      --card-bg: #ffffff; /* White cards */
       --header-bg: linear-gradient(90deg, #1d5c57, #134e4a);
-      --card-bg: #fff;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      --border-radius: 15px;
     }
     [data-theme="dark"] {
       --bg-color: #1a1a1a;
       --text-color: #ffffff;
+      --card-bg: #333333;
       --header-bg: linear-gradient(90deg, #333, #222);
-      --card-bg: #333;
     }
+    /* General Body Styling */
     body {
       font-family: 'Tajawal', sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       overflow-x: hidden;
       transition: background 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
     }
+    /* Header Styling */
     header {
       background: var(--header-bg);
       background-attachment: fixed;
       background-position: center;
       color: white;
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow);
     }
     header::before {
       content: '';
@@ -65,53 +78,73 @@
       z-index: 1;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+    }
+    header p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-family: 'Cairo', sans-serif;
+    }
+    /* Toggle Buttons */
     .theme-toggle, .lang-toggle, .admin-link {
       position: absolute;
       top: 20px;
-      background: #f59e0b;
+      background: var(--accent-color);
       border: none;
       padding: 10px;
       border-radius: 50%;
       cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 1;
+    }
+    .theme-toggle:hover, .lang-toggle:hover, .admin-link:hover {
+      transform: scale(1.2);
     }
     .theme-toggle { left: 20px; }
     .lang-toggle { left: 70px; }
-    .admin-link { left: 120px; background: #1d5c57; }
+    .admin-link { left: 120px; background: var(--primary-color); }
+    /* Navigation */
     .nav-link {
       color: var(--text-color);
-      font-weight: bold;
+      font-weight: 500;
       padding: 10px 20px;
       transition: color 0.3s ease, transform 0.3s ease;
     }
     .nav-link:hover {
-      color: #f59e0b;
+      color: var(--accent-color);
       transform: scale(1.1);
     }
+    .nav {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+    /* Ticker Styling */
     .ticker {
       background-color: #e6f0ee;
       padding: 15px;
       white-space: nowrap;
       overflow: hidden;
       direction: rtl;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
       margin: 15px 0;
       font-size: 1.1rem;
+      font-family: 'Cairo', sans-serif;
     }
     .ticker span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll 10s linear infinite;
+      animation: scroll 12s linear infinite;
     }
     .ticker-warning {
-      background: linear-gradient(90deg, #f59e0b, #d4a017);
+      background: linear-gradient(90deg, var(--accent-color), #d4a017);
       color: white;
       padding: 20px;
       font-size: 1.2rem;
       font-weight: bold;
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
       animation: pulse 2s infinite;
     }
     .ticker-warning a {
@@ -120,16 +153,18 @@
       margin-right: 10px;
     }
     .ticker-warning button {
-      background: #1d5c57;
+      background: var(--primary-color);
       color: white;
       border: none;
       padding: 8px 15px;
       border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     .ticker-warning button:hover {
-      background: #134e4a;
+      background: var(--secondary-color);
     }
+    /* Animations */
     @keyframes scroll {
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
@@ -139,26 +174,31 @@
       50% { opacity: 0.8; }
       100% { opacity: 1; }
     }
+    /* Service and News Cards */
     .service-folder, .news-card {
       background-color: var(--card-bg);
-      border-radius: 15px;
+      border-radius: var(--border-radius);
       padding: 25px;
       text-align: center;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       cursor: pointer;
       position: relative;
       overflow: hidden;
       border: 2px solid #d4a017;
     }
     .service-folder:hover, .news-card:hover {
-      transform: translateY(-15px);
+      transform: translateY(-10px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
     .service-folder i, .news-card i {
       font-size: clamp(2rem, 5vw, 2.5rem);
-      color: #f59e0b;
+      color: var(--accent-color);
       margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .service-folder:hover i, .news-card:hover i {
+      transform: scale(1.2);
     }
     .service-details {
       display: none;
@@ -166,11 +206,42 @@
       border-radius: 10px;
       padding: 20px;
       margin-top: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
     }
     .service-details.active {
       display: block;
     }
+    .service-details .sub-service {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddf1ef;
+    }
+    .service-details .sub-service i {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      margin-left: 10px;
+    }
+    /* Game Section */
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .game-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .game-btn:hover {
+      transform: scale(1.1);
+    }
+    /* Chat Styling */
     .ai-chat {
       position: fixed;
       bottom: 20px;
@@ -178,14 +249,18 @@
       z-index: 1000;
     }
     .ai-chat-button {
-      background: #1d5c57;
+      background: var(--primary-color);
       color: white;
       border: none;
       padding: 15px;
       border-radius: 50%;
       font-size: 1.5rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+    .ai-chat-button:hover {
+      transform: scale(1.2);
     }
     .ai-chat-box {
       display: none;
@@ -193,7 +268,7 @@
       border-radius: 10px;
       padding: 20px;
       width: clamp(280px, 90vw, 350px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow);
       position: absolute;
       bottom: 60px;
       left: 0;
@@ -203,7 +278,7 @@
     }
     .ai-chat-box input {
       border-radius: 8px;
-      border: 1px solid #1d5c57;
+      border: 1px solid var(--primary-color);
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
@@ -214,38 +289,58 @@
       border-radius: 8px;
       margin-top: 10px;
     }
+    /* Footer Styling */
     footer {
       background: var(--header-bg);
       color: white;
-      padding: 30px;
+      padding: 40px 20px;
       text-align: center;
       box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
     }
     footer a {
-      color: #f59e0b;
+      color: var(--accent-color);
       margin: 0 15px;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
     }
+    footer a:hover {
+      color: #d4a017;
+    }
+    /* Map and Calendar */
     #mapContainer {
       height: 400px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
     }
     #calendar {
       background: var(--card-bg);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
     }
-    .stats-panel {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
+    /* Admin Panel */
     #adminPanel {
       display: none;
     }
     #adminPanel.active {
       display: block;
+    }
+    .stats-panel {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      header {
+        padding: 40px 15px;
+      }
+      .nav-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
     }
     @media (max-width: 768px) {
       .service-folder, .news-card {
@@ -257,10 +352,32 @@
       .ai-chat-box {
         width: 280px;
       }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .theme-toggle, .lang-toggle, .admin-link {
+        padding: 8px;
+        top: 10px;
+      }
+      .theme-toggle { left: 10px; }
+      .lang-toggle { left: 50px; }
+      .admin-link { left: 90px; }
+      .ticker {
+        font-size: 0.9rem;
+      }
+      .ticker-warning {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Header Section -->
   <header>
     <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع"><i class="fas fa-moon"></i></button>
     <button class="lang-toggle" id="langToggle" aria-label="تبديل اللغة"><i class="fas fa-globe"></i></button>
@@ -269,16 +386,20 @@
     <p data-i18n="header.description">قرية زراعية نابضة بالحياة على ضفاف نهر الفرات</p>
   </header>
 
+  <!-- Navigation Bar -->
   <nav class="nav justify-content-center bg-light py-3 shadow-sm">
     <a class="nav-link" href="#home" data-i18n="nav.home">الرئيسية</a>
     <a class="nav-link" href="#services" data-i18n="nav.services">الخدمات</a>
     <a class="nav-link" href="#news" data-i18n="nav.news">الأخبار</a>
     <a class="nav-link" href="#events" data-i18n="nav.events">الفعاليات</a>
+    <a class="nav-link" href="#quiz" data-i18n="nav.quiz">اختبار المعرفة</a>
+    <a class="nav-link" href="#game" data-i18n="nav.game">لعبة</a>
     <a class="nav-link" href="#feedback" data-i18n="nav.feedback">التعليقات</a>
   </nav>
 
-  <div class="container my-3 position-relative">
-    <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة..." data-i18n="[placeholder]search.placeholder">
+  <!-- Search and Filter -->
+  <div class="container my-4 position-relative">
+    <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة أو خبر..." data-i18n="[placeholder]search.placeholder">
     <select id="filterCategory" class="form-select mt-2">
       <option value="all" data-i18n="filter.all">الكل</option>
       <option value="medical" data-i18n="filter.medical">طبية</option>
@@ -290,26 +411,34 @@
     </select>
   </div>
 
-  <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> <span id="announcement" data-i18n="ticker.announcement">الموقع قيد الإنشاء بواسطة أبو خالد</span></span></div>
-  <div class="ticker ticker-warning">
-    <span><i class="fas fa-bullhorn me-2"></i> <span data-i18n="ticker.warning">يرجى نشر رابط الموقع:</span> <a href="https://username.github.io/khurayta-portal" target="_blank">اضغط هنا</a></span>
-    <button onclick="navigator.clipboard.write('https://username.github.io/khurayta-portal'); alert(i18next.t('ticker.copy_alert'))" data-i18n="[innerHTML]ticker.copy_button">نسخ الرابط</button>
+  <!-- Announcement Tickers -->
+  <div class="container">
+    <div class="ticker">
+      <span><i class="fas fa-bullhorn me-2"></i> <span id="announcement" data-i18n="ticker.announcement">الموقع قيد الإنشاء بواسطة أبو خالد</span></span>
+    </div>
+    <div class="ticker ticker-warning">
+      <span><i class="fas fa-bullhorn me-2"></i> <span data-i18n="ticker.warning">يرجى نشر رابط الموقع:</span> <a href="https://username.github.io/khurayta-portal" target="_blank">اضغط هنا</a></span>
+      <button onclick="navigator.clipboard.write('https://username.github.io/khurayta-portal'); alert(i18next.t('ticker.copy_alert'))" data-i18n="[innerHTML]ticker.copy_button">نسخ الرابط</button>
+    </div>
   </div>
 
+  <!-- Home/News Section -->
   <section class="container my-5" id="home">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="home.title">أخبار وخدمات جديدة</h3>
     <div class="row g-4" id="newsContainer">
-      <!-- News will be dynamically loaded from Google Sheets -->
+      <!-- Dynamically loaded news -->
     </div>
   </section>
 
+  <!-- Services Section -->
   <section class="container my-5" id="services">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="services.title">جميع الخدمات في قرية الخريطة</h3>
     <div class="row g-4" id="servicesContainer">
-      <!-- Services will be dynamically loaded from Google Sheets -->
+      <!-- Dynamically loaded services -->
     </div>
   </section>
 
+  <!-- Events Section -->
   <section class="container my-5" id="events">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="events.title">الفعاليات في قرية الخريطة</h3>
     <div class="row g-4">
@@ -322,20 +451,47 @@
     </div>
   </section>
 
+  <!-- Quiz Section -->
+  <section class="container my-5" id="quiz">
+    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="quiz.title">اختبار معلومات القرية</h3>
+    <div class="stats-panel">
+      <p id="quizQuestion" data-i18n="quiz.question"></p>
+      <div id="quizOptions" class="d-flex flex-column gap-2"></div>
+      <p id="quizResult" class="mt-3"></p>
+      <p id="quizScore" data-i18n="quiz.score">النقاط: 0</p>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section class="container my-5" id="game">
+    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="game.title">لعبة حجرة-ورقة-مقص</h3>
+    <div class="stats-panel">
+      <div class="game-container">
+        <button class="game-btn" onclick="playGame('حجرة')"><i class="fas fa-hand-rock"></i> <span data-i18n="game.rock">حجرة</span></button>
+        <button class="game-btn" onclick="playGame('ورقة')"><i class="fas fa-hand-paper"></i> <span data-i18n="game.paper">ورقة</span></button>
+        <button class="game-btn" onclick="playGame('مقص')"><i class="fas fa-hand-scissors"></i> <span data-i18n="game.scissors">مقص</span></button>
+        <p id="gameResult" data-i18n="game.result"></p>
+        <p id="gameScore" data-i18n="game.score">النقاط - أنت: 0 | الكمبيوتر: 0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
   <section class="container my-5" id="feedback">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="feedback.title">شاركنا رأيك</h3>
-    <form class="stats-panel">
+    <form class="stats-panel" id="feedbackForm">
       <div class="mb-3">
         <label for="feedbackInput" class="form-label" data-i18n="feedback.label">تعليقاتك</label>
-        <textarea class="form-control" id="feedbackInput" rows="5" data-i18n="[placeholder]feedback.placeholder" placeholder="أدخل تعليقاتك هنا..."></textarea>
+        <textarea class="form-control" id="feedbackInput" rows="5" data-i18n="[placeholder]feedback.placeholder" placeholder="أدخل تعليقاتك هنا..." required></textarea>
       </div>
       <button type="submit" class="btn btn-primary" data-i18n="feedback.submit">إرسال</button>
     </form>
   </section>
 
+  <!-- Admin Panel -->
   <section class="container my-5" id="adminPanel">
     <h3 data-i18n="admin.title">لوحة التحكم - بوابة قرية الخريطة</h3>
-    <button id="logoutButton" class="btn btn-danger" data-i18n="admin.logout">تسجيل الخروج</button>
+    <button id="logoutButton" class="btn btn-danger mb-4" data-i18n="admin.logout">تسجيل الخروج</button>
     <div class="stats-panel mb-5">
       <h4 data-i18n="admin.news.title">إدارة الأخبار</h4>
       <form id="newsForm">
@@ -360,12 +516,12 @@
         <div class="mb-3">
           <label for="serviceCategory" class="form-label" data-i18n="admin.services.category_label">الفئة</label>
           <select class="form-select" id="serviceCategory" required>
-            <option value="medical">طبية</option>
-            <option value="municipality">بلدية</option>
-            <option value="education">تعليم</option>
-            <option value="agriculture">زراعة</option>
-            <option value="transport">نقل</option>
-            <option value="donation">تبرع</option>
+            <option value="medical" data-i18n="filter.medical">طبية</option>
+            <option value="municipality" data-i18n="filter.municipality">بلدية</option>
+            <option value="education" data-i18n="filter.education">تعليم</option>
+            <option value="agriculture" data-i18n="filter.agriculture">زراعة</option>
+            <option value="transport" data-i18n="filter.transport">نقل</option>
+            <option value="donation" data-i18n="filter.donation">تبرع</option>
           </select>
         </div>
         <div class="mb-3">
@@ -377,6 +533,7 @@
     </div>
   </section>
 
+  <!-- Chat Widget -->
   <div class="ai-chat">
     <button class="ai-chat-button" aria-label="فتح الدردشة"><i class="fas fa-comment-dots"></i></button>
     <div class="ai-chat-box">
@@ -386,15 +543,18 @@
     <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="YourBotName" data-size="large" data-auth-url="https://username.github.io/khurayta-portal"></script>
   </div>
 
+  <!-- Footer -->
   <footer>
-    <p data-i18n="footer.text">© 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة.</p>
+    <p data-i18n="footer.text">© 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة. | صمم بواسطة أبو خالد</p>
     <div>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://username.github.io/khurayta-portal" target="_blank" aria-label="مشاركة على فيسبوك"><i class="fab fa-facebook"></i></a>
       <a href="https://t.me/khurayta_portal" target="_blank" aria-label="قناة تليجرام"><i class="fab fa-telegram"></i></a>
-      <a href="https://twitter.com/intent/tweet?url=https://username.github.io/khurayta-portal" target="_blank" aria-label="مشاركة على تويتر"><i class="fab fa-twitter"></i></a>
+      <a href="https://twitter.com/intent/tweet?url=https://username.github.io/khurayta-portal&text=اكتشف بوابة قرية الخريطة!" target="_blank" aria-label="مشاركة على تويتر"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" aria-label="مشاركة على إنستغرام"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
 
+  <!-- Booking Modal -->
   <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -403,28 +563,29 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="bookingForm">
             <div class="mb-3">
               <label for="bookingDate" class="form-label" data-i18n="modal.booking.date">تاريخ الموعد</label>
-              <input type="date" class="form-control" id="bookingDate">
+              <input type="date" class="form-control" id="bookingDate" required>
             </div>
             <div class="mb-3">
-              <label for="bookingDetails" class="form-label" data-i18n="modal.booking.details">التفاصيل</label>
-              <textarea class="form-control" id="bookingDetails" rows="4"></textarea>
+              <label for="bookingDetails" class="form-label" data-i18n="modal.booking.details">تفاصيل الموعد</label>
+              <textarea class="form-control" id="bookingDetails" rows="4" required></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="modal.booking.close">إغلاق</button>
-          <button type="button" class="btn btn-primary" data-i18n="modal.booking.submit">إرسال الحجز</button>
+          <button type="button" class="btn btn-primary" id="submitBooking" data-i18n="modal.booking.submit">إرسال الحجز</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
-    // i18next Initialization
+    // i18next Initialization for Multilingual Support
     i18next.init({
       lng: 'ar',
       resources: {
@@ -436,8 +597,10 @@
             'nav.services': 'الخدمات',
             'nav.news': 'الأخبار',
             'nav.events': 'الفعاليات',
+            'nav.quiz': 'اختبار المعرفة',
+            'nav.game': 'لعبة',
             'nav.feedback': 'التعليقات',
-            'search.placeholder': 'ابحث عن خدمة...',
+            'search.placeholder': 'ابحث عن خدمة أو خبر...',
             'filter.all': 'الكل',
             'filter.medical': 'طبية',
             'filter.municipality': 'بلدية',
@@ -447,18 +610,30 @@
             'filter.donation': 'تبرع',
             'ticker.announcement': 'الموقع قيد الإنشاء بواسطة أبو خالد',
             'ticker.warning': 'يرجى نشر رابط الموقع:',
-            'ticker.copy_alert': 'تم نسخ الرابط!',
+            'ticker.copy_alert': 'تم نسخ الرابط بنجاح!',
             'ticker.copy_button': 'نسخ الرابط',
             'home.title': 'أخبار وخدمات جديدة',
             'services.title': 'جميع الخدمات في قرية الخريطة',
             'events.title': 'الفعاليات في قرية الخريطة',
+            'quiz.title': 'اختبار معلومات القرية',
+            'quiz.question': 'اختر السؤال...',
+            'quiz.score': 'النقاط: 0',
+            'game.title': 'لعبة حجرة-ورقة-مقص',
+            'game.rock': 'حجرة',
+            'game.paper': 'ورقة',
+            'game.scissors': 'مقص',
+            'game.result': '',
+            'game.score': 'النقاط - أنت: 0 | الكمبيوتر: 0',
+            'game.draw': 'تعادل!',
+            'game.win': 'فزت!',
+            'game.lose': 'خسرت!',
             'feedback.title': 'شاركنا رأيك',
             'feedback.label': 'تعليقاتك',
             'feedback.placeholder': 'أدخل تعليقاتك هنا...',
             'feedback.submit': 'إرسال',
             'modal.booking.title': 'حجز موعد',
             'modal.booking.date': 'تاريخ الموعد',
-            'modal.booking.details': 'التفاصيل',
+            'modal.booking.details': 'تفاصيل الموعد',
             'modal.booking.close': 'إغلاق',
             'modal.booking.submit': 'إرسال الحجز',
             'admin.title': 'لوحة التحكم - بوابة قرية الخريطة',
@@ -472,7 +647,8 @@
             'admin.services.category_label': 'الفئة',
             'admin.services.description_label': 'الوصف',
             'admin.services.submit': 'إضافة خدمة',
-            'chat.placeholder': 'اسألني أي شيء...'
+            'chat.placeholder': 'اسألني أي شيء...',
+            'footer.text': '© 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة.'
           }
         },
         en: {
@@ -483,8 +659,10 @@
             'nav.services': 'Services',
             'nav.news': 'News',
             'nav.events': 'Events',
+            'nav.quiz': 'Knowledge Quiz',
+            'nav.game': 'Game',
             'nav.feedback': 'Feedback',
-            'search.placeholder': 'Search for a service...',
+            'search.placeholder': 'Search for a service or news...',
             'filter.all': 'All',
             'filter.medical': 'Medical',
             'filter.municipality': 'Municipality',
@@ -494,18 +672,30 @@
             'filter.donation': 'Donation',
             'ticker.announcement': 'Website under construction by Abu Khaled',
             'ticker.warning': 'Please share the website link:',
-            'ticker.copy_alert': 'Link copied!',
+            'ticker.copy_alert': 'Link copied successfully!',
             'ticker.copy_button': 'Copy Link',
             'home.title': 'Latest News and Services',
             'services.title': 'All Services in Al-Khurayta Village',
             'events.title': 'Events in Al-Khurayta Village',
+            'quiz.title': 'Village Knowledge Quiz',
+            'quiz.question': 'Select a question...',
+            'quiz.score': 'Score: 0',
+            'game.title': 'Rock-Paper-Scissors Game',
+            'game.rock': 'Rock',
+            'game.paper': 'Paper',
+            'game.scissors': 'Scissors',
+            'game.result': '',
+            'game.score': 'Score - You: 0 | Computer: 0',
+            'game.draw': 'Draw!',
+            'game.win': 'You Win!',
+            'game.lose': 'You Lose!',
             'feedback.title': 'Share Your Feedback',
             'feedback.label': 'Your Feedback',
             'feedback.placeholder': 'Enter your feedback here...',
             'feedback.submit': 'Submit',
             'modal.booking.title': 'Book Appointment',
             'modal.booking.date': 'Appointment Date',
-            'modal.booking.details': 'Details',
+            'modal.booking.details': 'Appointment Details',
             'modal.booking.close': 'Close',
             'modal.booking.submit': 'Submit Booking',
             'admin.title': 'Admin Panel - Al-Khurayta Village Portal',
@@ -519,14 +709,20 @@
             'admin.services.category_label': 'Category',
             'admin.services.description_label': 'Description',
             'admin.services.submit': 'Add Service',
-            'chat.placeholder': 'Ask me anything...'
+            'chat.placeholder': 'Ask me anything...',
+            'footer.text': '© 2025 Al-Khurayta Village Portal. All rights reserved.'
           }
         }
       }
     }, () => {
+      // Initialize translations
       document.querySelectorAll('[data-i18n]').forEach(elem => {
         const key = elem.getAttribute('data-i18n');
         elem.textContent = i18next.t(key);
+      });
+      document.querySelectorAll('[data-i18n\\[placeholder\\]]').forEach(elem => {
+        const key = elem.getAttribute('data-i18n[placeholder]');
+        elem.placeholder = i18next.t(key);
       });
     });
 
@@ -543,12 +739,25 @@
           const key = elem.getAttribute('data-i18n');
           elem.textContent = i18next.t(key);
         });
+        document.querySelectorAll('[data-i18n\\[placeholder\\]]').forEach(elem => {
+          const key = elem.getAttribute('data-i18n[placeholder]');
+          elem.placeholder = i18next.t(key);
+        });
       });
     });
 
     // Login System
     const adminLink = document.getElementById('adminLink');
     const adminPanel = document.getElementById('adminPanel');
+    const mainSections = ['home', 'services', 'events', 'quiz', 'game', 'feedback'];
+
+    function toggleAdminPanel(show) {
+      adminPanel.classList.toggle('active', show);
+      mainSections.forEach(id => {
+        document.getElementById(id).style.display = show ? 'none' : 'block';
+      });
+    }
+
     if (localStorage.getItem('username')) {
       adminLink.style.display = 'block';
     } else {
@@ -561,22 +770,14 @@
     }
 
     adminLink.addEventListener('click', () => {
-      adminPanel.classList.toggle('active');
-      document.getElementById('home').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
-      document.getElementById('services').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
-      document.getElementById('events').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
-      document.getElementById('feedback').style.display = adminPanel.classList.contains('active') ? 'none' : 'block';
+      toggleAdminPanel(!adminPanel.classList.contains('active'));
     });
 
     // Logout
     document.getElementById('logoutButton').addEventListener('click', () => {
       localStorage.removeItem('username');
-      adminPanel.classList.remove('active');
+      toggleAdminPanel(false);
       adminLink.style.display = 'none';
-      document.getElementById('home').style.display = 'block';
-      document.getElementById('services').style.display = 'block';
-      document.getElementById('events').style.display = 'block';
-      document.getElementById('feedback').style.display = 'block';
     });
 
     // Google Sheets Integration
@@ -584,6 +785,7 @@
     const API_KEY = 'YOUR_GOOGLE_SHEETS_API_KEY';
     const NEWS_RANGE = 'News!A2:C';
     const SERVICES_RANGE = 'Services!A2:C';
+    const FEEDBACK_RANGE = 'Feedback!A2:B';
 
     async function fetchData(range) {
       try {
@@ -596,11 +798,11 @@
     }
 
     async function updateSheet(tab, values) {
-      // For simplicity, use a Google Apps Script web app for updates
       try {
         await fetch('YOUR_APPS_SCRIPT_URL', {
           method: 'POST',
-          body: JSON.stringify({ tab, values })
+          body: JSON.stringify({ tab, values }),
+          headers: { 'Content-Type': 'application/json' }
         });
       } catch (error) {
         console.error('Error updating sheet:', error);
@@ -640,8 +842,8 @@
             <div class="service-details" id="service${index}">
               <div class="sub-service">
                 <i class="fas fa-info-circle"></i> ${description}
-                ${category === 'municipality' ? '<button class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#bookingModal">احجز الآن</button>' : ''}
-                ${category === 'donation' ? '<a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2">تبرع الآن</a>' : ''}
+                ${category === 'municipality' ? '<button class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#bookingModal" data-i18n="[innerHTML]modal.booking.submit">احجز الآن</button>' : ''}
+                ${category === 'donation' ? '<a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" class="btn btn-sm btn-primary ms-2" target="_blank" data-i18n="[innerHTML]modal.donation.submit">تبرع الآن</a>' : ''}
               </div>
             </div>
           </div>`;
@@ -669,7 +871,6 @@
         const serviceCategory = service.dataset.category;
         const matchesSearch = serviceName.includes(search);
         const matchesCategory = category === 'all' || serviceCategory === category;
-
         service.style.display = matchesSearch && matchesCategory ? '' : 'none';
       });
     }
@@ -680,7 +881,7 @@
       const title = document.getElementById('newsTitle').value;
       const description = document.getElementById('newsDescription').value;
       await updateSheet('News', [title, description, new Date().toISOString()]);
-      alert('تم إضافة الخبر!');
+      alert('تم إضافة الخبر بنجاح!');
       document.getElementById('newsForm').reset();
       loadNews();
     });
@@ -691,9 +892,32 @@
       const category = document.getElementById('serviceCategory').value;
       const description = document.getElementById('serviceDescription').value;
       await updateSheet('Services', [title, category, description]);
-      alert('تم إضافة الخدمة!');
+      alert('تم إضافة الخدمة بنجاح!');
       document.getElementById('servicesForm').reset();
       loadServices();
+    });
+
+    // Feedback Form Submission
+    document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const feedback = document.getElementById('feedbackInput').value;
+      await updateSheet('Feedback', [feedback, new Date().toISOString()]);
+      alert('تم إرسال التعليق بنجاح!');
+      document.getElementById('feedbackForm').reset();
+    });
+
+    // Booking Form Submission
+    document.getElementById('submitBooking').addEventListener('click', async () => {
+      const date = document.getElementById('bookingDate').value;
+      const details = document.getElementById('bookingDetails').value;
+      if (date && details) {
+        await updateSheet('Bookings', [date, details, new Date().toISOString()]);
+        alert('تم إرسال الحجز بنجاح!');
+        document.getElementById('bookingForm').reset();
+        bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+      } else {
+        alert('يرجى ملء جميع الحقول!');
+      }
     });
 
     // FullCalendar Initialization
@@ -703,11 +927,23 @@
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           events: [
-            { title: 'حملة نظافة', start: '2025-06-10' },
-            { title: 'مهرجان شبابي', start: '2025-06-15' }
+            { title: 'حملة نظافة عامة', start: '2025-06-10', color: '#1d5c57' },
+            { title: 'مهرجان شبابي', start: '2025-06-15', color: '#f59e0b' },
+            { title: 'اجتماع المجلس المحلي', start: '2025-06-20', color: '#134e4a' }
           ],
           locale: 'ar',
-          direction: 'rtl'
+          direction: 'rtl',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          buttonText: {
+            today: 'اليوم',
+            month: 'شهر',
+            week: 'أسبوع',
+            day: 'يوم'
+          }
         });
         calendar.render();
       }
@@ -716,8 +952,18 @@
     // Google Maps Initialization
     function initMap() {
       const map = new google.maps.Map(document.getElementById('mapContainer'), {
-        center: { lat: 33.3152, lng: 44.3661 }, // Example coordinates
-        zoom: 10
+        center: { lat: 35.3359, lng: 40.1408 }, // Deir ez-Zor coordinates
+        zoom: 12,
+        mapTypeId: 'roadmap',
+        styles: [
+          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#1d5c57' }] },
+          { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#f7f9fa' }] }
+        ]
+      });
+      new google.maps.Marker({
+        position: { lat: 35.3359, lng: 40.1408 },
+        map,
+        title: 'قرية الخريطة'
       });
     }
 
@@ -726,10 +972,92 @@
       document.querySelector('.ai-chat-box').classList.toggle('active');
     });
 
-    // Load initial data
+    // Rock-Paper-Scissors Game
+    let playerScore = 0, computerScore = 0;
+    function playGame(playerChoice) {
+      const choices = ['حجرة', 'ورقة', 'مقص'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      let result = '';
+
+      if (playerChoice === computerChoice) {
+        result = i18next.t('game.draw');
+      } else if (
+        (playerChoice === 'حجرة' && computerChoice === 'مقص') ||
+        (playerChoice === 'ورقة' && computerChoice === 'حجرة') ||
+        (playerChoice === 'مقص' && computerChoice === 'ورقة')
+      ) {
+        result = i18next.t('game.win');
+        playerScore++;
+      } else {
+        result = i18next.t('game.lose');
+        computerScore++;
+      }
+
+      document.getElementById('gameResult').textContent = `${result} - الكمبيوتر اختار: ${computerChoice}`;
+      document.getElementById('gameScore').textContent = i18next.t('game.score', { player: playerScore, computer: computerScore });
+    }
+
+    // Quiz Functionality
+    const quizQuestions = [
+      {
+        question: 'ما هو النهر الذي تقع عليه قرية الخريطة؟',
+        options: ['الفرات', 'دجلة', 'النيل', 'الأردن'],
+        answer: 'الفرات'
+      },
+      {
+        question: 'ما هي الخدمة الأساسية التي تقدمها البوابة؟',
+        options: ['خدمات طبية', 'خدمات ترفيهية', 'خدمات سياحية', 'خدمات صناعية'],
+        answer: 'خدمات طبية'
+      },
+      {
+        question: 'من هو مطور الموقع؟',
+        options: ['أبو خالد', 'أبو محمد', 'أبو علي', 'أبو أحمد'],
+        answer: 'أبو خالد'
+      }
+    ];
+
+    let currentQuestion = 0;
+    let quizScore = 0;
+
+    function loadQuiz() {
+      const quizContainer = document.getElementById('quizOptions');
+      const quizQuestion = document.getElementById('quizQuestion');
+      const question = quizQuestions[currentQuestion];
+      quizQuestion.textContent = question.question;
+      quizContainer.innerHTML = '';
+      question.options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-outline-primary';
+        button.textContent = option;
+        button.onclick = () => checkAnswer(option);
+        quizContainer.appendChild(button);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const question = quizQuestions[currentQuestion];
+      const result = document.getElementById('quizResult');
+      if (selected === question.answer) {
+        quizScore++;
+        result.textContent = 'إجابة صحيحة!';
+        result.style.color = 'green';
+      } else {
+        result.textContent = `إجابة خاطئة! الإجابة الصحيحة هي: ${question.answer}`;
+        result.style.color = 'red';
+      }
+      document.getElementById('quizScore').textContent = i18next.t('quiz.score') + ': ' + quizScore;
+      setTimeout(() => {
+        currentQuestion = (currentQuestion + 1) % quizQuestions.length;
+        loadQuiz();
+        result.textContent = '';
+      }, 2000);
+    }
+
+    // Initial Load
     document.addEventListener('DOMContentLoaded', () => {
       loadNews();
       loadServices();
+      loadQuiz();
     });
   </script>
 </body>
