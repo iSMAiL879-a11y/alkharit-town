@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="manifest" href="/manifest.json">
   <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
@@ -35,12 +34,6 @@
       --header-bg: linear-gradient(90deg, #333, #222);
       --card-bg: #333;
     }
-    [data-theme="blue"] {
-      --bg-color: #e6f3ff;
-      --text-color: #004aad;
-      --header-bg: linear-gradient(90deg, #004aad, #003087);
-      --card-bg: #f0f8ff;
-    }
     body {
       font-family: 'Tajawal', sans-serif;
       background: var(--bg-color);
@@ -50,8 +43,6 @@
     }
     header {
       background: var(--header-bg);
-      background-attachment: fixed;
-      background-position: center;
       color: white;
       padding: 40px 20px;
       text-align: center;
@@ -85,15 +76,6 @@
     }
     .theme-toggle { left: 20px; }
     .lang-toggle { left: 70px; }
-    .theme-selector {
-      position: absolute;
-      top: 20px;
-      left: 120px;
-      background: #f59e0b;
-      padding: 8px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
     .nav-link {
       color: var(--text-color) !important;
       font-weight: bold;
@@ -127,30 +109,8 @@
       font-size: 1.2rem;
       font-weight: bold;
       border-radius: 10px;
-      position: relative;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       animation: pulse 2s infinite;
-    }
-    .ticker-warning i {
-      margin-left: 10px;
-      font-size: 1.3rem;
-    }
-    .ticker-warning a {
-      color: #fff;
-      text-decoration: underline;
-      margin-right: 10px;
-    }
-    .ticker-warning button {
-      background: #1d5c57;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .ticker-warning button:hover {
-      background: #134e4a;
     }
     @keyframes scroll {
       from { transform: translateX(0); }
@@ -161,7 +121,7 @@
       50% { opacity: 0.8; }
       100% { opacity: 1; }
     }
-    .service-folder {
+    .service-folder, .post-card {
       background-color: var(--card-bg);
       border-radius: 15px;
       padding: 25px;
@@ -170,43 +130,16 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       position: relative;
-      overflow: hidden;
       border: 2px solid #d4a017;
     }
-    .service-folder::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #f59e0b, #d4a017);
-      transition: height 0.3s ease;
-    }
-    .service-folder:hover::before {
-      height: 100%;
-      opacity: 0.1;
-    }
-    .service-folder:hover {
+    .service-folder:hover, .post-card:hover {
       transform: translateY(-15px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
-    .service-folder img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      loading: lazy;
-    }
-    .service-folder i {
+    .service-folder i, .post-card i {
       font-size: clamp(2rem, 5vw, 2.5rem);
       color: #f59e0b;
       margin-bottom: 15px;
-      transition: transform 0.3s ease;
-    }
-    .service-folder:hover i {
-      transform: scale(1.2);
     }
     .service-details {
       display: none;
@@ -219,96 +152,30 @@
     .service-details.active {
       display: block;
     }
-    .service-details .sub-service {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #ddf1ef;
-    }
-    .service-details .sub-service i {
-      font-size: 1.5rem;
-      color: #f59e0b;
-      margin-left: 10px;
-    }
-    .game-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .game-btn {
-      background: #f59e0b;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .game-btn:hover {
-      transform: scale(1.1);
-    }
-    .ai-chat {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 1000;
-    }
-    .ai-chat-button {
-      background: #1d5c57;
-      color: white;
-      border: none;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-    .ai-chat-button:hover {
-      transform: scale(1.2);
-    }
-    .ai-chat-box {
-      display: none;
-      background: var(--card-bg);
+    .post-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
       border-radius: 10px;
-      padding: 20px;
-      width: clamp(280px, 90vw, 350px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      position: absolute;
-      bottom: 60px;
-      left: 0;
+      margin-bottom: 15px;
     }
-    .ai-chat-box.active {
-      display: block;
-    }
-    .ai-chat-box input {
+    .post-input {
       border-radius: 8px;
       border: 1px solid #1d5c57;
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
     }
-    .ai-chat-box .response {
-      background: #e6f0ee;
-      padding: 10px;
+    .post-input-btn {
+      background: #f59e0b;
+      color: white;
+      border: none;
+      padding: 8px 15px;
       border-radius: 8px;
-      margin-top: 10px;
-    }
-    .suggestions {
-      position: absolute;
-      background: var(--card-bg);
-      border: 1px solid #1d5c57;
-      border-radius: 5px;
-      z-index: 1000;
-      width: clamp(200px, 90%, 300px);
-    }
-    .suggestions div {
-      padding: 10px;
       cursor: pointer;
     }
-    .suggestions div:hover {
-      background: #e6f0ee;
+    .post-input-btn:hover {
+      background: #d4a017;
     }
     footer {
       background: var(--header-bg);
@@ -325,48 +192,12 @@
     footer a:hover {
       color: #d4a017;
     }
-    #mapContainer {
-      height: 400px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-    #calendar {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .stats-panel {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
-    }
-    .stats-canvas {
-      max-height: 300px;
-    }
-    @media (max-width: 768px) {
-      .service-folder {
-        margin-bottom: 20px;
-      }
-      .ticker-warning {
-        font-size: 1rem;
-      }
-      .ai-chat-box {
-        width: 280px;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
     <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
     <button class="lang-toggle" id="langToggle"><i class="fas fa-globe"></i></button>
-    <select class="theme-selector" id="themeSelector">
-      <option value="light">فاتح</option>
-      <option value="dark">داكن</option>
-      <option value="blue">أزرق</option>
-    </select>
     <h1 data-i18n="header.title">بوابة قرية الخريطة</h1>
     <p data-i18n="header.description">قرية زراعية نابضة بالحياة على ضفاف نهر الفرات</p>
   </header>
@@ -374,22 +205,15 @@
   <nav class="nav justify-content-center bg-light py-3 shadow-sm">
     <a class="nav-link" href="#home" data-i18n="nav.home">الرئيسية</a>
     <a class="nav-link" href="#services" data-i18n="nav.services">الخدمات</a>
-    <a class="nav-link" href="#about" data-i18n="nav.about">عن القرية</a>
+    <a class="nav-link" href="#community" data-i18n="nav.community">المجتمع</a>
     <a class="nav-link" href="#events" data-i18n="nav.events">الفعاليات</a>
     <a class="nav-link" href="#feedback" data-i18n="nav.feedback">التعليقات</a>
     <a class="nav-link" href="https://alikhbariah.com/" target="_blank" data-i18n="nav.news">الأخبار</a>
   </nav>
 
   <div class="container my-3 position-relative">
-    <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة..." data-i18n="[placeholder]search.placeholder">
+    <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن خدمة أو منشور..." data-i18n="[placeholder]search.placeholder">
     <div class="suggestions" id="searchSuggestions"></div>
-    <select id="filterCategory" class="form-select mt-2">
-      <option value="all" data-i18n="filter.all">الكل</option>
-      <option value="medical" data-i18n="filter.medical">طبية</option>
-      <option value="municipality" data-i18n="filter.municipality">بلدية</option>
-      <option value="education" data-i18n="filter.education">تعليم</option>
-      <option value="agriculture" data-i18n="filter.agriculture">زراعة</option>
-    </select>
   </div>
 
   <div class="ticker"><span><i class="fas fa-bullhorn me-2"></i> <span id="announcement" data-i18n="ticker.announcement">الموقع قيد الإنشاء بواسطة أبو خالد</span></span></div>
@@ -398,31 +222,31 @@
     <button onclick="navigator.clipboard.write('https://your-site-url.com'); alert(i18next.t('ticker.copy_alert'))" data-i18n="[innerHTML]ticker.copy_button">نسخ الرابط</button>
   </div>
 
-  <section class="container my-5" id="home">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="home.title">أخبار وخدمات جديدة</h3>
-    <div class="row g-4">
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <img src="https://source.unsplash.com/random/300x150?cleaning" alt="حملة نظافة" loading="lazy">
-          <i class="fas fa-broom"></i>
-          <h5 data-i18n="home.cleaning">حملة نظافة عامة</h5>
-          <p data-i18n="home.cleaning_desc">حملة تنظيف القرية بالتعاون مع الشباب</p>
+  <section class="container my-5" id="community">
+    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="community.title">المجتمع</h3>
+    <!-- لوحة إعلانات ديناميكية -->
+    <div class="row g-4 mb-4">
+      <div class="col-12">
+        <div class="post-card">
+          <h5 data-i18n="community.post_title">إنشاء منشور جديد</h5>
+          <input type="text" class="post-input" id="postInput" placeholder="شارك فكرة أو إعلان..." data-i18n="[placeholder]community.post_placeholder">
+          <button class="post-input-btn" onclick="addPost()" data-i18n="community.post_button">نشر</button>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <img src="https://source.unsplash.com/random/300x150?youth" alt="فعاليات شبابية" loading="lazy">
-          <i class="fas fa-users"></i>
-          <h5 data-i18n="home.youth">فعاليات شبابية</h5>
-          <p data-i18n="home.youth_desc">فعاليات ترفيهية وثقافية لشباب القرية</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="service-folder">
-          <img src="https://source.unsplash.com/random/300x150?community" alt="خدمات مجتمعية" loading="lazy">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h5 data-i18n="home.community">خدمات مجتمعية</h5>
-          <p data-i18n="home.community_desc">دعم المجتمع من خلال مبادرات خيرية</p>
+    </div>
+    <div class="row g-4" id="communityPosts">
+      <!-- سيتم إضافة المنشورات هنا ديناميكيًا -->
+    </div>
+    <!-- منتدى مجتمعي -->
+    <div class="row g-4 mt-4">
+      <div class="col-12">
+        <div class="post-card">
+          <h5 data-i18n="community.forum_title">منتدى المجتمع</h5>
+          <input type="text" class="post-input" id="forumInput" placeholder="ابدأ مناقشة..." data-i18n="[placeholder]community.forum_placeholder">
+          <button class="post-input-btn" onclick="addForumPost()" data-i18n="community.forum_button">إرسال</button>
+          <div id="forumPosts" class="mt-3">
+            <!-- سيتم إضافة منشورات المنتدى هنا -->
+          </div>
         </div>
       </div>
     </div>
@@ -431,43 +255,26 @@
   <section class="container my-5" id="services">
     <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="services.title">جميع الخدمات في قرية الخريطة</h3>
     <div class="row g-4" id="servicesContainer">
+      <!-- خدماتك الحالية هنا، تم تقليصها للإيجاز -->
       <div class="col-md-4 col-sm-6" data-category="medical">
         <div class="service-folder" onclick="toggleDetails('medical')" data-service="medical">
-          <img src="https://source.unsplash.com/random/300x150?hospital" alt="خدمات طبية" loading="lazy">
           <i class="fas fa-hospital"></i>
           <h5 data-i18n="services.medical">الخدمات الطبية</h5>
         </div>
         <div class="service-details" id="medical">
           <div class="sub-service"><i class="fas fa-prescription-bottle"></i> <span data-i18n="services.pharmacy">الصيدلية</span></div>
           <div class="sub-service"><i class="fas fa-hospital"></i> <span data-i18n="services.hospital">المستشفى</span></div>
-          <div class="sub-service"><i class="fas fa-clinic-medical"></i> <span data-i18n="services.clinic">المستوصف</span></div>
         </div>
       </div>
-      <!-- بقية الخدمات مشابهة مع إضافة صور Lazy Loading -->
-      <!-- ... (كرر لكل خدمة مع إضافة <img> بنفس الطريقة) ... -->
+      <!-- أضف بقية الخدمات حسب الحاجة -->
     </div>
   </section>
-
-  <section class="container my-5" id="stats">
-    <h3 class="text-center mb-4" style="color: var(--text-color);" data-i18n="stats.title">إحصائيات الموقع</h3>
-    <div class="stats-panel">
-      <canvas class="stats-canvas" id="statsChart"></canvas>
-    </div>
-  </section>
-
-  <div class="ai-chat">
-    <button class="ai-chat-button" id="aiChatButton"><i class="fas fa-robot"></i></button>
-    <div class="ai-chat-box" id="aiChatBox">
-      <input type="text" id="aiChatInput" placeholder="اسألني أي شيء..." data-i18n="[placeholder]chat.placeholder">
-      <div class="response" id="aiChatResponse"></div>
-    </div>
-  </div>
 
   <footer>
-    <p>&copy; 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة.</p>
+    <p>© 2025 بوابة قرية الخريطة. جميع الحقوق محفوظة.</p>
     <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com" target="_blank"><i class="fab fa-x"></i></a>
+    <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
   </footer>
 
   <script>
@@ -478,16 +285,19 @@
         ar: {
           translation: {
             header: { title: "بوابة قرية الخريطة", description: "قرية زراعية نابضة بالحياة على ضفاف نهر الفرات" },
-            nav: { home: "الرئيسية", services: "الخدمات", about: "عن القرية", events: "الفعاليات", feedback: "التعليقات", news: "الأخبار" },
-            search: { placeholder: "ابحث عن خدمة..." },
+            nav: { home: "الرئيسية", services: "الخدمات", community: "المجتمع", events: "الفعاليات", feedback: "التعليقات", news: "الأخبار" },
+            search: { placeholder: "ابحث عن خدمة أو منشور..." },
             ticker: { announcement: "الموقع قيد الإنشاء بواسطة أبو خالد", warning: "يرجى نشر رابط الموقع:", copy_button: "نسخ الرابط", copy_alert: "تم نسخ الرابط!" },
-            home: { title: "أخبار وخدمات جديدة", cleaning: "حملة نظافة عامة", cleaning_desc: "حملة تنظيف القرية بالتعاون مع الشباب", youth: "فعاليات شبابية", youth_desc: "فعاليات ترفيهية وثقافية لشباب القرية", community: "خدمات مجتمعية", community_desc: "دعم المجتمع من خلال مبادرات خيرية" },
-            services: { title: "جميع الخدمات في قرية الخريطة", medical: "الخدمات الطبية", pharmacy: "الصيدلية", hospital: "المستشفى", clinic: "المستوصف", municipality: "البلدية", booking: "حجز مواعيد", book_now: "احجز الآن", admin: "الخدمات الإدارية", support: "دعم المواطنين", security: "الأمن", police: "قسم الشرطة", protection: "خدمات الحماية المجتمعية", education: "التعليم", school: "المدرسة", high_school: "الثانوية", primary: "الابتدائية", courses: "تعليم الدورات", agriculture: "الزراعة", farmers: "دعم المزارعين", consulting: "استشارات زراعية حديثة", fertilizers: "دعم الأسمدة", irrigation: "مياه السقي", transport: "النقل", public_transport: "خدمات النقل العام في القرى", ticket: "حجز تذكرة", taxi: "طلب سيارة أجرة خاصة", donation: "التبرع", charity: "تبرع لجمعيات خيرية", schools_donation: "تبرع للمدارس الخاصة", donation_general: "التبرع", rps_game: "لعبة حجرة-ورقة-مقص", quiz: "اختبار معلومات القرية" },
-            filter: { all: "الكل", medical: "طبية", municipality: "بلدية", education: "تعليم", agriculture: "زراعة" },
-            game: { rock: "حجرة", paper: "ورقة", scissors: "مقص", result: "", score: "النقاط - أنت: 0 | الكمبيوتر: 0" },
-            quiz: { question: "", score: "النقاط: 0" },
-            stats: { title: "إحصائيات الموقع" },
-            chat: { placeholder: "اسألني أي شيء..." }
+            services: { title: "جميع الخدمات في قرية الخريطة", medical: "الخدمات الطبية", pharmacy: "الصيدلية", hospital: "المستشفى" },
+            community: {
+              title: "المجتمع",
+              post_title: "إنشاء منشور جديد",
+              post_placeholder: "شارك فكرة أو إعلان...",
+              post_button: "نشر",
+              forum_title: "منتدى المجتمع",
+              forum_placeholder: "ابدأ مناقشة...",
+              forum_button: "إرسال"
+            }
           }
         }
       }
@@ -505,10 +315,6 @@
       document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
-    document.getElementById('themeSelector').addEventListener('change', (e) => {
-      document.documentElement.setAttribute('data-theme', e.target.value);
-    });
-
     // تبديل اللغة
     document.getElementById('langToggle').addEventListener('click', () => {
       i18next.changeLanguage(i18next.language === 'ar' ? 'en' : 'ar', () => {
@@ -521,21 +327,67 @@
       });
     });
 
-    // فلترة الخدمات
-    document.getElementById('filterCategory').addEventListener('change', (e) => {
-      const category = e.target.value;
-      document.querySelectorAll('#servicesContainer > div').forEach(service => {
-        service.style.display = category === 'all' || service.getAttribute('data-category') === category ? 'block' : 'none';
-      });
-    });
+    // إضافة منشور إلى لوحة الإعلانات
+    function addPost() {
+      const postInput = document.getElementById('postInput').value;
+      if (postInput.trim()) {
+        const postsContainer = document.getElementById('communityPosts');
+        const postDiv = document.createElement('div');
+        postDiv.className = 'col-md-4 col-sm-6';
+        postDiv.innerHTML = `
+          <div class="post-card">
+            <i class="fas fa-bullhorn"></i>
+            <p>${postInput}</p>
+            <small>${new Date().toLocaleString('ar-EG')}</small>
+            <button class="post-input-btn mt-2" onclick="sharePost('${postInput}')">مشاركة</button>
+          </div>
+        `;
+        postsContainer.prepend(postDiv);
+        document.getElementById('postInput').value = '';
+        // إشعار
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification('تم إضافة منشور جديد!', { body: postInput });
+        }
+      }
+    }
 
-    // بحث ذكي مع اقتراحات
-    const services = [
-      'الخدمات الطبية', 'البلدية', 'الأمن', 'التعليم', 'الزراعة', 'النقل', 'التبرع', 'لعبة حجرة-ورقة-مقص', 'اختبار معلومات القرية'
+    // إضافة منشور إلى المنتدى
+    function addForumPost() {
+      const forumInput = document.getElementById('forumInput').value;
+      if (forumInput.trim()) {
+        const forumContainer = document.getElementById('forumPosts');
+        const postDiv = document.createElement('div');
+        postDiv.className = 'sub-service';
+        postDiv.innerHTML = `
+          <i class="fas fa-comment"></i>
+          <span>${forumInput}</span>
+          <small>${new Date().toLocaleString('ar-EG')}</small>
+        `;
+        forumContainer.prepend(postDiv);
+        document.getElementById('forumInput').value = '';
+      }
+    }
+
+    // مشاركة منشور
+    function sharePost(content) {
+      if (navigator.share) {
+        navigator.share({
+          title: 'منشور من بوابة قرية الخريطة',
+          text: content,
+          url: 'https://your-site-url.com'
+        }).catch(err => console.error('Error sharing:', err));
+      } else {
+        alert('مشاركة المنشور غير مدعومة في هذا المتصفح، انسخ الرابط يدويًا!');
+      }
+    }
+
+    // بحث ذكي
+    const items = [
+      'الخدمات الطبية', 'البلدية', 'منتدى المجتمع', 'لوحة الإعلانات'
     ];
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const query = e.target.value;
-      const suggestions = services.filter(service => service.includes(query));
+      const suggestions = items.filter(item => item.includes(query));
       const suggestionsContainer = document.getElementById('searchSuggestions');
       suggestionsContainer.innerHTML = '';
       suggestions.forEach(suggestion => {
@@ -544,16 +396,20 @@
         div.addEventListener('click', () => {
           document.getElementById('searchInput').value = suggestion;
           suggestionsContainer.innerHTML = '';
-          filterServices(suggestion);
+          filterItems(suggestion);
         });
         suggestionsContainer.appendChild(div);
       });
     });
 
-    function filterServices(query) {
+    function filterItems(query) {
       document.querySelectorAll('#servicesContainer > div').forEach(service => {
         const serviceName = service.querySelector('h5').textContent;
         service.style.display = serviceName.includes(query) ? 'block' : 'none';
+      });
+      document.querySelectorAll('#communityPosts > div').forEach(post => {
+        const postContent = post.querySelector('p').textContent;
+        post.style.display = postContent.includes(query) ? 'block' : 'none';
       });
     }
 
@@ -563,170 +419,17 @@
       details.classList.toggle('active');
     }
 
-    // لعبة حجرة-ورقة-مقص
-    let playerScore = 0, computerScore = 0;
-    function playGame(playerChoice) {
-      const choices = ['حجرة', 'ورقة', 'مقص'];
-      const computerChoice = choices[Math.floor(Math.random() * 3)];
-      let result = '';
-      if (playerChoice === computerChoice) {
-        result = 'تعادل!';
-      } else if (
-        (playerChoice === 'حجرة' && computerChoice === 'مقص') ||
-        (playerChoice === 'ورقة' && computerChoice === 'حجرة') ||
-        (playerChoice === 'مقص' && computerChoice === 'ورقة')
-      ) {
-        result = 'فزت!';
-        playerScore++;
-      } else {
-        result = 'خسرت!';
-        computerScore++;
-      }
-      document.getElementById('gameResult').textContent = `اختيارك: ${playerChoice} | اختيار الكمبيوتر: ${computerChoice} | النتيجة: ${result}`;
-      document.getElementById('gameScore').textContent = `النقاط - أنت: ${playerScore} | الكمبيوتر: ${computerScore}`;
-    }
-
-    // اختبار المعلومات
-    const quizQuestions = [
-      { question: 'ما هو اسم نهر القرية؟', options: ['الفرات', 'النيل', 'دجلة', 'الأردن'], correct: 'الفرات' },
-      { question: 'ما هي الخدمة الرئيسية في القرية؟', options: ['الزراعة', 'الصناعة', 'التجارة', 'التعدين'], correct: 'الزراعة' }
-    ];
-    let currentQuestion = 0, quizScore = 0;
-    function loadQuiz() {
-      const quiz = quizQuestions[currentQuestion];
-      document.getElementById('quizQuestion').textContent = quiz.question;
-      const optionsContainer = document.getElementById('quizOptions');
-      optionsContainer.innerHTML = '';
-      quiz.options.forEach(option => {
-        const button = document.createElement('button');
-        button.className = 'game-btn';
-        button.textContent = option;
-        button.addEventListener('click', () => checkAnswer(option));
-        optionsContainer.appendChild(button);
-      });
-    }
-    function checkAnswer(answer) {
-      const quiz = quizQuestions[currentQuestion];
-      if (answer === quiz.correct) {
-        quizScore++;
-        document.getElementById('quizResult').textContent = 'إجابة صحيحة!';
-      } else {
-        document.getElementById('quizResult').textContent = 'إجابة خاطئة!';
-      }
-      document.getElementById('quizScore').textContent = `النقاط: ${quizScore}`;
-      currentQuestion = (currentQuestion + 1) % quizQuestions.length;
-      setTimeout(loadQuiz, 1000);
-    }
-    loadQuiz();
-
-    // تهيئة الخريطة
-    function initMap() {
-      const map = new google.maps.Map(document.getElementById('mapContainer'), {
-        center: { lat: 35.147, lng: 39.013 },
-        zoom: 14
-      });
-      new google.maps.Marker({
-        position: { lat: 35.147, lng: 39.013 },
-        map,
-        title: 'قرية الخريطة'
-      });
-    }
-
-    // الدردشة الذكية
-    document.getElementById('aiChatButton').addEventListener('click', () => {
-      document.getElementById('aiChatBox').classList.toggle('active');
-    });
-    document.getElementById('aiChatInput').addEventListener('keypress', async (e) => {
-      if (e.key === 'Enter') {
-        const query = e.target.value;
-        document.getElementById('aiChatResponse').textContent = 'جاري المعالجة...';
-        // افتراضي: استدعاء API لـ Grok 3
-        const response = await fetch('https://api.x.ai/grok', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query })
-        });
-        const data = await response.json();
-        document.getElementById('aiChatResponse').textContent = data.answer || 'عذرًا، حاول مرة أخرى!';
-        e.target.value = '';
-      }
-    });
-
-    // إحصائيات تفاعلية
-    const ctx = document.getElementById('statsChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['الزوار', 'الخدمات المستخدمة', 'التبرعات', 'الفعاليات'],
-        datasets: [{
-          label: 'إحصائيات الموقع',
-          data: [1200, 850, 300, 450],
-          backgroundColor: '#f59e0b',
-          borderColor: '#1d5c57',
-          borderWidth: 1
-        }]
-      },
-      options: { scales: { y: { beginAtZero: true } } }
-    });
-
     // دعم الإشعارات
     if ('Notification' in window) {
       Notification.requestPermission().then(permission => {
         if (permission === 'granted') {
           new Notification('مرحبًا بكم في بوابة قرية الخريطة!', {
-            body: 'ابقَ على اطلاع بآخر الأخبار والفعاليات.',
+            body: 'شارك في المنتدى أو أضف إعلانًا الآن!',
             icon: 'https://source.unsplash.com/random/100x100?logo'
           });
         }
       });
     }
-
-    // دعم PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
-  </script>
-
-  <!-- ملف manifest.json لدعم PWA -->
-  <script type="application/json" src="/manifest.json">
-    {
-      "name": "بوابة قرية الخريطة",
-      "short_name": "الخريطة",
-      "start_url": "/",
-      "display": "standalone",
-      "background_color": "#f7f9fa",
-      "theme_color": "#1d5c57",
-      "icons": [
-        {
-          "src": "https://source.unsplash.com/random/192x192?logo",
-          "sizes": "192x192",
-          "type": "image/png"
-        },
-        {
-          "src": "https://source.unsplash.com/random/512x512?logo",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
-      ]
-    }
-  </script>
-
-  <!-- ملف service-worker.js لدعم وضع عدم الاتصال -->
-  <script src="/service-worker.js">
-    const CACHE_NAME = 'khareeta-cache-v1';
-    const urlsToCache = ['/', '/index.html', '/styles.css', '/scripts.js'];
-
-    self.addEventListener('install', event => {
-      event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-      );
-    });
-
-    self.addEventListener('fetch', event => {
-      event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request))
-      );
-    });
   </script>
 </body>
 </html>
