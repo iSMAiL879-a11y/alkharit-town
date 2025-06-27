@@ -7,46 +7,55 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    :root {
+      --bg-color: #f7f9fa;
+      --text-color: #1d5c57;
+      --header-bg: linear-gradient(90deg, #1d5c57, #134e4a);
+      --footer-bg: linear-gradient(90deg, #1d5c57, #134e4a);
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --header-bg: linear-gradient(90deg, #0c3d3b, #092c2a);
+      --footer-bg: linear-gradient(90deg, #0c3d3b, #092c2a);
+    }
     body {
       font-family: 'Tajawal', sans-serif;
-      background: #f7f9fa;
-      color: #1d5c57;
+      background: var(--bg-color);
+      color: var(--text-color);
     }
     header {
-      background: linear-gradient(90deg, #1d5c57, #134e4a);
+      background: var(--header-bg);
       color: white;
       padding: 40px 20px 20px 20px;
       text-align: center;
-      margin-bottom: 30px;
       position: relative;
     }
     .logo-img {
       height: 80px;
       margin-bottom: 10px;
     }
-    .corner-img-top {
+    .flag-img {
       position: absolute;
       top: 10px;
       left: 10px;
       height: 60px;
       border-radius: 8px;
     }
-    .flag-img {
+    .controls {
       position: absolute;
       top: 10px;
       right: 10px;
-      height: 40px;
-      border-radius: 4px;
+      display: flex;
+      gap: 8px;
     }
-    .clock {
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
-    .calendar {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #fff;
+    .controls button {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      background: white;
+      color: #1d5c57;
+      font-weight: bold;
     }
     .ticker-bar {
       background-color: #e6f0ee;
@@ -96,7 +105,7 @@
       border-radius: 8px;
     }
     footer {
-      background: linear-gradient(90deg, #1d5c57, #134e4a);
+      background: var(--footer-bg);
       color: white;
       padding: 18px;
       text-align: center;
@@ -107,49 +116,6 @@
       vertical-align: middle;
       margin-left: 10px;
     }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 280px;
-      height: 100%;
-      background-color: #e6f0ee;
-      padding: 20px;
-      overflow-y: auto;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-      transition: right 0.3s ease-in-out;
-      z-index: 999;
-    }
-    .sidebar.hidden {
-      right: -300px;
-    }
-    .sidebar-close {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: #134e4a;
-      cursor: pointer;
-    }
-    .sidebar h5 {
-      margin-top: 30px;
-      color: #134e4a;
-    }
-    .sidebar a {
-      display: block;
-      margin: 5px 0;
-      color: #1d5c57;
-      text-decoration: none;
-    }
-    .sidebar i {
-      margin-left: 6px;
-      color: #134e4a;
-    }
-    .weather-widget {
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -158,8 +124,11 @@
     <h1>بوابة الخط الغربي</h1>
     <p>خدمات إلكترونية لأهالي الريف الغربي</p>
     <img src="fs4.foto2.png" class="flag-img" alt="صورة">
-    <div class="clock" id="localTime">الساعة الآن...</div>
-    <div class="calendar" id="dateToday">اليوم...</div>
+    <div class="controls">
+      <button onclick="toggleTheme()">🌓</button>
+      <button onclick="resizeText(1)">A+</button>
+      <button onclick="resizeText(-1)">A-</button>
+    </div>
   </header>  <div class="ticker-bar">
     <div class="ticker-content">
       <i class="fa-solid fa-triangle-exclamation" style="color:#ff9800; margin-left:7px; margin-right:4px;"></i>
@@ -182,43 +151,25 @@
     <input type="text" id="userPhone" placeholder="رقم الهاتف" required class="form-control my-2">
     <textarea id="userRequest" placeholder="اكتب الشكوى أو الطلب بالتفصيل" required class="form-control my-2"></textarea>
     <button type="submit" class="btn btn-success">إرسال الطلب</button>
-    <button type="button" class="btn btn-toggle-sidebar" onclick="toggleSidebar()">📋 إظهار القائمة الجانبية</button>
-  </form>  <div class="sidebar hidden" id="sidebar">
-    <button class="sidebar-close" onclick="toggleSidebar()">×</button>
-    <h5><i class="fas fa-dollar-sign"></i> سعر الدولار اليوم</h5>
-    <a href="https://www.cb.gov.sy/" target="_blank"><i class="fas fa-bank"></i> مصرف سوريا المركزي</a><h5><i class="fas fa-hospital"></i> مستشفيات قريبة</h5>
-<a href="https://maps.app.goo.gl/3BDh7czZeTkXBjNFA" target="_blank"><i class="fas fa-location-dot"></i> مشفى الزين الجراحي</a>
-<a href="https://maps.app.goo.gl/AWvYxaoGobiwVwu6A" target="_blank"><i class="fas fa-location-dot"></i> مشفى الحمزة التخصصي</a>
-<a href="https://maps.app.goo.gl/YCi6viW6excabrDh8" target="_blank"><i class="fas fa-location-dot"></i> المشفى الوطني</a>
-<a href="https://maps.app.goo.gl/uaYrwZxiimZBVhiW6" target="_blank"><i class="fas fa-location-dot"></i> مشفى المياذين</a>
-<a href="https://maps.app.goo.gl/oxxwSLKxkj5SXFXA6" target="_blank"><i class="fas fa-location-dot"></i> مشفى البوكمال</a>
-
-<h5><i class="fas fa-cloud-sun"></i> الطقس في دير الزور</h5>
-<div class="weather-widget">
-  <iframe src="https://weatherwidget.io/w/?lat=35.336&lon=40.145&unit=metric&lang=ar" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
-</div>
-
-<h5><i class="fas fa-landmark"></i> بلدية الخريطة</h5>
-<a href="https://maps.app.goo.gl/cxiM98e3kcEznvuG8" target="_blank"><i class="fas fa-location-dot"></i> رابط بلدية الخريطة</a>
-
-<h5><i class="fab fa-facebook"></i> صفحات التواصل</h5>
-<a href="https://www.facebook.com/share/174m8yzqdG/" target="_blank"><i class="fab fa-facebook-f"></i> ديار آل شعيب الخريطة</a>
-<a href="https://www.facebook.com/share/16rbWDFYJi/" target="_blank"><i class="fab fa-facebook-f"></i> أحداث قبيلة البوسرايا</a>
-<a href="https://www.facebook.com/share/18vLQcduY7/" target="_blank"><i class="fab fa-facebook-f"></i> أخبار دير الزور</a>
-
-<h5><i class="fas fa-newspaper"></i> مصادر إخبارية</h5>
-<a href="https://sana.sy/" target="_blank"><i class="fas fa-globe"></i> وكالة سانا</a>
-<a href="https://alikhbariah.com/live/" target="_blank"><i class="fas fa-tv"></i> الإخبارية السورية</a>
-<a href="https://www.syria.tv/" target="_blank"><i class="fas fa-tv"></i> تلفزيون سوريا</a>
-<a href="https://www.facebook.com/share/16ZYSNcM5f/" target="_blank"><i class="fab fa-facebook"></i> وزارة الداخلية</a>
-<a href="https://www.facebook.com/share/1A2GCjzDjU/" target="_blank"><i class="fab fa-facebook"></i> رئاسة الجمهورية</a>
-
+    <button type="button" class="btn btn-toggle-sidebar" onclick="toggleSidebar()">📋 القائمة الجانبية</button>
+  </form>  <div class="main-form mt-3 text-center">
+    <h5>الطقس في دير الزور:</h5>
+    <iframe src="https://weatherwidget.io/w/?lat=35.336&lon=40.145&unit=metric&lang=ar" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
   </div>  <footer>
     <img src="fs4.foto1.png" alt="شعار الموقع" />
     جميع الحقوق محفوظة &copy; بوابة الخط الغربي 2025
   </footer>  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('hidden');
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    function resizeText(direction) {
+      const html = document.querySelector('html');
+      const style = window.getComputedStyle(html);
+      let size = parseFloat(style.fontSize);
+      size += direction * 1.5;
+      html.style.fontSize = size + 'px';
     }
 
     function sendToTelegram(message) {
@@ -255,16 +206,5 @@
       sendToTelegram(message);
       this.reset();
     });
-
-    function updateClock() {
-      const now = new Date();
-      const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-      const timeString = now.toLocaleTimeString('ar-EG', options);
-      const dateString = now.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-      document.getElementById('localTime').textContent = `الساعة الآن: ${timeString}`;
-      document.getElementById('dateToday').textContent = `📅 ${dateString}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
   </script></body>
 </html>
