@@ -18,10 +18,29 @@
       padding: 40px 20px 20px 20px;
       text-align: center;
       margin-bottom: 30px;
+      position: relative;
     }
     .logo-img {
       height: 80px;
       margin-bottom: 10px;
+    }
+    .corner-img-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 60px;
+      border-radius: 8px;
+    }
+    .flag-img {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 40px;
+      border-radius: 4px;
+    }
+    .clock {
+      margin-top: 10px;
+      font-size: 1.1rem;
     }
     .ticker-bar {
       background-color: #e6f0ee;
@@ -83,6 +102,21 @@
       padding: 20px;
       overflow-y: auto;
       box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease-in-out;
+    }
+    .sidebar.hidden {
+      right: -300px;
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #1d5c57;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      z-index: 1000;
     }
     .sidebar h5 {
       margin-top: 20px;
@@ -94,10 +128,8 @@
       color: #1d5c57;
       text-decoration: none;
     }
-    .sidebar img.corner-img {
-      width: 100%;
-      margin-top: 15px;
-      border-radius: 10px;
+    .weather-widget {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -106,7 +138,12 @@
     <img src="fs4.foto1.png" alt="شعار الموقع" class="logo-img" />
     <h1>بوابة الخط الغربي</h1>
     <p>خدمات إلكترونية لأهالي الريف الغربي</p>
-  </header>  <div class="ticker-bar">
+    <img src="fs4.foto2.png" class="corner-img-top" alt="صورة إضافية">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Flag_of_Syria.svg" alt="علم سوريا" class="flag-img">
+    <div class="clock" id="localTime">الساعة الآن...</div>
+  </header><button class="sidebar-toggle" onclick="toggleSidebar()">إظهار / إخفاء القائمة</button>
+
+  <div class="ticker-bar">
     <div class="ticker-content">
       <i class="fa-solid fa-triangle-exclamation" style="color:#ff9800; margin-left:7px; margin-right:4px;"></i>
       لتقديم شكوى أو ملاحظة يرجى تعبئة النموذج أدناه 👇
@@ -128,7 +165,7 @@
     <input type="text" id="userPhone" placeholder="رقم الهاتف" required class="form-control my-2">
     <textarea id="userRequest" placeholder="اكتب الشكوى أو الطلب بالتفصيل" required class="form-control my-2"></textarea>
     <button type="submit" class="btn btn-success">إرسال الطلب</button>
-  </form>  <div class="sidebar">
+  </form>  <div class="sidebar" id="sidebar">
     <h5><i class="fas fa-dollar-sign"></i> سعر الدولار اليوم</h5>
     <a href="https://www.cb.gov.sy/" target="_blank">مصرف سوريا المركزي</a><h5><i class="fas fa-hospital"></i> مستشفيات قريبة</h5>
 <a href="https://maps.app.goo.gl/3BDh7czZeTkXBjNFA" target="_blank">مشفى الزين الجراحي</a>
@@ -138,7 +175,9 @@
 <a href="https://maps.app.goo.gl/oxxwSLKxkj5SXFXA6" target="_blank">مشفى البوكمال</a>
 
 <h5><i class="fas fa-cloud-sun"></i> الطقس</h5>
-<a href="https://www.google.com/search?q=%D8%B7%D9%82%D8%B3+%D8%AF%D9%8A%D8%B1+%D8%A7%D9%84%D8%B2%D9%88%D8%B1" target="_blank">حالة الطقس في دير الزور</a>
+<div class="weather-widget">
+  <iframe src="https://www.meteoblue.com/en/weather/widget/daily/%D8%AF%D9%8A%D8%B1-%D8%A7%D9%84%D8%B2%D9%88%D8%B1_%D8%B3%D9%88%D8%B1%D9%8A%D8%A7_170654" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
+</div>
 
 <h5><i class="fas fa-landmark"></i> بلدية الخريطة</h5>
 <a href="https://maps.app.goo.gl/cxiM98e3kcEznvuG8" target="_blank">رابط بلدية الخريطة</a>
@@ -155,12 +194,14 @@
 <a href="https://www.facebook.com/share/16ZYSNcM5f/" target="_blank">وزارة الداخلية</a>
 <a href="https://www.facebook.com/share/1A2GCjzDjU/" target="_blank">رئاسة الجمهورية</a>
 
-<img src="fs4.foto2.png" alt="صورة إضافية" class="corner-img">
-
   </div>  <footer>
     <img src="fs4.foto1.png" alt="شعار الموقع" />
     جميع الحقوق محفوظة &copy; بوابة الخط الغربي 2025
   </footer>  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('hidden');
+    }
+
     function sendToTelegram(message) {
       const token = "7439082421:AAEG8hImgTBzQgz9SQbYq47FfGJldOQC_HI";
       const chat_id = "7220184605";
@@ -195,5 +236,14 @@
       sendToTelegram(message);
       this.reset();
     });
+
+    function updateClock() {
+      const now = new Date();
+      const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      const timeString = now.toLocaleTimeString('ar-EG', options);
+      document.getElementById('localTime').textContent = `الساعة الآن: ${timeString}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
   </script></body>
 </html>
