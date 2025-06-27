@@ -104,6 +104,30 @@
       padding: 10px 15px;
       border-radius: 8px;
     }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: #ffffff;
+      color: #1d5c57;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.active {
+      right: 0;
+    }
+    .sidebar .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+    }
     footer {
       background: var(--footer-bg);
       color: white;
@@ -155,6 +179,29 @@
   </form>  <div class="main-form mt-3 text-center">
     <h5>الطقس في دير الزور:</h5>
     <iframe src="https://weatherwidget.io/w/?lat=35.336&lon=40.145&unit=metric&lang=ar" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
+    <h5 class="mt-4">الطقس في دمشق:</h5>
+    <iframe src="https://weatherwidget.io/w/?lat=33.5138&lon=36.2765&unit=metric&lang=ar" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
+  </div>  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <h5>القائمة الجانبية</h5>
+    <ul class="list-unstyled">
+      <li><i class="fa-solid fa-hospital"></i> روابط المشافي</li>
+      <li><a href="https://maps.app.goo.gl/3BDh7czZeTkXBjNFA" target="_blank">مشفى الزين</a></li>
+      <li><a href="https://maps.app.goo.gl/AWvYxaoGobiwVwu6A" target="_blank">مشفى الحمزة</a></li>
+      <li><a href="https://maps.app.goo.gl/YCi6viW6excabrDh8" target="_blank">مشفى الوطني</a></li>
+      <li><a href="https://maps.app.goo.gl/uaYrwZxiimZBVhiW6" target="_blank">مشفى المياذين</a></li>
+      <li><a href="https://maps.app.goo.gl/oxxwSLKxkj5SXFXA6" target="_blank">مشفى البوكمال</a></li>
+      <hr>
+      <li><i class="fa-solid fa-building"></i> <a href="https://maps.app.goo.gl/cxiM98e3kcEznvuG8" target="_blank">بلدية الخريطة</a></li>
+      <li><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/share/174m8yzqdG/" target="_blank">ديار آل شعيب</a></li>
+      <li><a href="https://www.facebook.com/share/16rbWDFYJi/" target="_blank">أحداث البوسرايا</a></li>
+      <li><a href="https://www.facebook.com/share/18vLQcduY7/" target="_blank">أخبار دير الزور</a></li>
+      <li><a href="https://sana.sy/" target="_blank">سانا</a></li>
+      <li><a href="https://alikhbariah.com/live/" target="_blank">الإخبارية السورية</a></li>
+      <li><a href="https://www.syria.tv/" target="_blank">تلفزيون سوريا</a></li>
+      <li><a href="https://www.facebook.com/share/16ZYSNcM5f/" target="_blank">وزارة الداخلية</a></li>
+      <li><a href="https://www.facebook.com/share/1A2GCjzDjU/" target="_blank">رئاسة الجمهورية</a></li>
+    </ul>
   </div>  <footer>
     <img src="fs4.foto1.png" alt="شعار الموقع" />
     جميع الحقوق محفوظة &copy; بوابة الخط الغربي 2025
@@ -170,6 +217,11 @@
       let size = parseFloat(style.fontSize);
       size += direction * 1.5;
       html.style.fontSize = size + 'px';
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
     }
 
     function sendToTelegram(message) {
