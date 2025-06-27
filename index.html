@@ -24,12 +24,13 @@
       height: 80px;
       margin-bottom: 10px;
     }
-    .flag-img {
+    .corner-img-left {
       position: absolute;
       top: 10px;
       left: 10px;
       height: 60px;
       border-radius: 8px;
+      z-index: 999;
     }
     .time-date {
       font-size: 16px;
@@ -158,10 +159,10 @@
 </head>
 <body>
   <header>
+    <img src="syrian-logo.png" alt="شعار سوريا" class="corner-img-left" />
     <img src="fs4.foto1.png" alt="شعار الموقع" class="logo-img" />
     <h1>بوابة الخط الغربي</h1>
     <p>خدمات إلكترونية لأهالي الريف الغربي</p>
-    <img src="fs4.foto2.png" class="flag-img" alt="صورة">
     <div class="time-date">
       <i class="fa-solid fa-calendar-days"></i><span id="currentDate">--</span>
       &nbsp; | &nbsp;
@@ -263,7 +264,6 @@
       this.reset();
     });
 
-    // الوقت والتاريخ
     function updateDateTime() {
       const now = new Date();
       const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
