@@ -42,6 +42,12 @@
       margin-top: 10px;
       font-size: 1.1rem;
     }
+    .calendar {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #fff;
+    }
     .ticker-bar {
       background-color: #e6f0ee;
       border-radius: 10px;
@@ -117,35 +123,30 @@
     .sidebar.hidden {
       right: -300px;
     }
-    .sidebar-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #1d5c57;
-      color: white;
+    .sidebar-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: none;
       border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      z-index: 1000;
+      font-size: 1.5rem;
+      color: #134e4a;
+      cursor: pointer;
     }
     .sidebar h5 {
-      margin-top: 20px;
+      margin-top: 30px;
       color: #134e4a;
+      font-family: 'Font Awesome 6 Free';
     }
     .sidebar a {
       display: block;
       margin: 5px 0;
       color: #1d5c57;
       text-decoration: none;
+      font-family: 'Font Awesome 6 Free';
     }
     .weather-widget {
       margin-top: 10px;
-    }
-    .calendar {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #134e4a;
     }
   </style>
 </head>
@@ -154,8 +155,7 @@
     <img src="fs4.foto1.png" alt="شعار الموقع" class="logo-img" />
     <h1>بوابة الخط الغربي</h1>
     <p>خدمات إلكترونية لأهالي الريف الغربي</p>
-    <img src="fs4.foto2.png" class="corner-img-top" alt="صورة إضافية">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Flag_of_Syria.svg" alt="علم سوريا" class="flag-img">
+    <img src="fs4.foto2.png" class="flag-img" alt="صورة إضافية">
     <div class="clock" id="localTime">الساعة الآن...</div>
     <div class="calendar" id="dateToday">اليوم...</div>
   </header>  <div class="ticker-bar">
@@ -182,6 +182,7 @@
     <button type="submit" class="btn btn-success">إرسال الطلب</button>
     <button type="button" class="btn btn-toggle-sidebar" onclick="toggleSidebar()">📋 إظهار القائمة الجانبية</button>
   </form>  <div class="sidebar hidden" id="sidebar">
+    <button class="sidebar-close" onclick="toggleSidebar()">×</button>
     <h5><i class="fas fa-dollar-sign"></i> سعر الدولار اليوم</h5>
     <a href="https://www.cb.gov.sy/" target="_blank">مصرف سوريا المركزي</a><h5><i class="fas fa-hospital"></i> مستشفيات قريبة</h5>
 <a href="https://maps.app.goo.gl/3BDh7czZeTkXBjNFA" target="_blank">مشفى الزين الجراحي</a>
@@ -190,9 +191,9 @@
 <a href="https://maps.app.goo.gl/uaYrwZxiimZBVhiW6" target="_blank">مشفى المياذين</a>
 <a href="https://maps.app.goo.gl/oxxwSLKxkj5SXFXA6" target="_blank">مشفى البوكمال</a>
 
-<h5><i class="fas fa-cloud-sun"></i> الطقس</h5>
+<h5><i class="fas fa-cloud-sun"></i> الطقس في دير الزور</h5>
 <div class="weather-widget">
-  <iframe src="https://www.meteoblue.com/en/weather/widget/daily/%D8%AF%D9%8A%D8%B1-%D8%A7%D9%84%D8%B2%D9%88%D8%B1_%D8%B3%D9%88%D8%B1%D9%8A%D8%A7_170654" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
+  <iframe src="https://weatherwidget.io/w/?lat=35.336&lon=40.145&unit=metric&lang=ar" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:200px"></iframe>
 </div>
 
 <h5><i class="fas fa-landmark"></i> بلدية الخريطة</h5>
